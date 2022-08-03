@@ -28,8 +28,10 @@ snakemake --rulegraph | dot -Tpng > results/rule-graph.png
 snakemake -s testsnakefile.smk
 snakemake --forceall
 snakemake --delete-all-output -n
+snakemake --generate-unit-tests
 ```
 
 ## VS Code
 
-ctr-opt-cmd-P is show md preview in panel
+`ctr-opt-cmd-P` is show md preview in panel
+`shift-cmd-p` is open new command window
