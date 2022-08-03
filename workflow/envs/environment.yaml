@@ -1,0 +1,33 @@
+name: rknrrna
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - snakemake
+  - python>=3.7
+  - snakefmt # re-format snakemake grammar
+  - matplotlib
+  - graphviz
+  - pandas
+  - mkdocs # create docs
+
+  # sequences and general
+  - biopython
+  - seqkit # format conversion and stats reporting
+  - csvtk # csv file toolkit, used in seqkit stats
+
+  # alignments
+  - mafft
+  - trimal
+  - amas # alignment manipulation
+
+  # trees
+  - Fasttree
+  - iqtree
+
+  # taxonomic ID and LCA
+  - blast>=2.9 # sequence search
+  - kraken2 # kmer search
+  - sina
