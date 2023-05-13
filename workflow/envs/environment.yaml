@@ -11,7 +11,6 @@ dependencies:
   - matplotlib
   - graphviz
   - pandas
-  - mkdocs # create docs
 
   # sequences and general
   - biopython
@@ -19,9 +18,10 @@ dependencies:
   - csvtk # csv file toolkit, used in seqkit stats
   
   # alignments
-  - mafft
-  - trimal
+  - mafft # mulitple sequence alignment
+  - trimal # alignment trimming
   - amas # alignment manipulation
+  - cialign # alignment cleaning
 
   # trees
   - Fasttree

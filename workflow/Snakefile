@@ -7,6 +7,10 @@ configfile: "config/config.yaml"
 
 rule all:
     input:
-        "resources/samples/2012_fig_fullname_dna_cleanup.fas",
+        "resources/samples/2012_fig_fullname_cleanup.fas",
+        "results/iqtree/{sample}_iqtree.treefile",
+        "results/fasttree/{sample}_fasttree.nwk",
 
-include: "rules/alignment.smk"
+include: 
+    "rules/alignment.smk",
+    "rules/trees.smk",
