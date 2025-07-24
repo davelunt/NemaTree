@@ -6,9 +6,9 @@
 
 rule fasttree:
     input:
-        "results/alignments/{sample}.fas"
+        expand("results/trimal/{sample}_mafft_trimal.fas", sample=SAMPLES),
     output:
-        "results/fasttree/{sample}_fasttree.nwk"
+        "results/fasttree/{sample}_mafft_trimal_fasttree.nwk",
     shell:
         "FastTree -quiet -gtr -nt {input} > {output}"
 
@@ -18,9 +18,9 @@ rule fasttree:
 
 rule iqtree: # ML phylogenetic analysis
     input:
-        "results/alignments/{sample}.fas"
+        expand("results/trimal/{sample}_mafft_trimal.fas", sample=SAMPLES),
     output:
-        "results/iqtree/{sample}_iqtree.treefile"
+        "results/iqtree/{sample}_mafft_trimal_iqtree.treefile",
     shell:
         """
         iqtree -s {input} \
@@ -36,9 +36,18 @@ rule iqtree: # ML phylogenetic analysis
 # --------------------------------------------------
 rule mad_root:
     input:
-        "results/fasttree/{sample}_fasttree.nwk",
+        "results/fasttree/2012_145_mafft_fasttree.nwk",
     output:
-        "results/madroot/{sample}_fasttree_rooted.nwk"
+        "results/madroot/2012_145_mafft_fasttree_MADroot.nwk"
     shell:
-        "python scripts/mad_root2.py {input} {output}"
+        "python workflow/scripts/mad_root2.py {input} {output}"
 
+#plot tree with toytree
+# --------------------------------------------------
+rule toytree_plot:
+    input:
+        expand("results/fasttree/{sample}_mafft_trimal_fasttree.nwk", sample=SAMPLES)
+    output:
+        "results/reporting/toytree/{sample}_mafft_trimal_fasttree_MAD.html",
+    script:
+        "../scripts/toytre.py"

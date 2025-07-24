@@ -1,0 +1,45 @@
+import pandas as pd
+
+samples_df = pd.read_table(config['samples'], header = None)  # Pull in data from tsv
+
+# Generate sample wildcards
+SAMPLES = list(samples_df[0])  # create list from column of dataframe
+
+
+mafft --add resources/samples/Mart.fasta --reorder results/trimal/2012_114_mafft_trimal.fas > resources/samples/new_115.fas
+
+
+
+
+
+        bam=expand("sorted_reads/{sample}.bam", sample=config["samples"]),
+        bai=expand("sorted_reads/{sample}.bam.bai", sample=config["samples"])
+
+comnfig
+samples:
+    A: data/samples/A.fastq
+    B: data/samples/B.fastq
+
+
+
+IDS = "1 2 3 ...".split() # the list of desired ids
+
+# a pseudo-rule that collects the target files
+rule all:
+    input:  expand("otherdir/{id}.bam", id=IDS)
+
+# a general rule using wildcards that does the work
+rule:
+    input:  "thedir/{id}.fastq"
+    output: "otherdir/{id}.bam"
+    shell:  "..."
+
+SAMPLES=config["samples"]
+
+rule mafft:
+    input:
+        expand("results/mafft2/{sample}.fas", sample=SAMPLES]),
+    output:
+        "results/mafft2/{sample}.fas",
+    shell:
+        "mafft --auto {input} > {output}"

@@ -2,15 +2,30 @@
 # Please follow the best practices: 
 # https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
 # in particular regarding the standardized folder structure mentioned there. 
-
 configfile: "config/config.yaml"
+
+# import pandas as pd
+
+# samples_df = pd.read_table(config['sample_file'], header = None)  # Pull in data from tsv
+
+# SAMPLES = list(samples_df[0])  # create list from first column of dataframe
+
+SAMPLES=["2012_114"]  
 
 rule all:
     input:
-        "resources/samples/2012_fig_fullname_cleanup.fas",
-        "results/iqtree/{sample}_iqtree.treefile",
-        "results/fasttree/{sample}_fasttree.nwk",
+        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        "results/reporting/seqkit/initial_seqkit_report.md",
+        expand("results/reporting/amas/{sample}_mafft_trimal_amas.tsv", sample=SAMPLES),
+        expand("results/fasttree/{sample}_mafft_trimal_fasttree.nwk", sample=SAMPLES),
+        expand("results/reporting/toytree/{sample}_mafft_trimal_fasttree_MAD.html", sample=SAMPLES),
+        # expand("results/iqtree/2012_145_mafft_trimal_iqtree.treefile", sample=SAMPLES),
+        # "results/mafft/2012_145_mafft.fas",
+        # "results/reporting/amas/2012_145_mafft_amas.tsv",
+        # "results/fasttree/2012_145_mafft_trimal_fasttree.nwk",
+        # "results/iqtree/2012_145_mafft_trimal_iqtree.treefile",
 
-include: 
-    "rules/alignment.smk",
-    "rules/trees.smk",
+
+include: "rules/alignment.smk",
+include: "rules/trees.smk",
+include: "rules/reports.smk",

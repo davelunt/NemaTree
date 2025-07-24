@@ -6,37 +6,35 @@
 # NB this is report on sequences/*.fas not on processed samples
 # --------------------------------------------------
 
-
-rule seqkit_stats:
+rule seqkit_stats_initial:
     input:
-        infolder = "resources/sequences"
+        infolder = "resources/samples"
     output:
-        "results/tables/seqkit/sequences_initial_seqkit_report",
+        "results/reporting/seqkit/initial_seqkit_report.md",
     shell:
-        "seqkit stats -b {input.infolder}/*.fas > {output}"
+        "seqkit stats -b {input.infolder}/*.fas | csvtk csv2md -t > {output}"
 
 
 # AMAS, alignment report
 # --------------------------------------------------
 
-
 rule AMAS_alignment_stats:
     input:
-        "results/biopythoncodons/{sample}_codons.fas",
+        expand("results/trimal/{sample}_mafft_trimal.fas", sample=SAMPLES),
     output:
-        "results/tables/amas/{sample}_codons.fas.amas.tsv",
+        "results/reporting/amas/{sample}_mafft_trimal_amas.tsv",
     shell:
-        "AMAS.py summary -i {input} -f fasta -d dna -o {output} -c {threads}"
+        "python workflow/scripts/AMAS.py summary -i {input} -f fasta -d dna -o {output}"
 
 
-# AMAS, codon alignment length plot
+# AMAS, alignment length plot
 # --------------------------------------------------
 
 
-rule codon_alignlen_plot:
+rule alignlen_plot:
     input:
-        "results/tables/amas/{sample}_codons.fas.amas.tsv",
+        "results/reporting/amas/2012_145_mafft_amas.tsv",
     output:
-        "results/plots/amas/{sample}_codon_alignlength.png",
+        "results/reporting/amas/2012_145_mafft_amas_alignlength.png",
     script:
         "../scripts/plot_stats.py"

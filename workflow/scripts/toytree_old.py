@@ -1,12 +1,12 @@
 import toyplot  # a general plotting library
-import toytree  # a tree plotting library
+import workflow.scripts.toytree_old as toytree_old  # a tree plotting library
 
 # get input and output files from snakemake
 newick = snakemake.input[0]
 outfile = snakemake.output[0]
 
 # load the tree
-tre1 = toytree.tree(newick, tree_format=5)  # ETE3 numbering?
+tre1 = toytree_old.tree(newick, tree_format=5)  # ETE3 numbering?
 
 # root tree with outgroup
 # rtre = tre1.root(wildcard="Macaca")  # specify the outgroup taxon

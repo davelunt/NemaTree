@@ -3,12 +3,19 @@
 # ==================================================
 conda: "../envs/environment.yaml"  # leave this unedited
 
-my_experiment: "RKN_test"  # the experiment name, no_spaces
+# location and name of input data list
+# samples: 
+#   2012_116,
+#   2012_145,
+# sample_file: "config/samples.tsv"
 
-samples: "config/samples.tsv"  # location and name of sample list
+add_sequences: "FALSE" # FALSE will run a phylogeny of reference sequences only
+sequences_to_add: "resources/samples/newseqs.fas"
+alignment_to_add_to: "results/mafft/myalignment.fas"
 
-input_data: "resources/samples"  # directory of sample files for analysis
-
-exclude_seqs: "TRUE"  # TRUE or FALSE, remove seqs based on text file list
+exclude_seqs: "FALSE"  # TRUE or FALSE, remove seqs based on text file list
 # list of excluded seqs, 1 per line, fasta header line minus >
 exclusion_list: "config/excluded.txt"
+
+# input_data: "resources/samples"  # directory of sample files for analysis
+# min_seq_length: 500
