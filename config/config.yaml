@@ -18,4 +18,4 @@ exclude_seqs: "FALSE"  # TRUE or FALSE, remove seqs based on text file list
 exclusion_list: "config/excluded.txt"
 
 # input_data: "resources/samples"  # directory of sample files for analysis
-# min_seq_length: 500
+min_seq_length: 400

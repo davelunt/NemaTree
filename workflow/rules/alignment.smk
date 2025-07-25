@@ -1,14 +1,3 @@
-# rule align_format_convert:
-#     input:
-#         "resources/samples/2012_fig_fullname.fas",
-#     output:
-#         "resources/samples/2012_fig_fullname_cleanup.fas",
-#     params:
-#         informat="fasta",
-#         outformat="fasta",
-#     script:
-#         "../scripts/aln_convert.py"
-
 rule mafft_align:
     input:
         expand("resources/samples/{sample}.fas", sample=SAMPLES),
@@ -17,13 +6,15 @@ rule mafft_align:
     shell:
         "mafft --auto --quiet --reorder {input} > {output}"
 
+# check this works with seqkit and mafft together
 rule mafft_add_seqs:
     input:
         newseqs = "resources/samples/{newseq}", newseq=config["sequences_to_add"],
         alignment = "results/alignments/{alignment}", alignment=config["alignment_to_add_to"],
     output:
         newalignment = "results/mafft/{newseq}_{alignment}.fas",
-    shell:
+    shell: # prefix mafft with seqkit to remove gaps from new sequences
+        "seqkit seq -g {input.newseqs} | "
         "mafft --add {input.newseqs} --reorder {input.alignment} > {output.newalignment}"
 
 rule trimal: 
@@ -48,3 +39,13 @@ rule trimal:
 #             "seqkit grep -n -v -f {input.exclusionlist} {input.alignment} > {output}"
 # else print("No sequences were specified by the configfile to be excluded")
 
+# rule align_format_convert:
+#     input:
+#         "resources/samples/2012_fig_fullname.fas",
+#     output:
+#         "resources/samples/2012_fig_fullname_cleanup.fas",
+#     params:
+#         informat="fasta",
+#         outformat="fasta",
+#     script:
+#         "../scripts/aln_convert.py"
