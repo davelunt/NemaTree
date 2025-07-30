@@ -1,21 +1,32 @@
 # ==================================================
 #               RKN-rRNA: CONFIGFILE
+# this file should be edited by the user to configure the analysis
 # ==================================================
 conda: "../envs/environment.yaml"  # leave this unedited
 
-# location and name of input data list
-# samples: 
-#   2012_116,
-#   2012_145,
-# sample_file: "config/samples.tsv"
+# reference alignment to which samples are added
+reference_alignment: "resources/reference/RKN18S_referenceAln.fas"
 
-add_sequences: "FALSE" # FALSE will run a phylogeny of reference sequences only
-sequences_to_add: "resources/samples/newseqs.fas"
-alignment_to_add_to: "results/mafft/myalignment.fas"
+# sequences to add to the reference alignment
+add_sequences: FALSE # FALSE will build a phylogeny of reference sequences only
+# fasta sequences (.fas) to add if TRUE above
+sequences_to_add: "resources/samples/alvarez.fas"
 
-exclude_seqs: "FALSE"  # TRUE or FALSE, remove seqs based on text file list
-# list of excluded seqs, 1 per line, fasta header line minus >
-exclusion_list: "config/excluded.txt"
+# specify a minimum sequence length for samples being added 
+trim_seq_length: FALSE
+# eg "400" to retain sequences >=400bp
+min_seq_length: "400"
 
-# input_data: "resources/samples"  # directory of sample files for analysis
-min_seq_length: 400
+# Exclude seqs from input file of samples to add
+exclude_input_seqs: "FALSE"  # TRUE or FALSE, remove seqs based on text file list
+# list of excluded seqs, 1 per line, fasta header line without >
+exclusion_list_samples: "config/excluded_samples.txt"
+
+# # Remove seqs from the reference alignment TRUE/FALSE
+# exclude_reference_seqs: FALSE
+# # based on text file list of excluded seqs, 1 per line, fasta header line without >
+# # can be used to remove deeper branching taxa for example
+# exclusion_list_reference: "config/excluded_reference.txt"
+
+# substitution model for IQtree
+subst_model: "GTR+R3" # Best-fit model according to BIC. GTR+I+G fine also.

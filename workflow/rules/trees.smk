@@ -6,48 +6,42 @@
 
 rule fasttree:
     input:
-        expand("results/trimal/{sample}_mafft_trimal.fas", sample=SAMPLES),
+        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
     output:
-        "results/fasttree/{sample}_mafft_trimal_fasttree.nwk",
+        "results/fasttree/{sample}_mafft_fasttree.nwk",
     shell:
         "FastTree -quiet -gtr -nt {input} > {output}"
 
 
-# IQtree, build ML tree
+# IQtree, build ML tree. May need to add --latency-wait SECONDS flag to snakemake command
+# to allow for longer processing time.
 # --------------------------------------------------
 
 rule iqtree: # ML phylogenetic analysis
     input:
-        expand("results/trimal/{sample}_mafft_trimal.fas", sample=SAMPLES),
+        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
     output:
-        "results/iqtree/{sample}_mafft_trimal_iqtree.treefile",
+        dir = directory("results/iqtree/{sample}/"),
+    params:
+        model = config["subst_model"],
     shell:
         """
         iqtree -s {input} \
-        -pre {output} \
-        -m GTR+I+G \
-        -quiet \
+        -pre {output.dir} \
+        -m {params.model} \
+        --seqtype DNA \
+        --quiet \
         -T AUTO \
-        -redo \
         """
-
-# Root the tree with MAD
-# issues with passing files from multiple locations and saving output
-# --------------------------------------------------
-rule mad_root:
-    input:
-        "results/fasttree/2012_145_mafft_fasttree.nwk",
-    output:
-        "results/madroot/2012_145_mafft_fasttree_MADroot.nwk"
-    shell:
-        "python workflow/scripts/mad_root2.py {input} {output}"
+        # -redo \
 
 #plot tree with toytree
 # --------------------------------------------------
 rule toytree_plot:
     input:
-        expand("results/fasttree/{sample}_mafft_trimal_fasttree.nwk", sample=SAMPLES)
+        nwk = expand("results/iqtree/{sample}/{sample}.treefile", sample=SAMPLES),
+        added = "resources/validated/{sample}_all_fasta_headers.txt",
     output:
-        "results/reporting/toytree/{sample}_mafft_trimal_fasttree_MAD.html",
+        "results/reporting/toytree/{sample}_mafft_iqtree.html",
     script:
         "../scripts/toytre.py"

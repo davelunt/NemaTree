@@ -11,6 +11,8 @@ dependencies:
   - matplotlib
   - graphviz
   - pandas
+  - altair
+  - vl-convert-python # saving graphics formats
 
   # sequences and general
   - biopython
