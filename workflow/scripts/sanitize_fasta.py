@@ -7,6 +7,7 @@ import re
 input_file = snakemake.input[0]
 output_file = snakemake.output[0]
 
+
 def sanitize_fasta_headers(input_file, output_file):
     altered_count = 0
 
@@ -14,9 +15,9 @@ def sanitize_fasta_headers(input_file, output_file):
         for record in SeqIO.parse(input_file, "fasta"):
             original_description = record.description
             # Replace specified characters with underscores
-            cleaned_description = re.sub(r'[:;()\s]', '_', original_description)
+            cleaned_description = re.sub(r"[:;()\s]", "_", original_description)
             # Collapse multiple underscores into one
-            cleaned_description = re.sub(r'_+', '_', cleaned_description)
+            cleaned_description = re.sub(r"_+", "_", cleaned_description)
 
             if cleaned_description != original_description:
                 altered_count += 1
@@ -24,6 +25,7 @@ def sanitize_fasta_headers(input_file, output_file):
             SeqIO.write(record, out_handle, "fasta")
 
     print(f"Number of altered fasta headers: {altered_count}")
+
 
 # Example usage
 sanitize_fasta_headers("input.fasta", "output.fasta")
