@@ -4,13 +4,13 @@
 # FastTree, build ML tree
 # --------------------------------------------------
 
-rule fasttree:
-    input:
-        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
-    output:
-        "results/fasttree/{sample}_mafft_fasttree.nwk",
-    shell:
-        "FastTree -quiet -gtr -nt {input} > {output}"
+# rule fasttree:
+#     input:
+#         expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+#     output:
+#         expand("results/fasttree/{sample}_mafft_fasttree.nwk", sample=SAMPLES),
+#     shell:
+#         "FastTree -quiet -gtr -nt {input} > {output}"
 
 
 # IQtree, build ML tree. May need to add --latency-wait SECONDS flag to snakemake command
@@ -19,15 +19,16 @@ rule fasttree:
 
 rule iqtree: # ML phylogenetic analysis
     input:
-        expand("results/cialign/{sample}_mafft_cialign.fas", sample=SAMPLES),
+        expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
     output:
-        dir = directory("results/iqtree/{sample}/"),
+        expand("results/iqtree/{sample}/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
     params:
         model = config["subst_model"],
+        dir = directory("results/iqtree/{sample}/"),
     shell:
         """
         iqtree -s {input} \
-        -pre {output.dir} \
+        -pre {params.dir} \
         -m {params.model} \
         --seqtype DNA \
         --quiet \
@@ -35,13 +36,14 @@ rule iqtree: # ML phylogenetic analysis
         """
         # -redo \
 
-#plot tree with toytree
-# --------------------------------------------------
+# plot tree with toytree
+# highlight tips that were added to the reference alignment
+# ---------------------------------------------------------
 rule toytree_plot:
     input:
-        nwk = expand("results/iqtree/{sample}/{sample}.treefile", sample=SAMPLES),
-        added = "resources/validated/{sample}_all_fasta_headers.txt",
+        nwk = expand("results/iqtree/{sample}/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
+        added = expand("results/reporting/validated/{sample}_all_fasta_headers.txt", sample=SAMPLES),
     output:
-        "results/toytree/{sample}_mafft_cialign_iqtree.html",
+        expand("results/toytree/{sample}_mafft_cialign_iqtree.html", sample=SAMPLES),
     script:
         "../scripts/toytre.py"

@@ -1,13 +1,9 @@
 from Bio import SeqIO
 
 # files from snakemake
-# seqs_to_add = "file1.fasta"
 seqs_to_add = snakemake.input.seqs_to_add
-# reflibrary = "file2.fasta"
-reflibrary = snakemake.input.reflibrary
-# combined_alignment = "file3.fasta"
 combined_alignment = snakemake.input.combined_alignment
-# logfile = "alignment_check_log.txt"
+reflibrary = snakemake.params.reflibrary
 logfile = snakemake.output.logfile
 
 

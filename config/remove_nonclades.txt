@@ -1,0 +1,10 @@
+Meloidogyne_oleae_MH011979.1
+Meloidogyne_mali_KJ636400.1
+Meloidogyne_camelliae_JX912884.1
+Meloidogyne_ichinohei_KJ636350.1
+Meloidogyne_aberrans_MF278755.1
+Meloidogyne_africana_KY433422.1
+Meloidogyne_coffeicola_HE667739.1
+Meloidogyne_nataliei_MG821327.1
+Pratylenchus_vulnus_KC875389.1
+Pratylenchus_penetrans_KJ934156.1

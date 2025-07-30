@@ -11,19 +11,21 @@ configfile: "config/config.yaml"
 # SAMPLES = list(samples_df[0])  # create list from first column of dataframe
 
 # SAMPLES=["2012_114"] 
-SAMPLES=["allseqs160"] 
+SAMPLES=["alvarez"] 
 
 rule all:
     input:
-        expand("resources/validated/{sample}.fas", sample=SAMPLES),
-        # "results/reporting/seqkit/initial_seqkit_report.md",
-        # expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
-        expand("results/iqtree/{sample}/{sample}_mafft_iqtree.treefile", sample=SAMPLES),
+        expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
+        "results/reporting/seqkit/initial_seqkit_report.md",
+        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        # expand("results/reporting/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
+        expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
+        # expand("results/iqtree/{sample}/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
         # expand("results/reporting/toytree/{sample}_mafft_iqtree.html", sample=SAMPLES),
         # "results/reporting/amas/2012_145_mafft_amas.tsv",
         # "output_a.txt" if config['run_rule_a'] else [],
 
-
-# include: "rules/alignment.smk",
+include: "rules/qc.smk",
+include: "rules/alignment.smk",
 include: "rules/trees.smk",
-# include: "rules/reports.smk",
+include: "rules/reports.smk",

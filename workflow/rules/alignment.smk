@@ -16,47 +16,54 @@
 #     shell:
 #         "seqkit grep -v -n -f {input.excluded} {input.ref} > {output}"
 
+
 # this fails silently
 rule mafft_add_seqs:
     input:
-        newseqs = expand("resources/samples/validated/{sample}.fas", sample=SAMPLES)
-        ref = config["reference_alignment"],
+        newseqs=expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
+        ref=config["reference_alignment"],
     output:
-        newalignment = expand("results/mafft/{sample}_mafft.fas"),
-    shell: 
+        newalignment=expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+    shell:
         "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
+
 
 #  to qc?
 rule check_seqs_added:
     input:
-        seqs_to_add = expand("resources/samples/validated/{sample}.fas", sample=SAMPLES)
-        reflibrary = config["reference_alignment"],
-        combined_alignment = expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        seqs_to_add=expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
+        combined_alignment=expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+    params:
+        reflibrary=config["reference_alignment"],
     output:
-        logfile = "results/reporting/addseqs_check_log.txt",
+        logfile=expand(
+            "results/reporting/{sample}_checkaddseqs_log.txt", sample=SAMPLES
+        ),
     script:
         "../scripts/check_added.py"
-                                    
+
 
 # CIAlign CHECK THIS - DIRECTORY
-    rule CIAlign_remove_divergent_trim:
-        input:
-            expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
-        output:
-            dir = directory("results/cialign/{sample}_mafft_cialign"),
-        shell:
-            "CIAlign --infile {input} --outfile_stem {output.dir} --remove_divergent --crop_ends"
+rule CIAlign_remove_divergent_trim:
+    input:
+        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+    output:
+        expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
+    params:
+        stub=expand("results/cialign/{sample}_mafft_cialign", sample=SAMPLES),
+    shell:
+        """
+        CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
+        """
 
 
-# rule trimal: 
+# rule trimal:
 #     input:
 #         expand("results/mafft/{sample}_seqsadded_mafft.fas", sample=SAMPLES),
 #     output:
 #         "results/trimal/{sample}_seqsadded_mafft_trimal.fas",
 #     shell:
 #         "trimal -in {input} -out {output} -gappyout -keepheader"
-
-
 # if configfile specifies sequences to be removed, remove using seqkit
 # if REMOVE-SEQS is 'TRUE':
 #     rule remove_listed_seqs:
