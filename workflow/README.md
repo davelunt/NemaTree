@@ -17,4 +17,23 @@ The workflow will:
 
 ## Reproducibility
 
-The workflow is reproducible and self-documenting. 
+The workflow is reproducible and self-documenting.
+
+## Configuring the workflow
+
+The workflow can be configured using the `config/config.yaml` file. You can specify parameters such as the minimum sequence length, the reference alignment file, and whether to exclude certain sequences.
+
+## Running the workflow
+
+Make sure you have provided fasta sequences in a file in the `resources/samples/` directory with the .fas file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow
+
+Begin with a dry run to check all files are present.
+
+`snakemake -np`
+
+If all is well, run the workflow with:
+
+`snakemake --cores 4`
+
+
+

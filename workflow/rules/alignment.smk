@@ -1,10 +1,10 @@
-rule mafft_align:
-    input:
-        expand("resources/samples/{sample}.fas", sample=SAMPLES),
-    output:
-        "results/mafft/{sample}_mafft.fas",
-    shell:
-        "mafft --auto --quiet --reorder {input} > {output}"
+# rule mafft_align:
+#     input:
+#         expand("resources/samples/{sample}.fas", sample=SAMPLES),
+#     output:
+#         "results/mafft/{sample}_mafft.fas",
+#     shell:
+#         "mafft --auto --quiet --reorder {input} > {output}"
 
 # exclude sequences from reference alignment
 # rule seqkit_remove_seqs:
@@ -25,6 +25,18 @@ rule mafft_add_seqs:
         newalignment = expand("results/mafft/{sample}_mafft.fas"),
     shell: 
         "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
+
+#  to qc?
+rule check_seqs_added:
+    input:
+        seqs_to_add = expand("resources/samples/validated/{sample}.fas", sample=SAMPLES)
+        reflibrary = config["reference_alignment"],
+        combined_alignment = expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+    output:
+        logfile = "results/reporting/addseqs_check_log.txt",
+    script:
+        "../scripts/check_added.py"
+                                    
 
 # CIAlign CHECK THIS - DIRECTORY
     rule CIAlign_remove_divergent_trim:

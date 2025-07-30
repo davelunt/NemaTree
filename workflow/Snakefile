@@ -15,18 +15,12 @@ SAMPLES=["allseqs160"]
 
 rule all:
     input:
-        # expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
         expand("resources/validated/{sample}.fas", sample=SAMPLES),
         # "results/reporting/seqkit/initial_seqkit_report.md",
-        # expand("results/mafft/{sample}_seqsadded_mafft.fas", sample=SAMPLES),
-        # expand("results/reporting/amas/{sample}_seqsadded_mafft_trimal_amas.tsv", sample=SAMPLES),
-        # expand("results/fasttree/{sample}_seqsadded_mafft_trimal_fasttree.nwk", sample=SAMPLES),
-        expand("results/iqtree/{sample}/{sample}_seqsadded_mafft_iqtree.treefile", sample=SAMPLES),
-        # expand("results/reporting/toytree/{sample}_seqsadded_mafft_iqtree.html", sample=SAMPLES),
-        # expand("results/iqtree/2012_145_mafft_trimal_iqtree.treefile", sample=SAMPLES),
-        # "results/mafft/2012_145_mafft.fas",
+        # expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        expand("results/iqtree/{sample}/{sample}_mafft_iqtree.treefile", sample=SAMPLES),
+        # expand("results/reporting/toytree/{sample}_mafft_iqtree.html", sample=SAMPLES),
         # "results/reporting/amas/2012_145_mafft_amas.tsv",
-        # "results/fasttree/2012_145_mafft_trimal_fasttree.nwk",
         # "output_a.txt" if config['run_rule_a'] else [],
 
 

@@ -19,7 +19,7 @@ rule fasttree:
 
 rule iqtree: # ML phylogenetic analysis
     input:
-        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        expand("results/cialign/{sample}_mafft_cialign.fas", sample=SAMPLES),
     output:
         dir = directory("results/iqtree/{sample}/"),
     params:
@@ -42,6 +42,6 @@ rule toytree_plot:
         nwk = expand("results/iqtree/{sample}/{sample}.treefile", sample=SAMPLES),
         added = "resources/validated/{sample}_all_fasta_headers.txt",
     output:
-        "results/reporting/toytree/{sample}_mafft_iqtree.html",
+        "results/toytree/{sample}_mafft_cialign_iqtree.html",
     script:
         "../scripts/toytre.py"

@@ -22,7 +22,7 @@ rule clean_supplied_fasta
         log = "results/reporting/validated/{sample}_clean_fasta_log.txt",
         names = "results/reporting/validated/{sample}_all_fasta_headers.txt",
     script:
-        "scripts/clean_fasta.py"
+        "scripts/clean_fasta_txt.py"
 
 
 # appends a unique number to each seq ID: >seq1 to >seq1_1
