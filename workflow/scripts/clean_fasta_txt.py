@@ -1,5 +1,5 @@
 # Script removes unwanted characters from FASTA headers and sequences
-# These characters cause issues in newick treefiles
+# Lists headers of validated sequences in textfile
 
 from Bio import SeqIO
 import re
@@ -18,7 +18,7 @@ def sanitize_fasta_headers_and_sequences(input_file, output_file, log_altered, l
         log_altered, "w"
     ) as altered_handle, open(log_all, "w") as all_handle:
 
-        # Write header for TSV log file
+        # Write header for TSV log file of altered records
         altered_handle.write("Original_Header\tAltered_Header\n")
 
         for record in SeqIO.parse(input_file, "fasta"):
@@ -52,10 +52,13 @@ def sanitize_fasta_headers_and_sequences(input_file, output_file, log_altered, l
             # write validated fasta record to output file
             SeqIO.write(record, out_handle, "fasta")
 
+    print(f"fasta file cleaning and validation of {input_file}")
+    print(f"--------------------------------------------------------"\n)
     print(f"Number of altered fasta headers: {altered_headers}")
     print(f"Number of altered fasta sequences: {altered_sequences}")
     print(f"Altered record headers written to TSV: {log_altered}")
     print(f"All sequence names written to: {log_all}")
+    print(f"All validated fasta records written to: {output_file}")
 
 
 # Example usage

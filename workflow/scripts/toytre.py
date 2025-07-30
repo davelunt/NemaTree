@@ -47,7 +47,7 @@ species_colors = {
 def get_color(tip):
     return next((color for species, color in species_colors.items() if species in tip), "#33373a")
 
-# Generate color list using list comprehension
+# Generate color list
 colorlist = [get_color(tip) for tip in rtree.get_tip_labels()]
 
 # Draw tree
