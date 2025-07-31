@@ -4,13 +4,17 @@ from Bio import SeqIO
 import pandas as pd
 import altair as alt
 
-# specify FASTA file
-fasta_file = "resources/samples/2012_114.fas"
-# fasta_file = snakemake.input[0]
+# specify file locations
+# fasta_file = "resources/samples/alvarez.fas"
+fasta_file = snakemake.input[0]
+seq_lengths_tsv = snakemake.output.tsv
+html_outfile = snakemake.output.html
+png_outfile = snakemake.output.png
+sample_name = snakemake.wildcards.sample
 
 # Read sequences and store headers and lengths
 data = [
-    {"Header": record.id, "Sequence Length": len(record.seq)}
+    {"Header": record.description, "Sequence Length": len(record.seq)}
     for record in SeqIO.parse(fasta_file, "fasta")
 ]
 
@@ -18,7 +22,7 @@ data = [
 df = pd.DataFrame(data)
 
 # Write the DataFrame to a TSV file
-df.to_csv("sequence_lengths.tsv", sep="\t", index=False)
+df.to_csv(seq_lengths_tsv, sep="\t", index=False)
 
 # Determine the maximum sequence length
 max_length = df["Sequence Length"].max()
@@ -32,7 +36,7 @@ hist = (
         y="count()",
     )
     .properties(
-        title="Sequence Lengths (bp)",
+        title=f"{sample_name} Sequence Lengths Histogram",
         width=800,
     )
 )
@@ -42,13 +46,10 @@ text = hist.mark_text(align="center", baseline="middle", dy=-10, color="black").
     text=alt.Text("count():Q", format=","),
 )
 
-# html_outfile = snakemake.output.html
-# png_outfile = snakemake.output.png
-
 total = hist + text
 
 # Save HTML and PNG files
-total.save("sequence_length_histogram.html")
-total.save("sequence_length_histogram.png", scale_factor=2)
-# total.save(html_outfile)
-# total.save(png_outfile, scale_factor=2)
+# total.save("sequence_length_histogram.html")
+# total.save("sequence_length_histogram.png", scale_factor=2)
+total.save(html_outfile)
+total.save(png_outfile, scale_factor=2)

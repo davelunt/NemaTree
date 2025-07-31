@@ -1,10 +1,3 @@
-# rule mafft_align:
-#     input:
-#         expand("resources/samples/{sample}.fas", sample=SAMPLES),
-#     output:
-#         "results/mafft/{sample}_mafft.fas",
-#     shell:
-#         "mafft --auto --quiet --reorder {input} > {output}"
 
 # exclude sequences from reference alignment
 # rule seqkit_remove_seqs:
@@ -16,34 +9,32 @@
 #     shell:
 #         "seqkit grep -v -n -f {input.excluded} {input.ref} > {output}"
 
-
-# this fails silently
+# add sequences to the reference alignment
 rule mafft_add_seqs:
     input:
         newseqs=expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
-        ref=config["reference_alignment"],
     output:
         newalignment=expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+    params:
+        ref=config["reference_alignment"],
     shell:
-        "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
+        "mafft --add {input.newseqs} --reorder {params.ref} > {output.newalignment}"
 
 
-#  to qc?
+# mafft --add sequences can fail silently, this checks that the sequences were added
 rule check_seqs_added:
     input:
-        seqs_to_add=expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
-        combined_alignment=expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        seqs_to_add="resources/samples/{sample}_validated.fas",
+        combined_alignment="results/mafft/{sample}_mafft.fas",
     params:
         reflibrary=config["reference_alignment"],
     output:
-        logfile=expand(
-            "results/reporting/{sample}_checkaddseqs_log.txt", sample=SAMPLES
-        ),
+        log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
     script:
         "../scripts/check_added.py"
 
 
-# CIAlign CHECK THIS - DIRECTORY
+# CIAlign alignment quality control
 rule CIAlign_remove_divergent_trim:
     input:
         expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
@@ -55,24 +46,3 @@ rule CIAlign_remove_divergent_trim:
         """
         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
         """
-
-
-# rule trimal:
-#     input:
-#         expand("results/mafft/{sample}_seqsadded_mafft.fas", sample=SAMPLES),
-#     output:
-#         "results/trimal/{sample}_seqsadded_mafft_trimal.fas",
-#     shell:
-#         "trimal -in {input} -out {output} -gappyout -keepheader"
-# if configfile specifies sequences to be removed, remove using seqkit
-# if REMOVE-SEQS is 'TRUE':
-#     rule remove_listed_seqs:
-#         message: "Removing sequences specified by config file"
-#         input:
-#             alignment = "results/alignments/2012_154.fas",
-#             exclusionlist = config["exclusion_list"],
-#         output:
-#             "results/alignments/pxrms/2012_147.fas"
-#         shell:
-#             "seqkit grep -n -v -f {input.exclusionlist} {input.alignment} > {output}"
-# else print("No sequences were specified by the configfile to be excluded")

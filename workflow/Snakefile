@@ -17,11 +17,13 @@ rule all:
     input:
         expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
         "results/reporting/seqkit/initial_seqkit_report.md",
+        expand("results/reporting/plots/{sample}_length_histogram.html", sample=SAMPLES),
         expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
-        # expand("results/reporting/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
+        expand("results/reporting/mafft/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
         expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
-        # expand("results/iqtree/{sample}/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
-        # expand("results/reporting/toytree/{sample}_mafft_iqtree.html", sample=SAMPLES),
+        expand("results/reporting/amas/{sample}_mafft_cialign_amas.tsv", sample=SAMPLES),
+        expand("results/iqtree/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
+        expand("results/reporting/toytree/{sample}_mafft_cialign_iqtree.html", sample=SAMPLES),
         # "results/reporting/amas/2012_145_mafft_amas.tsv",
         # "output_a.txt" if config['run_rule_a'] else [],
 

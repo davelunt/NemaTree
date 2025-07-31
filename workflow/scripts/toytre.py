@@ -2,10 +2,13 @@ import toytree
 
 # Get input tree files from Snakemake
 newick = snakemake.input.nwk
+# newick = "results/iqtree/alvarez_mafft_cialign_iqtree.treefile"
 newtips_list = snakemake.input.added
+# newtips_list = "results/reporting/validated/alvarez_all_fasta_headers.txt"
 outfile = snakemake.output[0]
+# outfile = "results/reporting/toytree/alvareztest_mafft_cialign_iqtree.html"
 
-# Load and re-root the tree
+# Load the tree and reroot
 with open(newick) as f:
     tree1 = toytree.tree(f.read())
 rtree = tree1.root("~Pratylenchus")
@@ -40,34 +43,33 @@ species_colors = {
     "naasi": "#70a7c9",
     "minor": "#1181c7",
     "chitwoodi": "#5384a3",
-    "fallax": "#5ea9d7"
+    "fallax": "#5ea9d7",
 }
 
 # Function to get color based on species name
 def get_color(tip):
-    return next((color for species, color in species_colors.items() if species in tip), "#33373a")
+    return next(
+        (color for species, color in species_colors.items() if species in tip), 
+        "#33373a",
+        )
 
 # Generate color list
 colorlist = [get_color(tip) for tip in rtree.get_tip_labels()]
 
-# Draw tree
-canvas, axes, mark = rtree.draw(
-    return_axes=True,
+# Draw tree and get axes
+canvas, axes, mark1 = rtree.draw(
     width=800,
     height=1600,
-    node_hover=True,
-    node_sizes=4,
+    # node_hover=True,
+    node_sizes=3,
     tip_labels_colors=colorlist,
 )
 
-# Optional: Add markers to newly added tips
-# mark2 = rtree.annotate.add_tip_markers(
-#     axes=axes,
-#     tipnames=tips_to_mark,
-#     size=8,
-#     color="red",
-#     marker="o"
-# )
+# call annotate method w/ 'axes' as an arg
+mark2 = rtree.annotate.add_tip_markers(axes=axes, size=6, color="red", marker="o");
+
+# add markers to the right of each leaf node colored by 'dist' feature
+# mark3 = rtree.annotate.add_tip_markers(axes, marker="s", size=6, color=("dist",), xshift=5)
 
 # Save to HTML
 toytree.save(canvas, outfile)

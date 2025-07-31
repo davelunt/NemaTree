@@ -1,2 +1,5 @@
 CIAlign --infile {input} --outfile_stem {output.dir} --remove_divergent --crop_ends
-CIAlign --infile results/mafft/alvarez_mafft.fas --outfile_stem results/cialign/alvarez_mafft_cialign --remove_divergent --crop_ends
+CIAlign --infile results/mafft/alvarez_mafft.fas --outfile_stem results/cialign/alvareztest_mafft_cialign --remove_divergent --crop_ends
+
+
+CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends

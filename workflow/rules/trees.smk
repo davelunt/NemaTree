@@ -17,33 +17,36 @@
 # to allow for longer processing time.
 # --------------------------------------------------
 
-rule iqtree: # ML phylogenetic analysis
+# ML phylogenetic analysis
+rule iqtree:
     input:
-        expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
+        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
-        expand("results/iqtree/{sample}/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
+        treefile = "results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
     params:
         model = config["subst_model"],
-        dir = directory("results/iqtree/{sample}/"),
+        prefix = "results/iqtree/{sample}_mafft_cialign_iqtree",
     shell:
         """
+        mkdir -p results/iqtree/{wildcards.sample}
         iqtree -s {input} \
-        -pre {params.dir} \
-        -m {params.model} \
-        --seqtype DNA \
-        --quiet \
-        -T AUTO \
+               -pre {params.prefix} \
+               -m {params.model} \
+               --seqtype DNA \
+               --quiet \
+               -T AUTO
         """
-        # -redo \
+
+
 
 # plot tree with toytree
 # highlight tips that were added to the reference alignment
 # ---------------------------------------------------------
 rule toytree_plot:
     input:
-        nwk = expand("results/iqtree/{sample}/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
-        added = expand("results/reporting/validated/{sample}_all_fasta_headers.txt", sample=SAMPLES),
+        nwk = "results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
+        added = "results/reporting/validated/{sample}_all_fasta_headers.txt",
     output:
-        expand("results/toytree/{sample}_mafft_cialign_iqtree.html", sample=SAMPLES),
+        "results/reporting/toytree/{sample}_mafft_cialign_iqtree.html",
     script:
         "../scripts/toytre.py"

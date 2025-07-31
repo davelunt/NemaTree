@@ -25,6 +25,7 @@ rule clean_supplied_fasta:
         "../scripts/clean_fasta_txt.py"
 
 
+
 # appends a unique number to each seq ID: >seq1 to >seq1_1
 # rule fasta_number_headers:
 #     input:

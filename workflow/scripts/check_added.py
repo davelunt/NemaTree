@@ -4,7 +4,7 @@ from Bio import SeqIO
 seqs_to_add = snakemake.input.seqs_to_add
 combined_alignment = snakemake.input.combined_alignment
 reflibrary = snakemake.params.reflibrary
-logfile = snakemake.output.logfile
+logfile = snakemake.output.log
 
 
 def count_fasta_records(file_path):
