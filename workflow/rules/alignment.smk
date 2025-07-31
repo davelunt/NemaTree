@@ -37,11 +37,11 @@ rule check_seqs_added:
 # CIAlign alignment quality control
 rule CIAlign_remove_divergent_trim:
     input:
-        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        "results/mafft/{sample}_mafft.fas",
     output:
-        expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
+        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     params:
-        stub=expand("results/cialign/{sample}_mafft_cialign", sample=SAMPLES),
+        stub="results/cialign/{sample}_mafft_cialign",
     shell:
         """
         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends

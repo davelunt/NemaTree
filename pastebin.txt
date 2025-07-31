@@ -3,3 +3,6 @@ CIAlign --infile results/mafft/alvarez_mafft.fas --outfile_stem results/cialign/
 
 
 CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
+
+
+"CIAlign --infile results/cialign/alvarez_mafft_cialign_cleaned.fasta --outfile_stem results/cialign/alvareztest_mafft_cialign_vis --visualise --plot_stats_input"

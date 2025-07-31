@@ -28,15 +28,15 @@ rule iqtree:
         prefix = "results/iqtree/{sample}_mafft_cialign_iqtree",
     shell:
         """
-        mkdir -p results/iqtree/{wildcards.sample}
         iqtree -s {input} \
                -pre {params.prefix} \
                -m {params.model} \
                --seqtype DNA \
+               -redo \
                --quiet \
                -T AUTO
         """
-
+#         mkdir -p results/iqtree/{wildcards.sample}
 
 
 # plot tree with toytree
