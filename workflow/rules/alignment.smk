@@ -1,3 +1,4 @@
+SAMPLES=["Ment"]
 
 # exclude sequences from reference alignment
 # rule seqkit_remove_seqs:
@@ -12,11 +13,11 @@
 # add sequences to the reference alignment
 rule mafft_add_seqs:
     input:
-        newseqs=expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
+        newseqs="resources/samples/{sample}_validated.fas",
     output:
-        newalignment=expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+        newalignment="results/mafft/{sample}_mafft.fas",
     params:
-        ref=config["reference_alignment"],
+        ref = f"resources/reference/{config['reference_alignment']}.fas",
     shell:
         "mafft --add {input.newseqs} --reorder {params.ref} > {output.newalignment}"
 
@@ -27,17 +28,26 @@ rule check_seqs_added:
         seqs_to_add="resources/samples/{sample}_validated.fas",
         combined_alignment="results/mafft/{sample}_mafft.fas",
     params:
-        reflibrary=config["reference_alignment"],
+        reflibrary = f"resources/reference/{config['reference_alignment']}.fas",
     output:
         log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
     script:
         "../scripts/check_added.py"
 
+# check for sequences with duplicated names and remove sequence
+rule remove_duplicate_names:
+    input:
+        "results/mafft/{sample}_mafft.fas",
+    output:
+        aln = "results/mafft/{sample}_mafft_nodups.fas",
+        duplist = "results/mafft/{sample}_mafft_duplist.txt",
+    shell:
+        "seqkit rmdup -n {input} > {output.aln} -D {output.duplist}"
 
 # CIAlign alignment quality control
 rule CIAlign_remove_divergent_trim:
     input:
-        "results/mafft/{sample}_mafft.fas",
+        "results/mafft/{sample}_mafft_nodups.fas",
     output:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     params:

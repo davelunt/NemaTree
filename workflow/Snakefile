@@ -1,33 +1,38 @@
 # Main entrypoint of the workflow. 
 # Please follow the best practices: 
 # https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
-# in particular regarding the standardized folder structure mentioned there. 
+# in particular regarding the standardized folder structure mentioned there.
+
 configfile: "config/config.yaml"
 
-# import pandas as pd
+# include rule files
+if config["add_sequences"]:
+    include: "rules/qc.smk"
+    include: "rules/alignment.smk"
+    include: "rules/trees.smk"
+    include: "rules/reports.smk"
+else:
+    include: "rules/reference.smk"
 
-# samples_df = pd.read_table(config['sample_file'], header = None)  # Pull in data from tsv
+# SAMPLES=["Mluci7"]
+SAMPLES=config["seqs_to_add"]
+REF=config["reference_alignment"]
 
-# SAMPLES = list(samples_df[0])  # create list from first column of dataframe
+if config["add_sequences"]:
+    rule all:
+        input:
+            expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
+            "results/reporting/seqkit/initial_seqkit_report.md",
+            expand("results/reporting/plots/{sample}_length_histogram.html", sample=SAMPLES),
+            expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
+            expand("results/reporting/mafft/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
+            expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
+            expand("results/reporting/amas/{sample}_mafft_cialign_amas.tsv", sample=SAMPLES),
+            expand("results/reporting/cialign/{sample}_mafft_cialign_output.png", sample=SAMPLES),
+            expand("results/iqtree/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
+            expand("results/reporting/toytree/{sample}_mafft_cialign_iqtree.html", sample=SAMPLES),
+else:
+    rule all:
+        input:
+            expand("results/reference/{refalign}_iqtree.html", refalign=REF)
 
-# SAMPLES=["2012_114"] 
-SAMPLES=["alvarez"] 
-
-rule all:
-    input:
-        expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
-        "results/reporting/seqkit/initial_seqkit_report.md",
-        expand("results/reporting/plots/{sample}_length_histogram.html", sample=SAMPLES),
-        expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
-        expand("results/reporting/mafft/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
-        expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
-        expand("results/reporting/amas/{sample}_mafft_cialign_amas.tsv", sample=SAMPLES),
-        expand("results/reporting/cialign/{sample}_mafft_cialign_output.png", sample=SAMPLES),
-        expand("results/iqtree/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
-        expand("results/reporting/toytree/{sample}_mafft_cialign_iqtree.html", sample=SAMPLES),
-        # "output_a.txt" if config['run_rule_a'] else [],
-
-include: "rules/qc.smk",
-include: "rules/alignment.smk",
-include: "rules/trees.smk",
-include: "rules/reports.smk",

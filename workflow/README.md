@@ -35,5 +35,18 @@ If all is well, run the workflow with:
 
 `snakemake --cores 4`
 
+### common reasons for failure
 
+#### wrong reference alignment name, or sample name
 
+check this in config. fasta/fas, capitalisation, location
+
+#### IQ-tree times out
+
+It can take quite a while to construct the tree. Maybe a coupole of minutes, depending on data set and computer, and sankemake may time out after 30 seconds waiting for IQtree to write its files. Try
+snakemake --cores 3 --latency-wait 300
+this will ask snakemake to wait 300 seconds instead
+
+#### wrong outgroups
+
+toytree will complain and fgail if your outgroup taxon is not in your dataset

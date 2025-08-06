@@ -4,23 +4,16 @@
 # ==================================================
 conda: "../envs/environment.yaml"  # leave this unedited
 
-# reference alignment to which samples are added
-reference_alignment: "resources/reference/2012_114_mafft.fas"
+# reference alignment to which samples are added WITHOUT .fas file extension
+reference_alignment: "clades123_7spp_new_142"
 
-# sequences to add to the reference alignment
-add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
-# fasta sequences (.fas) to add if TRUE above
-# sequences_to_add: "resources/samples/alvarez.fas"
+# add sequences to the reference alignment?
+add_sequences: FALSE # FALSE will build a phylogeny of reference sequences only
+ref_only: TRUE # TRUE if phylogeny of only reference alignment is required
 
-# specify a minimum sequence length for samples being added 
-trim_seq_length: FALSE
-# eg "400" to retain sequences >=400bp
-min_seq_length: "400"
-
-# Exclude seqs from input file of samples to add
-exclude_input_seqs: "FALSE"  # TRUE or FALSE, remove seqs based on text file list
-# list of excluded seqs, 1 per line, fasta header line without >
-exclusion_list_samples: "excluded_samples.txt"
+# sequences to add
+# give fasta "filename" in resources/samples/filename.fas WITHOUT the .fas extension
+seqs_to_add: "7spp_new"
 
 # # Remove seqs from the reference alignment TRUE/FALSE
 # exclude_reference_seqs: FALSE
@@ -30,3 +23,4 @@ exclusion_list_samples: "excluded_samples.txt"
 
 # substitution model for IQtree
 subst_model: "GTR+R3" # Best-fit model according to BIC. GTR+I+G fine also.
+

@@ -41,7 +41,7 @@ rule CIAlign_aln_statsvisuals:
     output:
         "results/reporting/cialign/{sample}_mafft_cialign_output.png",
     params:
-        stub="results/cialign/{sample}_mafft_cialign",
+        stub="results/reporting/cialign/{sample}_mafft_cialign",
     shell:
         "CIAlign --infile {input} --outfile_stem {params.stub} --visualise --plot_stats_input"
 
