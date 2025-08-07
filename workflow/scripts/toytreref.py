@@ -11,26 +11,32 @@ with open(newick) as f:
     tree1 = toytree.tree(f.read())
 rtree = tree1.root("~_OG")
 
+# root on last common ancestor of these species
+# rtree = tree1.root("M_mali_KJ636400", "M_suginamiensis_MN101831")
+
+
 # Mapping of species substrings to colors
 species_colors = {
     "javanica": "#0675b9",
     "floridensis": "#f205cb",
     "arenaria": "#049e28",
     "incognita": "#f90505",
+    "morocciensis": "#a50303",
     "haplanaria": "#aa11f1",
     "ethiopica": "#cd6df9",
     "konaensis": "#e7c2f8",
     "arabicida": "#c9b2d4",
-    "paranaensis": "#a78fb3",
+    "paranaensis": "#9f7bb1",
     "hispanica": "#bd8ed2",
-    "luci": "#dbb6ed",
+    "luci": "#cf88f2",
     "enterolobii": "#f16435",
     "hapla": "#c85490",
     "partityla": "#d6557c",
     "microtyla": "#f2a6b0",
     "spartelensis": "#c67891",
     "dunensis": "#d46286",
-    "duytsi": "#f6477e",
+    "ardenensis": "#6f4351",
+    "duytsi": "#5A5859",
     "graminicola": "#7bbbe3",
     "oryzae": "#83cdfa",
     "kralli": "#a6cde5",
@@ -38,6 +44,7 @@ species_colors = {
     "minor": "#1181c7",
     "chitwoodi": "#5384a3",
     "fallax": "#5ea9d7",
+    "exigua": "#4a697c",
 }
 
 

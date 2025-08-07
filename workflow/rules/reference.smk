@@ -1,14 +1,13 @@
 # IQtree, build ML tree of reference sequences. 
 # May need to add --latency-wait SECONDS flag to snakemake command
-# to allow for longer processing time.
+# to allow for longer processing time. Usually <2mins but try 300 seconds
 # --------------------------------------------------
-# REF = config["reference_alignment"]
+# config["reference_alignment"]
 
 # ML phylogenetic analysis
 rule iqtree:
     input:
-        # ref = config["reference_alignment"],
-        "resources/reference/{refalign}.fas", # refalign=REF
+        "resources/reference/{refalign}.fas",
     output:
         treefile = "results/reference/{refalign}_iqtree.treefile",
     params:
@@ -24,8 +23,6 @@ rule iqtree:
                --quiet \
                -T AUTO
         """
-#         mkdir -p results/iqtree/{wildcards.sample}
-
 
 # plot tree with toytree
 # highlight tips that were added to the reference alignment
@@ -34,6 +31,6 @@ rule toytree_plot:
     input:
         nwk = "results/reference/{refalign}_iqtree.treefile",
     output:
-        "results/reference/{refalign}_iqtree.html",
+        "results/reference/{refalign}_iqtree_mali.html",
     script:
         "../scripts/toytreref.py"

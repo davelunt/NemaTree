@@ -27,19 +27,21 @@ df.to_csv(seq_lengths_tsv, sep="\t", index=False)
 # Determine the maximum sequence length
 max_length = df["Sequence Length"].max()
 
-# Altair histogram of sequence lengths
+# Altair histogram of sequence lengths with tooltip showing headers
 hist = (
     alt.Chart(df)
     .mark_bar(color="red")
     .encode(
         alt.X("Sequence Length:Q", bin=alt.Bin(extent=[1, max_length], maxbins=100)),
         y="count()",
+        tooltip=[alt.Tooltip("Header:N", title="Sequence Header")],
     )
     .properties(
         title=f"{sample_name} Sequence Lengths Histogram",
         width=800,
     )
 )
+
 # put count numbers above bars
 text = hist.mark_text(align="center", baseline="middle", dy=-10, color="black").encode(
     x=alt.X("Sequence Length:Q", bin=alt.Bin(extent=[1, max_length], maxbins=100)),

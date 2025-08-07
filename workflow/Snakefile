@@ -1,7 +1,6 @@
-# Main entrypoint of the workflow. 
-# Please follow the best practices: 
-# https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
-# in particular regarding the standardized folder structure mentioned there.
+# Root-Knot Nematode SSU rRNA phylogenetic analysis
+# -------------------------------------------------
+# control by editing the  config file
 
 configfile: "config/config.yaml"
 
@@ -14,10 +13,12 @@ if config["add_sequences"]:
 else:
     include: "rules/reference.smk"
 
-# SAMPLES=["Mluci7"]
+# input, defined in config file
 SAMPLES=config["seqs_to_add"]
 REF=config["reference_alignment"]
 
+# The workflow is either adding sequences to the reference alignment,
+# or just building a phylogeny of the reference alignment alone.
 if config["add_sequences"]:
     rule all:
         input:
@@ -27,6 +28,7 @@ if config["add_sequences"]:
             expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
             expand("results/reporting/mafft/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
             expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
+            expand("results/reporting/plots/{sample}_alnseqlength_histogram.html", sample=SAMPLES),
             expand("results/reporting/amas/{sample}_mafft_cialign_amas.tsv", sample=SAMPLES),
             expand("results/reporting/cialign/{sample}_mafft_cialign_output.png", sample=SAMPLES),
             expand("results/iqtree/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),

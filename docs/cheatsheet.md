@@ -24,6 +24,8 @@ conda config --set channel_priority strict
 snakemake --dag | dot -Tsvg > dag.svg
 snakemake --dag results/final_fasta/*.fastq | dot -Tsvg > dag.svg
 snakemake --rulegraph | dot -Tpng > results/rule-graph.png
+snakemake --rulegraph | dot -Tsvg > results/rule-graph.svg
+<!-- snakemake --rulegraph mermaid-js > results/rule-graph.md -->
 
 snakemake -s testsnakefile.smk
 snakemake --forceall

@@ -1,0 +1,2 @@
+Alignment_name	No_of_taxa	Alignment_length	Total_matrix_cells	Undetermined_characters	Missing_percent	No_variable_sites	Proportion_variable_sites	Parsimony_informative_sites	Proportion_parsimony_informative	AT_content	GC_content	A	C	G	T	K	M	R	Y	S	W	B	V	H	D	X	N	O	-	?
+Moleae_mafft_cialign_cleaned.fasta	149	1804	268796	71463	26.586	602	0.334	455	0.252	0.519	0.481	51376	42029	52378	51477	5	7	20	18	4	19	0	0	0	0	0	0	0	71463	0

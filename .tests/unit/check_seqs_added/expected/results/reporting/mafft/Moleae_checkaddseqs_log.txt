@@ -1,0 +1,4 @@
+Number of records in resources/samples/Moleae_validated.fas: 1
+Number of records in resources/reference/7spp_new_142.fas: 148
+Number of records in results/mafft/Moleae_mafft.fas: 149
+Check passed: The sum of sequences in the first two files matches the final alignment.

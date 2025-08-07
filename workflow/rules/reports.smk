@@ -12,7 +12,7 @@ rule seq_stats_initial:
         "seqkit stats -b {input.valid} | csvtk csv2md -t > {output}"
 
 
-# plot sequence length histogram of fasta sequences
+# plot sequence length histogram of fasta sequences added
 rule plot_seq_len:
     input:
         "resources/samples/{sample}_validated.fas",
@@ -23,6 +23,16 @@ rule plot_seq_len:
     script:
         "../scripts/plot_lens.py"
 
+# plot sequence length histogram of fasta sequences added
+rule plot_alnseq_len:
+    input:
+        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+    output:
+        tsv="results/reporting/plots/{sample}_alnseqlengths.tsv",
+        html="results/reporting/plots/{sample}_alnseqlength_histogram.html",
+        png="results/reporting/plots/{sample}_alnseqlength_histogram.png",
+    script:
+        "../scripts/plot_lens.py"
 
 # AMAS, alignment report
 rule AMAS_alignment_stats:

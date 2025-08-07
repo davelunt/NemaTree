@@ -5,15 +5,15 @@
 conda: "../envs/environment.yaml"  # leave this unedited
 
 # reference alignment to which samples are added WITHOUT .fas file extension
-reference_alignment: "clades123_7spp_new_142"
+reference_alignment: "7spp_new_142"
 
 # add sequences to the reference alignment?
-add_sequences: FALSE # FALSE will build a phylogeny of reference sequences only
-ref_only: TRUE # TRUE if phylogeny of only reference alignment is required
+add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
+ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
 # sequences to add
 # give fasta "filename" in resources/samples/filename.fas WITHOUT the .fas extension
-seqs_to_add: "7spp_new"
+seqs_to_add: "Moleae"
 
 # # Remove seqs from the reference alignment TRUE/FALSE
 # exclude_reference_seqs: FALSE
