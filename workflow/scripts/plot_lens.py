@@ -1,57 +1,74 @@
-# Plot lengths of sequences in a fasta file as a histogram
-# --------------------------------------------------------
 from Bio import SeqIO
 import pandas as pd
 import altair as alt
 
-# specify file locations
-# fasta_file = "resources/samples/alvarez.fas"
+# Specify file locations via Snakemake
 fasta_file = snakemake.input[0]
 seq_lengths_tsv = snakemake.output.tsv
 html_outfile = snakemake.output.html
 png_outfile = snakemake.output.png
 sample_name = snakemake.wildcards.sample
 
-# Read sequences and store headers and lengths
-data = [
-    {"Header": record.description, "Sequence Length": len(record.seq)}
-    for record in SeqIO.parse(fasta_file, "fasta")
-]
+# Characters to exclude from length calculation
+exclude_chars = set("-?N")
 
-# Create a DataFrame
+# Parse FASTA and compute cleaned sequence lengths
+data = []
+for record in SeqIO.parse(fasta_file, "fasta"):
+    cleaned_seq = "".join(base for base in str(record.seq) if base not in exclude_chars)
+    data.append({
+        "Header": record.description,
+        "Sequence Length": len(cleaned_seq)
+    })
+
+# Create and sort DataFrame
 df = pd.DataFrame(data)
+df_sorted = df.sort_values(by="Sequence Length", ascending=True)
 
-# Write the DataFrame to a TSV file
-df.to_csv(seq_lengths_tsv, sep="\t", index=False)
+# Save sorted data to TSV
+df_sorted.to_csv(seq_lengths_tsv, sep="\t", index=False)
 
-# Determine the maximum sequence length
-max_length = df["Sequence Length"].max()
+# Bin sequence lengths into intervals of 5
+bin_step = 5
+df_sorted["Length Bin"] = (df_sorted["Sequence Length"] // bin_step) * bin_step
 
-# Altair histogram of sequence lengths with tooltip showing headers
+# Group by bin and aggregate headers
+bin_summary = df_sorted.groupby("Length Bin").agg({
+    "Header": lambda x: ", ".join(x),
+    "Sequence Length": "count"
+}).reset_index().rename(columns={
+    "Sequence Length": "Count",
+    "Header": "Headers"
+})
+
+# Create histogram with Altair
 hist = (
-    alt.Chart(df)
+    alt.Chart(bin_summary)
     .mark_bar(color="red")
     .encode(
-        alt.X("Sequence Length:Q", bin=alt.Bin(extent=[1, max_length], maxbins=100)),
-        y="count()",
-        tooltip=[alt.Tooltip("Header:N", title="Sequence Header")],
+        alt.X("Length Bin:Q", title="Sequence Length"),
+        alt.Y("Count:Q", title="Number of Sequences per Bin"),
+        tooltip=[alt.Tooltip("Headers:N", title="Sequence Headers")]
     )
     .properties(
         title=f"{sample_name} Sequence Lengths Histogram",
-        width=800,
+        width=1200,
     )
 )
 
-# put count numbers above bars
-text = hist.mark_text(align="center", baseline="middle", dy=-10, color="black").encode(
-    x=alt.X("Sequence Length:Q", bin=alt.Bin(extent=[1, max_length], maxbins=100)),
-    text=alt.Text("count():Q", format=","),
+# Add count labels above bars
+text = hist.mark_text(
+    align="center",
+    baseline="bottom",
+    dy=-2,
+    color="black"
+).encode(
+    text=alt.Text("Count:Q", format=",")
 )
 
+# Combine chart and labels
 total = hist + text
 
-# Save HTML and PNG files
-# total.save("sequence_length_histogram.html")
-# total.save("sequence_length_histogram.png", scale_factor=2)
+# Save outputs
 total.save(html_outfile)
 total.save(png_outfile, scale_factor=2)

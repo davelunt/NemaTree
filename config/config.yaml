@@ -21,6 +21,12 @@ seqs_to_add: "Moleae"
 # # can be used to remove deeper branching taxa for example
 # exclusion_list_reference: "config/excluded_reference.txt"
 
+# CIAlign
+# list of sequences to keep whatever length filtering is done
+retain_short_list: "config/retain_short_list.txt"
+# minimum sequence length
+cialign_minlen: "750"
+
 # substitution model for IQtree
 subst_model: "GTR+R3" # Best-fit model according to BIC. GTR+I+G fine also.
 
