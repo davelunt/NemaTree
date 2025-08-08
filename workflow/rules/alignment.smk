@@ -1,4 +1,4 @@
-SAMPLES=["Ment"]
+# Rules relating to alignments
 
 # exclude sequences from reference alignment
 # rule seqkit_remove_seqs:
