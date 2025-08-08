@@ -17,15 +17,16 @@
 # to allow for longer processing time.
 # --------------------------------------------------
 
+
 # ML phylogenetic analysis
 rule iqtree:
     input:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
-        treefile = "results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
+        treefile="results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
     params:
-        model = config["subst_model"],
-        prefix = "results/iqtree/{sample}_mafft_cialign_iqtree",
+        model=config["subst_model"],
+        prefix="results/iqtree/{sample}_mafft_cialign_iqtree",
     shell:
         """
         iqtree -s {input} \
@@ -36,7 +37,6 @@ rule iqtree:
                --quiet \
                -T AUTO
         """
-#         mkdir -p results/iqtree/{wildcards.sample}
 
 
 # plot tree with toytree
@@ -44,8 +44,8 @@ rule iqtree:
 # ---------------------------------------------------------
 rule toytree_plot:
     input:
-        nwk = "results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
-        added = "results/reporting/validated/{sample}_all_fasta_headers.txt",
+        nwk="results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
+        added="results/reporting/validated/{sample}_all_fasta_headers.txt",
     output:
         "results/reporting/toytree/{sample}_mafft_cialign_iqtree.html",
     script:

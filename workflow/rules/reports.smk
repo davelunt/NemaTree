@@ -23,6 +23,7 @@ rule plot_seq_len:
     script:
         "../scripts/plot_lens.py"
 
+
 # plot sequence length histogram of fasta sequences added
 rule plot_alnseq_len:
     input:
@@ -33,6 +34,7 @@ rule plot_alnseq_len:
         png="results/reporting/plots/{sample}_alnseqlength_histogram.png",
     script:
         "../scripts/plot_lens.py"
+
 
 # AMAS, alignment report
 rule AMAS_alignment_stats:
@@ -54,4 +56,3 @@ rule CIAlign_aln_statsvisuals:
         stub="results/reporting/cialign/{sample}_mafft_cialign",
     shell:
         "CIAlign --infile {input} --outfile_stem {params.stub} --visualise --plot_stats_input"
-
