@@ -19,6 +19,8 @@ rule mafft_add_seqs:
         newalignment="results/mafft/{sample}_mafft.fas",
     params:
         ref=f"resources/reference/{config['reference_alignment']}.fas",
+    conda:
+        "envs/environment.yaml",
     shell:
         "mafft --add {input.newseqs} --reorder {params.ref} > {output.newalignment}"
 
@@ -32,6 +34,8 @@ rule check_seqs_added:
         reflibrary=f"resources/reference/{config['reference_alignment']}.fas",
     output:
         log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
+    conda:
+        "envs/environment.yaml",
     script:
         "../scripts/check_added.py"
 
@@ -43,6 +47,8 @@ rule remove_duplicate_names:
     output:
         aln="results/mafft/{sample}_mafft_nodups.fas",
         duplist="results/mafft/{sample}_mafft_duplist.txt",
+    conda:
+        "envs/environment.yaml",
     shell:
         "seqkit rmdup -n {input} > {output.aln} -D {output.duplist}"
 
@@ -55,6 +61,8 @@ rule CIAlign_remove_divergent_trim:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     params:
         stub="results/cialign/{sample}_mafft_cialign",
+    conda:
+        "envs/environment.yaml",
     shell:
         """
         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends

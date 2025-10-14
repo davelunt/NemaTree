@@ -7,6 +7,8 @@ rule download_genbank:
         "resources/gb/accn_download.gb",
     params:
         email=config["ncbi_email"],
+    conda:
+        "envs/environment.yaml",
     script:
         "scripts/gbfetch.py",
 
@@ -17,6 +19,8 @@ rule convert_gb_to_fasta:
     output:
         fasta="resources/gb/accn_download.fas",
         tsv="resources/accn_download.tsv",
+    conda:
+        "envs/environment.yaml",
     script:
         "scripts/gb_parse_tsv.py",
 
@@ -27,6 +31,8 @@ rule minlength:
         "resources/gb/accn_download_minlen.fas",
     params:
         minlength = config["min_seq_length"],
+    conda:
+        "envs/environment.yaml",
     shell:
         "seqkit seq -m {params.minlength} -g {input} > {output}"
 
@@ -37,5 +43,7 @@ rule sanitize_fasta_headers
         "resources/gb/accn_download_minlen.fas",
     output:
         "resources/samples/accn_download_minlen_clean.fas",
+    conda:
+        "envs/environment.yaml",
     script:
         "scripts/sanitize_fasta_headers.py",

@@ -27,6 +27,8 @@ rule iqtree:
     params:
         model=config["subst_model"],
         prefix="results/iqtree/{sample}_mafft_cialign_iqtree",
+    conda:
+        "envs/environment.yaml",
     shell:
         """
         iqtree -s {input} \
@@ -48,5 +50,7 @@ rule toytree_plot:
         added="results/reporting/validated/{sample}_all_fasta_headers.txt",
     output:
         "results/reporting/toytree/{sample}_mafft_cialign_iqtree.html",
+    conda:
+        "envs/environment.yaml",
     script:
         "../scripts/toytre.py"

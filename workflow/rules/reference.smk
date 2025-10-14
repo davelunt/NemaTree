@@ -14,6 +14,8 @@ rule iqtree:
     params:
         model=config["subst_model"],
         prefix="results/reference/{refalign}_iqtree",
+    conda:
+        "envs/environment.yaml",
     shell:
         """
         iqtree -s {input} \
@@ -34,5 +36,7 @@ rule toytree_plot:
         nwk="results/reference/{refalign}_iqtree.treefile",
     output:
         "results/reference/{refalign}_iqtree_mali.html",
+    conda:
+        "envs/environment.yaml",
     script:
         "../scripts/toytreref.py"
