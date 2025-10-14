@@ -70,7 +70,7 @@ The entirity of the workflow, including data and results, can be archived with `
 
 A very minimal Methods section describing basic use of this workflow might be as follows:
 
-Phylogenetic analysis of root-knot nematode SSU rRNA sequences was carried out with the RKN-RRNA Snakemake workflow, available at https://github.com/davelunt/RKN-RRNA. The workflow uses Snakemake (Mölder et al 2021) to implement the entire workflow using a computational environment specified in the `environment.yaml` file in the `envs` directory of the workflow repository.
+Phylogenetic analysis of root-knot nematode SSU rRNA sequences was carried out with the RKN-RRNA Snakemake workflow available at https://github.com/davelunt/RKN-RRNA. The workflow uses Snakemake (Mölder et al 2021) to implement the entire workflow using a computational environment specified in the `environment.yaml` file in the `envs` directory of the workflow repository.
 A reference alignment of diverse root-knot nematode SSU rRNA sequences, selected for species representation and length, aligned with MAFFT (Nakamura et al. 2018) and available in the repository resources directory. The workflow uses MAFFT to add user-provided SSU sequences to this reference alignment, Seqkit (Shen et al. 2016) to report sequence data, CIAlign (Tumescheit et al. 2022) for alignment cleaning and reporting, AMAS (Borowiec 2016) for alignment reporting, IQtree (Nguyen et al 2014) for phylogenetic analysis, and Toytree (Eaton 2020) for tree visualisation.
 
 ## Citations
@@ -90,4 +90,3 @@ Tumescheit C, Firth AE, Brown K. CIAlign: A highly customisable command line too
 Borowiec ML. AMAS: a fast tool for alignment manipulation and computing of summary statistics. PeerJ. 2016;4: e1660. doi:10.7717/peerj.1660
 
 Nakamura T, Yamada KD, Tomii K, Katoh K. Parallelization of MAFFT for large-scale multiple sequence alignments. Bioinformatics. 2018;34: 2490–2492. doi:10.1093/bioinformatics/bty121
-
