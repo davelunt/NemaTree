@@ -16,7 +16,9 @@ Lunt DH. RKN-RRNA: Analysis workflow for root-knot nematode rRNA. Github; Availa
 
 ## Usage
 
-Download the repository from GitHub to your local environment: `git clone https://github.com/davelunt/RKN-RRNA.git`
+Download the repository from GitHub to your local environment:
+
+`git clone https://github.com/davelunt/RKN-RRNA.git`
 
 The workflow is controlled by editing the `config.yaml` file in the config directory
 
@@ -28,13 +30,13 @@ Open a terminal and navigate to the directory containing the workflow (probably 
 
 The computational environment (all the software required for the analyses) is specified in `workflow/envs/environment.yaml`
 
+If you skip the follwong conda environment steps Snakemake should still create the conda environment automatically when you run the workflow. It will take longer the first time you run the workflow, as this includes software installation, but be much faster thereafter. The advantage of doing it first is perhaps that it allows trouble shooting the environment separately from trouble shooting the workflow.
+
 Make sure you have miniconda installed. See instructions at the website https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
 
 Build the environment using conda `conda env create -f envs/environment.yaml` and `conda activate rknrrna`
 
 Installing and using [mamba](https://github.com/mamba-org/mamba) may increase the speed of creating the environment. Although slow, creating this environment only needs to be done once per machine, not each time the workflow is run.
-
-If you skip this conda environment step Snakemake should create the conda environment automatically when you run the workflow. It will take longer the first time you run the workflow, as this includes software installation, but be much faster thereafter.
 
 ## Add new sequences
 
@@ -46,7 +48,9 @@ Edit the `config.yaml` to make sure it says `add_sequences: TRUE` and `ref_only:
 
 `snakemake -np` will perform a dry run of the analysis. It will catch most, but not all issues.
 
-If the dry run doesn't flag errors then run the analysis with `snakemake --cores 3 --wait-latency 300`
+If the dry run doesn't flag errors then run the analysis with:
+
+`snakemake --cores 3 --wait-latency 300`
 
 The reference alignment has about 150 sequences in an alignment of approximately 1800bp. When adding 20 new sequences it runs in about 2 minutes with 3 cores on a basic laptop (M2 MacBook Air with 4 cores and 8G of RAM).
 
