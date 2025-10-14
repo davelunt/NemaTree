@@ -6,9 +6,13 @@
 > **Warning**
 > Please use git branches for all changes
 
-A Snakemake workflow for phylogenetic analysis of root-knot nematode rRNA sequences
+### A Snakemake workflow for phylogenetic analysis of root-knot nematode SSU rRNA sequences
 
-These analyses run as a snakemake workflow to ensure ease and reproducibility.
+These analyses run as a [snakemake workflow](https://snakemake.github.io/) to ensure ease and reproducibility.
+
+This software is released under a permissive MIT license (see `LICENSE` file) and you may use and modify it as you wish. It would be helpful if you would acknowledge the source in any publication.
+
+Lunt DH. RKN-RRNA: Analysis workflow for root-knot nematode rRNA. Github; Available: https://github.com/davelunt/RKN-RRNA
 
 ## Usage
 
@@ -70,23 +74,24 @@ The entirity of the workflow, including data and results, can be archived with `
 
 A very minimal Methods section describing basic use of this workflow might be as follows:
 
-Phylogenetic analysis of root-knot nematode SSU rRNA sequences was carried out with the RKN-RRNA Snakemake workflow available at https://github.com/davelunt/RKN-RRNA. The workflow uses Snakemake (Mölder et al 2021) to implement the entire workflow using a computational environment specified in the `environment.yaml` file in the `envs` directory of the workflow repository.
-A reference alignment of diverse root-knot nematode SSU rRNA sequences, selected for species representation and length, aligned with MAFFT (Nakamura et al. 2018) and available in the repository resources directory. The workflow uses MAFFT to add user-provided SSU sequences to this reference alignment, Seqkit (Shen et al. 2016) to report sequence data, CIAlign (Tumescheit et al. 2022) for alignment cleaning and reporting, AMAS (Borowiec 2016) for alignment reporting, IQtree (Nguyen et al 2014) for phylogenetic analysis, and Toytree (Eaton 2020) for tree visualisation.
+Phylogenetic analysis of root-knot nematode SSU rRNA sequences was carried out with the RKN-RRNA Snakemake workflow (Lunt 2025). The workflow uses Snakemake (Mölder et al 2021) to implement the entire workflow using a computational environment specified in the `environment.yaml` file in the `envs` directory of the workflow repository. A reference alignment of diverse root-knot nematode SSU rRNA sequences, selected for species representation and length, was aligned with MAFFT (Nakamura et al. 2018) and is made available in the repository resources directory. The workflow uses MAFFT to add user-provided SSU sequences to this reference alignment, Seqkit (Shen et al. 2016) to report on sequence data, CIAlign (Tumescheit et al. 2022) for alignment cleaning and reporting, AMAS (Borowiec 2016) for alignment reporting, IQtree (Nguyen et al 2014) for phylogenetic analysis, and Toytree (Eaton 2020) for tree visualisation. All further details of program versions, parameters, and sequences used are recorded in the reproducible workflow repository.
 
 ## Citations
 
 You should cite the papers of the analysis software used in this workflow if you publish your use of the workflow:
 
-Mölder F, Jablonski KP, Letcher B, Hall MB, Tomkins-Tinch CH, Sochat V, et al. Sustainable data analysis with Snakemake. F1000Res. 2021;10: 33. doi:10.12688/f1000research.29032.1
-
-Shen W, Le S, Li Y, Hu F. SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. PLoS One. 2016;11: e0163962. doi:10.1371/journal.pone.0163962
-
-Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ. IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. Mol Biol Evol. 2014. doi:10.1093/molbev/msu300
+Borowiec ML. AMAS: a fast tool for alignment manipulation and computing of summary statistics. PeerJ. 2016;4: e1660. doi:10.7717/peerj.1660
 
 Eaton DAR. Toytree: A minimalist tree visualization and manipulation library for Python. Matschiner M, editor. Methods Ecol Evol. 2020;11: 187–191. doi:10.1111/2041-210X.13313
 
-Tumescheit C, Firth AE, Brown K. CIAlign: A highly customisable command line tool to clean, interpret and visualise multiple sequence alignments. PeerJ. 2022;10: e12983. doi:10.7717/peerj.12983
+Lunt DH. RKN-RRNA: Analysis workflow for root-knot nematode rRNA. Github; Available: https://github.com/davelunt/RKN-RRNA
 
-Borowiec ML. AMAS: a fast tool for alignment manipulation and computing of summary statistics. PeerJ. 2016;4: e1660. doi:10.7717/peerj.1660
+Mölder F, Jablonski KP, Letcher B, Hall MB, Tomkins-Tinch CH, Sochat V, et al. Sustainable data analysis with Snakemake. F1000Res. 2021;10: 33. doi:10.12688/f1000research.29032.1
 
 Nakamura T, Yamada KD, Tomii K, Katoh K. Parallelization of MAFFT for large-scale multiple sequence alignments. Bioinformatics. 2018;34: 2490–2492. doi:10.1093/bioinformatics/bty121
+
+Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ. IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. Mol Biol Evol. 2014. doi:10.1093/molbev/msu300
+
+Shen W, Le S, Li Y, Hu F. SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. PLoS One. 2016;11: e0163962. doi:10.1371/journal.pone.0163962
+
+Tumescheit C, Firth AE, Brown K. CIAlign: A highly customisable command line tool to clean, interpret and visualise multiple sequence alignments. PeerJ. 2022;10: e12983. doi:10.7717/peerj.12983
