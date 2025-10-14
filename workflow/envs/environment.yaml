@@ -6,9 +6,9 @@ channels:
 
 dependencies:
   - snakemake
-  - python>=3.7
+  - python
   - snakefmt # re-format snakemake grammar
-  - matplotlib
+  - matplotlib 
   - graphviz
   - pandas
   - altair
@@ -21,10 +21,11 @@ dependencies:
   
   # alignments
   - mafft # mulitple sequence alignment
-  - trimal # alignment trimming
+#  - trimal # alignment trimming
   - amas # alignment manipulation
   - cialign # alignment cleaning
 
   # trees
-  - Fasttree
-  - iqtree
+#  - Fasttree # tree construction
+  - iqtree # tree construction
+  - toytree # tree visualization
