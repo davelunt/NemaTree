@@ -5,7 +5,7 @@
 # SEQKIT, report on initial fasta file
 rule seq_stats_initial:
     input:
-        valid=expand("resources/samples/{sample}_validated.fas", sample=SAMPLES),
+        valid="resources/samples/{sample}_validated.fas",
     output:
         "results/reporting/seqkit/initial_seqkit_report.md",
     shell:
