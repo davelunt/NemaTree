@@ -14,7 +14,7 @@ These analyses run as a snakemake workflow to ensure ease and reproducibility.
 
 The workflow is controlled by editing the `config.yaml` file in the config directory
 
-Decide if you (a) wish to add new sequences to a RKN rRNA phylogeny or (b) wish a phylogenetic analysis of the reference alignment that represents teh diversity of Meloidogyne species.
+Decide if you (a) wish to add new sequences to a RKN rRNA phylogeny or (b) wish a phylogenetic analysis of the reference alignment that represents the diversity of Meloidogyne species.
 
 ## Prepare the environment
 
@@ -52,7 +52,11 @@ There are extensive other characterisations of the data, mostly in the `results/
 
 ### Altering and re-running
 
-If you wish to alter the tree, perhaps removing taxa, and/or rerooting this can be done without running the entire workflow. Transfer the cialign output alignment (from which the tree was built) to the `resources/reference` directory and change the config to make it the new reference library. Remove sequences if required. Specify a different root in `workflow/scripts/toytreref.py` should you wish. Change the config to  `add_sequences: FALSE` and `ref_only: TRUE` then you c an run snakemake as before but it will only run IQtree (phylogeny building) and Toytree (tree figure creation).
+If you wish to alter the tree, perhaps removing taxa, and/or rerooting this can be done without running the entire workflow. Transfer the cialign output alignment (from which the tree was built) to the `resources/reference` directory and change the config to make it the new reference library.
+
+Remove sequences if required. If you routinely wish to remove the same sequences, for example removing all the sequences except certain clades, one strategy is to list the names of all the sequences to remove in a `remove_list.txt` file. You can then use seqkit to remove them and save a new file with a command like `seqkit grep -v -n -f remove_list.txt ref_alignment.fas > ref_alignment_small.fas`. It is recommended to work on a copy of your reference alignment.
+
+You can specify a different root for the phylogeny in `workflow/scripts/toytreref.py`. Change the config to `add_sequences: FALSE` and `ref_only: TRUE` then you can run snakemake as before but it will only run IQtree (phylogeny building) and Toytree (tree figure creation).
 
 If you wish to alter the colour scheme you can edit the `workflow/scripts/toytreref.py` script as required. If you want to avoid this altogether try `tip_labels_colors="black",` rather than `=colorlist`.
 
@@ -66,16 +70,24 @@ The entirity of the workflow, including data and results, can be archived with `
 
 A very minimal Methods section describing basic use of this workflow might be as follows:
 
-Phylogenetic analysis of root-knot nematode SSU rRNA sequences was carried out with the RKN-RRNA Snakemake workflow, available 
+Phylogenetic analysis of root-knot nematode SSU rRNA sequences was carried out with the RKN-RRNA Snakemake workflow, available at https://github.com/davelunt/RKN-RRNA. The workflow uses Snakemake (Mölder et al 2021) to implement the entire workflow using a computational environment specified in the `environment.yaml` file in the `envs` directory of the workflow repository.
+A reference alignment of diverse root-knot nematode SSU rRNA sequences, selected for species representation and length, aligned with MAFFT (Nakamura et al. 2018) and available in the repository resources directory. The workflow uses MAFFT to add user-provided SSU sequences to this reference alignment, Seqkit (Shen et al. 2016) to report sequence data, CIAlign (Tumescheit et al. 2022) for alignment cleaning and reporting, AMAS (Borowiec 2016) for alignment reporting, IQtree (Nguyen et al 2014) for phylogenetic analysis, and Toytree (Eaton 2020) for tree visualisation.
 
 ## Citations
 
 You should cite the papers of the analysis software used in this workflow if you publish your use of the workflow:
-Snakemake:
-Seqkit
-IQtree
-Toytree
-CIAlign
-AMAS
-MAFFT
+
+Mölder F, Jablonski KP, Letcher B, Hall MB, Tomkins-Tinch CH, Sochat V, et al. Sustainable data analysis with Snakemake. F1000Res. 2021;10: 33. doi:10.12688/f1000research.29032.1
+
+Shen W, Le S, Li Y, Hu F. SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. PLoS One. 2016;11: e0163962. doi:10.1371/journal.pone.0163962
+
+Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ. IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. Mol Biol Evol. 2014. doi:10.1093/molbev/msu300
+
+Eaton DAR. Toytree: A minimalist tree visualization and manipulation library for Python. Matschiner M, editor. Methods Ecol Evol. 2020;11: 187–191. doi:10.1111/2041-210X.13313
+
+Tumescheit C, Firth AE, Brown K. CIAlign: A highly customisable command line tool to clean, interpret and visualise multiple sequence alignments. PeerJ. 2022;10: e12983. doi:10.7717/peerj.12983
+
+Borowiec ML. AMAS: a fast tool for alignment manipulation and computing of summary statistics. PeerJ. 2016;4: e1660. doi:10.7717/peerj.1660
+
+Nakamura T, Yamada KD, Tomii K, Katoh K. Parallelization of MAFFT for large-scale multiple sequence alignments. Bioinformatics. 2018;34: 2490–2492. doi:10.1093/bioinformatics/bty121
 
