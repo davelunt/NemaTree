@@ -30,11 +30,13 @@ Open a terminal and navigate to the directory containing the workflow (probably 
 
 The computational environment (all the software required for the analyses) is specified in `workflow/envs/environment.yaml`
 
-If you skip the follwong conda environment steps Snakemake should still create the conda environment automatically when you run the workflow. It will take longer the first time you run the workflow, as this includes software installation, but be much faster thereafter. The advantage of doing it first is perhaps that it allows trouble shooting the environment separately from trouble shooting the workflow.
+If you skip the following conda environment steps Snakemake should still create the conda environment automatically when you run the workflow. It will take longer the first time you run the workflow, as this includes software installation, but be much faster thereafter. The advantage of doing it first is perhaps that it allows trouble shooting the environment separately from trouble shooting the workflow.
 
-Make sure you have miniconda installed. See instructions at the website https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
+To prepare the environment yourself, make sure you have miniconda installed. See instructions at the website https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
 
-Build the environment using conda `conda env create -f envs/environment.yaml` and `conda activate rknrrna`
+Build the environment using conda:
+
+`conda env create -f envs/environment.yaml` and `conda activate rknrrna`
 
 Installing and using [mamba](https://github.com/mamba-org/mamba) may increase the speed of creating the environment. Although slow, creating this environment only needs to be done once per machine, not each time the workflow is run.
 
@@ -64,7 +66,7 @@ There are extensive characterisations of the data, mostly in the `results/report
 
 ### Altering and re-running
 
-If you wish to alter the tree, perhaps removing taxa, and/or rerooting this can be done without running the entire workflow. Transfer the cialign output alignment (from which the tree was built) to the `resources/reference` directory and change the config to make it the new reference library.
+If you wish to alter the phylogenetic analysis, perhaps removing taxa, and/or rerooting this can be done without running the entire workflow. Transfer the cialign output alignment (from which the tree was built) to the `resources/reference` directory and change the config to make it the new reference library.
 
 Remove sequences if required. If you routinely wish to remove the same sequences, for example removing all the sequences except certain clades, one strategy is to list the names of all the sequences to remove in a `remove_list.txt` file. You can then use seqkit to remove them and save a new file with a command like `seqkit grep -v -n -f remove_list.txt ref_alignment.fas > ref_alignment_small.fas`. It is recommended to work on a copy of your reference alignment.
 
