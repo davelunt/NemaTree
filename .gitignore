@@ -5,3 +5,4 @@ logs/**
 .snakemake/**
 .DS_Store*
 pastebin.txt
+**/lint.txt
