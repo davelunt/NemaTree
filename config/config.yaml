@@ -11,15 +11,28 @@ reference_alignment: "7spp_new_142"
 add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
 ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
-# sequences to add
+# Your sequences to add
 # give fasta "filename" in resources/samples/filename.fas WITHOUT the .fas extension
 seqs_to_add: "Moleae"
 
 # CIAlign
-# list of sequences to keep whatever length filtering is done
+# list of sequences to keep despite length filtering
 retain_short_list: "config/retain_short_list.txt"
-# minimum sequence length
+# minimum sequence length (bp)
 cialign_minlen: "750"
 
 # IQtree substitution model
 subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
+
+# Tree rooting, only one of these should be True
+rooting:
+  outgroup_root: True
+  outgroup_name: "Pratylenchus"
+  outgroup_list: False
+  outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
+    - "M_artiellia_AF442192"
+    - "M_baetica_KP896296"
+  midpoint_root: False
+  mad_root: False
+
+

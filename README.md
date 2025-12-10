@@ -10,7 +10,7 @@
 
 These analyses run as a [snakemake workflow](https://snakemake.github.io/) to ensure ease and reproducibility.
 
-This software is released under a permissive MIT license (see `LICENSE` file) and you may use and modify it as you wish. It would be helpful if you would acknowledge the source in any publication.
+This phylogenetic workflow is released under a permissive MIT license (see `LICENSE` file) and you may use and modify it as you wish. It would be helpful if you would acknowledge the source in any publication.
 
 Lunt DH. RKN-RRNA: Analysis workflow for root-knot nematode rRNA. Github; Available: https://github.com/davelunt/RKN-RRNA
 
@@ -22,7 +22,7 @@ Download the repository from GitHub to your local environment:
 
 The workflow is controlled by editing the `config.yaml` file in the config directory
 
-Decide if you (a) wish to add new sequences to a RKN rRNA phylogeny or (b) wish a phylogenetic analysis of the reference alignment that represents the diversity of Meloidogyne species.
+Decide if you (a) wish to add new sequences to a RKN rRNA phylogeny or (b) wish a phylogenetic analysis of the reference alignment that represents the diversity of Meloidogyne species. NB if you are using the supplied reference alignment a phylogeny is already provided in the `results` directory.
 
 ## Prepare the environment
 
@@ -38,11 +38,11 @@ Build the environment using conda:
 
 `conda env create -f envs/environment.yaml` and `conda activate rknrrna`
 
-Installing and using [mamba](https://github.com/mamba-org/mamba) may increase the speed of creating the environment. Although slow, creating this environment only needs to be done once per machine, not each time the workflow is run.
+Installing and using [mamba](https://github.com/mamba-org/mamba) may greatly increase the speed of creating the environment and is highly recommended. Although possibly slow the first time, creating this environment only needs to be done once per machine, not each time the workflow is run.
 
 ## Add new sequences
 
-Prepare your sequences as a single fasta file in `resources/samples` with the `.fas` extension (if you use `.fasta` you will have to edit the first rule to expect this extension).
+Prepare your sequences as a single fasta file in `resources/samples` with the `.fas` extension (if you use `.fasta` you will have to edit the first rule to expect this extension). You should provide a single fasta file not a collection of files.
 
 Edit the `config.yaml` to make sure it says `add_sequences: TRUE` and `ref_only: FALSE` and specifies the name of your sequences-to-be-added file without the .fas extension eg `seqs_to_add: "my_new_sequences"` if you have a file called `my_new_sequences.fas` in the `resources/samples` directory.
 
@@ -56,7 +56,7 @@ If the dry run doesn't flag errors then run the analysis with:
 
 The reference alignment has about 150 sequences in an alignment of approximately 1800bp. When adding 20 new sequences it runs in about 2 minutes with 3 cores on a basic laptop (M2 MacBook Air with 4 cores and 8G of RAM).
 
-`--wait-latency 300` is specified because IQtree takes longer than 30 seconds (Snakemake's default wait period) to complete the analysis and write the files. Giving it a maximum wait of 5 minutes (300 seconds) is safer.
+`--wait-latency 300` is specified because IQtree takes longer than 30 seconds (Snakemake's default wait period) to complete the analysis and write the files. Giving it a maximum wait of 5 minutes (300 seconds) usually prevents it timing out.
 
 ## Examine the results
 

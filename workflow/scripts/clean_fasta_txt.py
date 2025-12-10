@@ -1,6 +1,5 @@
 from Bio import SeqIO
 import re
-import os
 
 input_file = snakemake.input[0]
 output_file = snakemake.output.seqs
