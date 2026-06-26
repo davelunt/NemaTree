@@ -20,8 +20,6 @@ rule mafft_add_seqs:
         newalignment="results/mafft/{sample}_mafft.fas",
     params:
         ref = get_ref_alignment, # current reference
-    conda:
-        "envs/environment.yaml",
     shell:
         "mafft --add {input.newseqs} --reorder {params.ref} > {output.newalignment}"
 
@@ -36,8 +34,6 @@ rule check_seqs_added:
         reflibrary = get_ref_alignment,
     output:
         log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
-    conda:
-        "envs/environment.yaml",
     script:
         "../scripts/check_added.py"
 
@@ -49,40 +45,34 @@ rule remove_duplicate_names:
     output:
         aln="results/mafft/{sample}_mafft_nodups.fas",
         duplist="results/mafft/{sample}_mafft_duplist.txt",
-    conda:
-        "envs/environment.yaml",
     shell:
         "seqkit rmdup -n {input} > {output.aln} -D {output.duplist}"
 
-rule CIAlign_remove_short_seqs:
-    input:
-        "results/mafft/{sample}_mafft_nodups.fas",
-    output:
-        "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved.fasta",
-    params:
-        minlen = config.get("cialign_min_sequence_length", 700),
-        shortlist = config.get("cialign_short_sequence_retain_list", []),
-        stem = "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved",
-    conda:
-        "envs/environment.yaml",
-    shell:
-        """
-        CIAlign --infile {input} \
-                --remove_min_length {params.minlen} \
-                --remove_short_retain_list {params.shortlist} \
-                --outfile_stem {params.stem}
-        """
+# rule CIAlign_remove_short_seqs:
+#     input:
+#         "results/mafft/{sample}_mafft_nodups.fas",
+#     output:
+#         "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved.fasta",
+#     params:
+#         minlen = config.get("cialign_min_sequence_length", 700),
+#         shortlist = config.get("cialign_short_sequence_retain_list", []),
+#         stem = "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved",
+#     shell:
+#         """
+#         CIAlign --infile {input} \
+#                 --remove_min_length {params.minlen} \
+#                 --remove_short_retain_list {params.shortlist} \
+#                 --outfile_stem {params.stem}
+#         """
 
 # CIAlign alignment quality control. Removes divergent sequences and trims the alignment ends
 rule CIAlign_remove_divergent_trim:
     input:
-        "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved.fasta",
+        "results/mafft/{sample}_mafft_nodups.fas",
     output:
         "results/cialign/{sample}/{sample}_mafft_cialign_cleaned.fasta",
     params:
         stub="results/cialign/{sample}/{sample}_mafft_cialign",
-    conda:
-        "envs/environment.yaml",
     shell:
         """
         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends

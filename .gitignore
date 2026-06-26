@@ -1,5 +1,5 @@
 results/**
-resources/**
+workflow/scripts/old/**
 logs/**
 .snakemake
 .snakemake/**

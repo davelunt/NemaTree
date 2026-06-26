@@ -42,7 +42,7 @@ Installing and using [mamba](https://github.com/mamba-org/mamba) may greatly inc
 
 ## Add new sequences
 
-Prepare your sequences as a single fasta file in `resources/samples` with the `.fas` extension (if you use `.fasta` you will have to edit the first rule to expect this extension). You should provide a single fasta file not a collection of files.
+Prepare your sequences as a single fasta file in `resources/samples` with the `.fas` extension (if you use `.fasta` you will have to edit the first rule to expect this extension). You should provide a single fasta, file not a collection of files, though it may contain multiple sequences.
 
 Edit the `config.yaml` to make sure it says `add_sequences: TRUE` and `ref_only: FALSE` and specifies the name of your sequences-to-be-added file without the .fas extension eg `seqs_to_add: "my_new_sequences"` if you have a file called `my_new_sequences.fas` in the `resources/samples` directory.
 
@@ -52,11 +52,11 @@ Edit the `config.yaml` to make sure it says `add_sequences: TRUE` and `ref_only:
 
 If the dry run doesn't flag errors then run the analysis with:
 
-`snakemake --cores 3 --wait-latency 300`
+`snakemake --cores 3 --latency-wait 300`
 
 The reference alignment has about 150 sequences in an alignment of approximately 1800bp. When adding 20 new sequences it runs in about 2 minutes with 3 cores on a basic laptop (M2 MacBook Air with 4 cores and 8G of RAM).
 
-`--wait-latency 300` is specified because IQtree takes longer than 30 seconds (Snakemake's default wait period) to complete the analysis and write the files. Giving it a maximum wait of 5 minutes (300 seconds) usually prevents it timing out.
+`--latency-wait 300` is specified because IQtree takes longer than 30 seconds (Snakemake's default wait period) to complete the analysis and write the files. Giving it a maximum wait of 5 minutes (300 seconds) usually prevents it timing out.
 
 ## Examine the results
 

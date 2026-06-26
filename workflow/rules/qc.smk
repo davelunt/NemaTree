@@ -22,8 +22,6 @@ rule clean_supplied_fasta:
         names="results/reporting/validated/{sample}_all_fasta_headers.txt",
     message:
         "Validating and cleaning FASTA records for {wildcards.sample}"
-    conda:
-        "envs/environment.yaml",
     script:
         "../scripts/clean_fasta_txt.py"
 

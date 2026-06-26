@@ -13,6 +13,7 @@ rtree = tree1.root("~_OG")
 
 # root on last common ancestor of these species
 # rtree = tree1.root("M_mali_KJ636400", "M_suginamiensis_MN101831")
+# rtree = tree1.root("M_artiellia_KC875391", "M_baetica_KP896296")
 
 
 # Mapping of species substrings to colors
