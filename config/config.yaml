@@ -1,17 +1,48 @@
 # ==================================================
 #               RKN-rRNA: CONFIGFILE
 # ==================================================
+# this file should be edited by the user to configure the analysis
+# ==================================================
 conda: "../envs/environment.yaml"  # leave this unedited
 
-my_experiment: "RKN_test"  # the experiment name, no_spaces
+# my_experiment: "RKN_test"  # the experiment name, no_spaces
 
+# add sequences to the reference alignment?
+add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
+ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
+
+# Your sequences to add
 samples: "config/samples.tsv"  # location and name of sample list
-
 input_data: "resources/samples"  # directory of sample files for analysis
 molecule_type: "RNA"  # RNA or DNA
+# give fasta "filename" in resources/samples/filename.fas WITHOUT the .fas extension
+seqs_to_add: "Moleae"
+
+# reference alignment to which samples are added WITHOUT .fas file extension
+reference_alignment: "7spp_new_142"
 
 min_seq_length: 3000
 
 exclude_seqs: "TRUE"  # TRUE or FALSE, remove seqs based on text file list
 # list of excluded seqs, 1 per line, fasta header line minus >
 exclusion_list: "config/excluded.txt"
+
+# CIAlign
+# list of sequences to keep despite length filtering
+retain_short_list: "config/retain_short_list.txt"
+# minimum sequence length (bp)
+cialign_minlen: "750"
+
+# IQtree substitution model
+subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
+
+# Tree rooting, only one of these should be True
+rooting:
+  outgroup_root: True
+  outgroup_name: "Pratylenchus"
+  outgroup_list: False
+  outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
+    - "M_artiellia_AF442192"
+    - "M_baetica_KP896296"
+  midpoint_root: False
+  mad_root: False

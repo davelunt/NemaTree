@@ -21,7 +21,7 @@
 # ML phylogenetic analysis
 rule iqtree:
     input:
-        "results/cialign/{sample}/{sample}_mafft_cialign_cleaned.fasta",
+        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
         treefile="results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
     params:

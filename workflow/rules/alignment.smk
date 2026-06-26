@@ -70,9 +70,9 @@ rule CIAlign_remove_divergent_trim:
     input:
         "results/mafft/{sample}_mafft_nodups.fas",
     output:
-        "results/cialign/{sample}/{sample}_mafft_cialign_cleaned.fasta",
+        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     params:
-        stub="results/cialign/{sample}/{sample}_mafft_cialign",
+        stub="results/cialign/{sample}_mafft_cialign",
     shell:
         """
         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
