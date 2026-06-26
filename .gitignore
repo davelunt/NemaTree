@@ -1,0 +1,9 @@
+results/**
+resources/**
+logs/**
+.snakemake
+.snakemake/**
+.DS_Store*
+pastebin.txt
+**/lint.txt
+testsnake.smk

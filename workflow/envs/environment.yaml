@@ -1,0 +1,31 @@
+name: rknrrna
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - snakemake
+  - python
+  - snakefmt # re-format snakemake grammar
+  - matplotlib 
+  - graphviz
+  - pandas
+  - altair
+  - vl-convert-python # saving graphics formats
+
+  # sequences and general
+  - biopython
+  - seqkit # format conversion and stats reporting
+  - csvtk # csv file toolkit, used in seqkit stats
+  
+  # alignments
+  - mafft # mulitple sequence alignment
+#  - trimal # alignment trimming
+  - amas # alignment manipulation
+  - cialign # alignment cleaning
+
+  # trees
+#  - Fasttree # tree construction
+  - iqtree # tree construction
+  - toytree # tree visualization
