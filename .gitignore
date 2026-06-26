@@ -1,5 +1,6 @@
 results/**
 workflow/scripts/old/**
+config/old/**
 logs/**
 .snakemake
 .snakemake/**

@@ -2,6 +2,13 @@
 
 This reproducible workflow processes 18S rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.
 
+## Quickstart - for people used to this sort of thing
+
+1. git clone the repo and create conda environment from `envs/environment.yaml`
+2. add sequences to `resources/samples/myseqsname.fas`
+3. add `myseqsname` to `config/config.yaml` as `seqs_to_add:`
+4. final tree: `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html`
+
 ## Workflow Overview
 
 The user should provide fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension.
@@ -14,13 +21,6 @@ The workflow will:
 2. Align the sequences to the reference alignment
 4. Build a maximum likelihood tree
 5. Generate a tree image as an html file
-
-## Quickstart - for people used to this sort of thing
-
-1. git clone the repo and create conda environment from `envs/environment.yaml`
-2. add sequences to `resources/samples/myseqsname.fas`
-3. add `myseqsname` to `config/config.yaml` as `seqs_to_add:`
-4. final tree: `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html`
 
 ## Set up the workflow
 
@@ -42,14 +42,14 @@ Make sure you have provided (DNA not RNA) fasta sequences in a file in the `reso
 
 Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas > resources/samples/myseqsname.fas` to combine all fasta files into one file.
 
-### Check config/config.yaml
+### Check `config/config.yaml`
 
 This file should contain:
 
-- the name of your `.fas` file containing your samples (REQUIRED)
-- the name of the reference alignment file to which your sequences will be aligned (choose between the whole genus or just clades 1, 2, and 3)
+- the basename of your `.fas` file containing your samples, e.g. myseqsname (REQUIRED)
+- the basename of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
 
-Except for the name of your sample file, all other config parameters have default values and can be left as is.
+Except for the name of your sample file, all other config parameters have default values and can be left as is. You can also check `docs/tree_formatting.md` for more information on getting the best tree.
 
 ### Dry run, then run the workflow
 
