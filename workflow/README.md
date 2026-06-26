@@ -1,6 +1,6 @@
 # Phylogenetic analysis of Root-Knot Nematode 18S rRNA sequences
 
-This workflow processes 18S rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.
+This reproducible workflow processes 18S rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.
 
 ## Workflow Overview
 
@@ -21,11 +21,28 @@ The workflow is reproducible and self-documenting.
 
 ## Configuring the workflow
 
-The workflow can be configured using the `config/config.yaml` file. You can specify parameters such as the minimum sequence length, the reference alignment file, and whether to exclude certain sequences.
+The workflow can be configured using the `config/config.yaml` file. You can specify parameters such as the reference alignment file, whether to exclude certain sequences, and how to root and colour the tree.
 
 ## Running the workflow
 
-Make sure you have provided fasta sequences in a file in the `resources/samples/` directory with the .fas file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow
+### Provide a single sequence file with .fas extension
+
+Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. Do not provide multiuple files, place all fasta records in one fasta file. 
+
+Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas > resources/samples/your_sample_name.fas` to combine all fasta files into one file.
+
+### Check the config.yaml
+
+This file should contain:
+
+- the name of your `.fas` file containing your samples (REQUIRED)
+- the name of the reference alignment file to which your sequences will be aligned
+    - choose between the whole genus or just clades 1, 2, and 3
+- rooting and colouring information for the tree
+
+Except for the name of your sample file, all other parameters have default values and can be left as is.
+
+### Dry run, then run the workflow
 
 Begin with a dry run to check all files are present.
 

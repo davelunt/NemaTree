@@ -21,6 +21,14 @@ SAMPLES = config["seqs_to_add"]
 REF_ORIGINAL = config["reference_alignment"]
 REF_FILTERED = config["filtered_ref_alignment"]
 
+# select reference alignment
+if config["clades123"]:
+    REF_ORIGINAL = config["reference_alignment_clades123"]
+    # REF_FILTERED = config["filtered_ref_alignment_clades123"]
+else:
+    REF_ORIGINAL = config["reference_alignment"]
+
+
 # The workflow is either adding sequences to the reference alignment,
 # or just building a phylogeny of the reference alignment alone.
 if config["add_sequences"]:
