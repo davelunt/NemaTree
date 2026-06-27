@@ -42,8 +42,6 @@ rule AMAS_alignment_stats:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
         "results/reporting/amas/{sample}_mafft_cialign_amas.tsv",
-    conda:
-        "envs/environment.yaml",
     shell:
         "python workflow/scripts/AMAS.py summary -i {input} -f fasta -d dna -o {output}"
 
