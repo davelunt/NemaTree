@@ -100,7 +100,7 @@ else:
 # Original tip name list
 original_names = rtree.get_tip_labels()
 
-# Add triangle icon
+# Add triangle icon to added taxa
 tip_labels = [
     f"&#9650; {name}" if name in tips_to_mark else name for name in original_names
 ]
