@@ -69,9 +69,12 @@ rooting:
   midpoint_root: False
   mad_root: False
 
+#  add icons to added sequence names
+add_treename_icons: True
+
 # select graphic formats to save final treefile, default html
 tree_formats:
   - "html"
-  - "png"
+  # - "png"
   # - "pdf"
   # - "svg"
