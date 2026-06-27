@@ -1,12 +1,22 @@
 from pathlib import Path
 
-REF_ORIGINAL = config["reference_alignment"]
-REF_FILTERED = config["filtered_ref_alignment"]
+# reference alignments
+# if config["clades123"]:
+#     REFERENCE = config["reference_alignment_clades123"]
+# else:
+#     REFERENCE = config["reference_alignment"]
+
+if config["clades123"]:
+    REFERENCE = f"resources/reference/{config['reference_alignment_clades123']}.fas"
+else:
+    REFERENCE = f"resources/reference/{config['reference_alignment']}.fas"
+
+REF_FILTERED = f"results/{config['reference_alignment']}_filtered.fas"
 
 # get the reference alignment, either filtered or not according to config file
 def get_ref_alignment(_wc):
     # return the path that downstream rules should use
-    return REF_FILTERED if config.get("remove_seqs", False) else REF_ORIGINAL
+    return REF_FILTERED if config.get("remove_seqs", False) else REFERENCE
 
 # get the stub name of reference alignment without path or suffix
 def get_ref_alignment_stub(_wc):

@@ -47,6 +47,6 @@ rule toytree_plot:
         nwk="results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
         added="results/reporting/validated/{sample}_all_fasta_headers.txt",
     output:
-        "results/reporting/toytree/{sample}_mafft_cialign_iqtree.html",
+        "results/reporting/toytree/{sample}_mafft_cialign_iqtree.{ext}",
     script:
         "../scripts/toytre.py"

@@ -1,27 +1,26 @@
 # Rules relating to alignments
+# ------------------------------
 
-# Only build filtered file if remove_seqs=True
+# remove sequences from reference alignment according to exclusion list
 rule filter_reference_alignment:
     input:
-        ref_orig=REF_ORIGINAL
+        ref_orig=get_ref_alignment,
+        remove_list=config["exclusion_list"],
     output:
-        new_ref=REF_FILTERED
-    params:
-        remove_list=config.get("exclusion_list_reference", [])
+        new_ref=REF_FILTERED,
     shell:
-        "seqkit grep -v -n -f {params.remove_list} {input.ref_orig} > {output.new_ref}"
+        "seqkit grep -v -n -f {input.remove_list} {input.ref_orig} > {output.new_ref}"
 
 
 # add sample sequences to the reference alignment
 rule mafft_add_seqs:
     input:
         newseqs="results/samples/{sample}_validated.fas",
+        ref = get_ref_alignment, # current reference from common.smk rule
     output:
         newalignment="results/mafft/{sample}_mafft.fas",
-    params:
-        ref = get_ref_alignment, # current reference
     shell:
-        "mafft --add {input.newseqs} --reorder {params.ref} > {output.newalignment}"
+        "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
 
 
 # rule mafft_add_seqs can fail silently, this checks that the sequences were added

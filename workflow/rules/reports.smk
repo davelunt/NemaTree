@@ -15,7 +15,7 @@ rule seq_stats_initial:
 # plot sequence length histogram of fasta sequences added
 rule plot_seq_len:
     input:
-        "resources/samples/{sample}_validated.fas",
+        "results/samples/{sample}_validated.fas",
     output:
         tsv="results/reporting/plots/{sample}_lengths.tsv",
         html="results/reporting/plots/{sample}_length_histogram.html",

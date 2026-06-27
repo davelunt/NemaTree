@@ -5,29 +5,45 @@
 # ==================================================
 conda: "../envs/environment.yaml"  # leave this unedited
 
-# my_experiment: "RKN_test"  # the experiment name, no_spaces
+# -------------------------------
+# Experimental details for report
+# -------------------------------
+# Add a report title, reflecting the experiment
+# expt_title: "RKN_test"
 
+# Add a description to the report
+# expt_description: "Testing the addition of typical RKN species"
+
+# -------------------------------
+# Your sequences to add (REQUIRED)
+# --------------------------------
 # add sequences to the reference alignment?
 add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
-clades123: FALSE # TRUE if ref alignment of only RKN clades 1,2 and 3 are to be used rather than all spp.
-ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
+# give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
+seqs_to_add: "testadd"
 
-# Your sequences to add
-# samples: "config/samples.tsv"  # location and name of sample list
-input_data: "resources/samples"  # directory of sample files for analysis
-# molecule_type: "RNA"  # RNA or DNA
-# give fasta "filename" in resources/samples/filename.fas WITHOUT the .fas extension
-seqs_to_add: "Moleae"
+# use qc.smk minlength rule to enforce a minimum sequence length
+# min_seq_length: 3000
 
+# -------------------------------
+# Reference alignment
+# --------------------------------
 # reference alignment to which samples are added WITHOUT .fas file extension
 reference_alignment: "genus_ref142"
 reference_alignment_clades123: "clades123_artieliaOG"
+# TRUE if ref alignment of only RKN clades 1,2 and 3 are 
+# to be used rather than all spp. in the genus
+clades123: FALSE 
 
-min_seq_length: 3000
+#  build a tree from the reference alignment only
+#  change "add_sequences: FALSE" above
+ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
-exclude_seqs: "TRUE"  # TRUE or FALSE, remove seqs based on text file list
+# filter taxa from reference alignment
+exclude_seqs: TRUE  # TRUE or FALSE, remove seqs based on text file list
 # list of excluded seqs, 1 per line, fasta header line minus >
 exclusion_list: "config/excluded.txt"
+filtered_ref_alignment: "reference_filtered"
 
 # CIAlign
 # list of sequences to keep despite length filtering
@@ -48,3 +64,10 @@ rooting:
     - "M_baetica_KP896296"
   midpoint_root: False
   mad_root: False
+
+# select graphic formats to save final treefile, default html
+tree_formats:
+  - "html"
+  - "png"
+  # - "pdf"
+  # - "svg"

@@ -103,6 +103,6 @@ canvas, axes, mark1 = rtree.draw(
 # Annotate tips
 rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
 
-# Save to HTML
+# Save to HTML, or other formats as specified in config
 toytree.save(canvas, outfile)
 print(f"Saved tree plot to {outfile}")

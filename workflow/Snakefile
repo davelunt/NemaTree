@@ -4,6 +4,22 @@
 
 configfile: "config/config.yaml"
 
+# samples to add to reference alignment, defined in config file
+SAMPLES = config["seqs_to_add"]
+
+# reference alignments
+if config["clades123"]:
+    REFERENCE = config["reference_alignment_clades123"]
+else:
+    REFERENCE = config["reference_alignment"]
+
+# REF_FILTERED = config["filtered_ref_alignment"]
+REF_FILTERED = f"results/{config['reference_alignment']}_filtered.fas"
+
+# output formats for trees, default is html (also png, pdf, svg)
+TREEFORMATS = config.get("tree_formats", ["html"])
+
+# -------------------------------
 # include rule files
 include: "rules/common.smk"
 if config["add_sequences"]:
@@ -13,28 +29,14 @@ if config["add_sequences"]:
     include: "rules/reports.smk"
 else:
     include: "rules/reference.smk"
-
-# samples to add to reference alignment, defined in config file
-SAMPLES = config["seqs_to_add"]
-
-# reference alignments
-REF_ORIGINAL = config["reference_alignment"]
-REF_FILTERED = config["filtered_ref_alignment"]
-
-# select reference alignment
-if config["clades123"]:
-    REF_ORIGINAL = config["reference_alignment_clades123"]
-    # REF_FILTERED = config["filtered_ref_alignment_clades123"]
-else:
-    REF_ORIGINAL = config["reference_alignment"]
-
+# -------------------------------
 
 # The workflow is either adding sequences to the reference alignment,
 # or just building a phylogeny of the reference alignment alone.
 if config["add_sequences"]:
     rule all:
         input:
-            REF_FILTERED if config["remove_seqs"] else REF_ORIGINAL,
+            REF_FILTERED if config["exclude_seqs"] else REFERENCE,
             expand("results/samples/{sample}_validated.fas", sample=SAMPLES),
             "results/reporting/seqkit/initial_seqkit_report.md",
             expand("results/reporting/plots/{sample}_length_histogram.html", sample=SAMPLES),
@@ -45,9 +47,9 @@ if config["add_sequences"]:
             expand("results/reporting/amas/{sample}_mafft_cialign_amas.tsv", sample=SAMPLES),
             expand("results/reporting/cialign/{sample}_mafft_cialign_output.png", sample=SAMPLES),
             expand("results/iqtree/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
-            expand("results/reporting/toytree/{sample}_mafft_cialign_iqtree.html", sample=SAMPLES),
+            expand("results/reporting/toytree/{sample}_mafft_cialign_iqtree.{ext}", sample=SAMPLES, ext=TREEFORMATS),
 else:
     rule all:
         input:
-            expand("results/reference/{refalign}_iqtree.html", refalign=get_ref_alignment_stub)
+            expand("results/reference/{refalign}_iqtree.{ext}", refalign=get_ref_alignment_stub, ext=TREEFORMATS)
             # expand("results/reference/{refalign}_iqtree.html", refalign=REF)
