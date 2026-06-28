@@ -45,6 +45,10 @@ exclude_seqs: TRUE  # TRUE or FALSE, remove seqs based on text file list
 exclusion_list: "config/excluded.txt"
 filtered_ref_alignment: "reference_filtered"
 
+# Generate sequence plots, supressing this will save some time
+# alnseqlength_histogram, length_histogram, mafft_cialign_output
+generate_seq_plots: False
+
 # CIAlign
 # list of sequences to keep despite length filtering
 retain_short_list: "config/retain_short_list.txt"
@@ -65,9 +69,12 @@ rooting:
   midpoint_root: False
   mad_root: False
 
+#  add icons to added sequence names
+add_treename_icons: True
+
 # select graphic formats to save final treefile, default html
 tree_formats:
   - "html"
-  - "png"
+  # - "png"
   # - "pdf"
   # - "svg"

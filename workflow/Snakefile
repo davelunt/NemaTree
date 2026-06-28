@@ -39,13 +39,16 @@ if config["add_sequences"]:
             REF_FILTERED if config["exclude_seqs"] else REFERENCE,
             expand("results/samples/{sample}_validated.fas", sample=SAMPLES),
             "results/reporting/seqkit/initial_seqkit_report.md",
-            expand("results/reporting/plots/{sample}_length_histogram.html", sample=SAMPLES),
             expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
             expand("results/reporting/mafft/{sample}_checkaddseqs_log.txt", sample=SAMPLES),
             expand("results/cialign/{sample}_mafft_cialign_cleaned.fasta", sample=SAMPLES),
-            expand("results/reporting/plots/{sample}_alnseqlength_histogram.html", sample=SAMPLES),
+            expand("results/reporting/plots/{sample}_length_histogram.html", sample=SAMPLES)
+                if config.get("generate_seq_plots", False) else [],
+            expand("results/reporting/plots/{sample}_alnseqlength_histogram.html", sample=SAMPLES)
+                if config.get("generate_seq_plots", False) else [],
             expand("results/reporting/amas/{sample}_mafft_cialign_amas.tsv", sample=SAMPLES),
-            expand("results/reporting/cialign/{sample}_mafft_cialign_output.png", sample=SAMPLES),
+            expand("results/reporting/cialign/{sample}_mafft_cialign_output.png", sample=SAMPLES)
+                if config.get("generate_seq_plots", False) else [],
             expand("results/iqtree/{sample}_mafft_cialign_iqtree.treefile", sample=SAMPLES),
             expand("results/reporting/toytree/{sample}_mafft_cialign_iqtree.{ext}", sample=SAMPLES, ext=TREEFORMATS),
 else:

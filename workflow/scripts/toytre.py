@@ -87,9 +87,27 @@ else:
         print(f"Warning: Tip list file not found: {newtips_list}. Proceeding without highlights.")
     # else: no 'added' input provided; proceed silently
 
-# Create a color list for tip labels
+# Load tip names of newly-added sequences and handle missing files
+tips_to_mark = set()
+if newtips_list and os.path.exists(newtips_list):
+    with open(newtips_list) as f:
+        tips_to_mark = {line.strip() for line in f if line.strip()}
+else:
+    if newtips_list:
+        print(f"Warning: Tip list file not found: {newtips_list}. Proceeding without highlights.")
+    # else: no 'added' input provided; proceed silently
+
+# Original tip name list
+original_names = rtree.get_tip_labels()
+
+# Add triangle icon to added taxa
+tip_labels = [
+    f"&#9650; {name}" if name in tips_to_mark else name for name in original_names
+]
+
+# Check the original name array for colors so mapping remains accurate
 tip_colors = [
-    "red" if name in tips_to_mark else "black" for name in rtree.get_tip_labels()
+    "red" if name in tips_to_mark else "black" for name in original_names
 ]
 
 # Draw tree and get axes
@@ -97,6 +115,7 @@ canvas, axes, mark1 = rtree.draw(
     width=800,
     height=1600,
     node_sizes=3,
+    tip_labels=tip_labels,
     tip_labels_colors=tip_colors,
 )
 
