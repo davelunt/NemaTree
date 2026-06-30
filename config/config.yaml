@@ -30,7 +30,7 @@ seqs_to_add: "3testadd3"
 # --------------------------------
 # reference alignment to which samples are added WITHOUT .fas file extension
 reference_alignment: "genus_ref148"
-reference_alignment_clades123: "genus_ref148clades_arti"
+reference_alignment_clades123: "ref148clades123"
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus
 clades123: TRUE 
@@ -69,16 +69,57 @@ rooting:
     - "M_artiellia_KC875391"
     - "M_baetica_KP896296"
     - "M_baetica_MH011982"
-    # - "M_sp_KT883922"
-    # - "M_suginamiensis_MN101831"
-    # - "M_mali_KF895400"
-    # - "M_mali_EU669949"
-    # - "M_mali_KJ636400"
   midpoint_root: False
   mad_root: False
 
-#  add icons to added sequence names
+#  add (triangle) icons to added sequence names
 add_treename_icons: True
+
+# Species name coloring TRUE/FALSE
+# FALSE is all black names with red for added seqs
+color_by_species: TRUE
+
+# Mapping of species names to colours
+species_colors:
+  # clade 1
+  javanica: "#f32727"
+  floridensis: "#f04f27"
+  arenaria: "#ea312b"
+  incognita: "#cb1818"
+  morocciensis: "#f31212"
+  konaensis: "#a629e0"
+  arabicida: "#a527df"
+  izalcoensis: "#a620e4"
+  lopezi: "#9914ec"
+  paranaensis: "#861bbc"
+  hispanica: "#d06df1"
+  luci: "#bd5ded"
+  haplanaria: "#be5deb"
+  ethiopica: "#cd6df9"
+  enterolobii: "#aa3812"
+  # clade 2
+  hapla: "#2151d7"
+  partityla: "#4168e7"
+  microtyla: "#738efa"
+  spartelensis: "#4b7bca"
+  dunensis: "#4669b4"
+  ardenensis: "#3851f4"
+  duytsi: "#5A5859"
+  silvestris: "#7a9dce"
+  maritima: "#568fd8"
+  spartinae: "#5389d4"
+  marylandi: "#518cde"
+  graminis: "#68a1f0"
+  # clade 3
+  graminicola: "#38af0d"
+  oryzae: "#46ba54"
+  kralli: "#1cc42d"
+  exigua: "#2FC51B"
+  naasi: "#28b11f"
+  minor: "#0f6c1b"
+  chitwoodi: "#086f07"
+  fallax: "#266f24"
+
 
 # select graphic formats to save final treefile, default html
 tree_formats:
