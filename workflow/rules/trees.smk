@@ -51,4 +51,4 @@ rule toytree_plot:
     output:
         "results/reporting/toytree/{sample}_mafft_cialign_iqtree.{ext}",
     script:
-        "../scripts/toytree_root.py"
+        "../scripts/toytree_colours.py"

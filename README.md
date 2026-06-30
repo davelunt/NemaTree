@@ -38,7 +38,7 @@ Installing and using mamba may greatly increase the speed of creating the enviro
 
 ### Provide a single sequence file with .fas extension
 
-Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. Do not provide multiuple files, place all fasta records in one fasta file. 
+Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. No spaces in filenames. Do not provide multiuple files, place all fasta records in one fasta file. 
 
 Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas > resources/samples/myseqsname.fas` to combine all fasta files into one file.
 
@@ -65,6 +65,7 @@ If all is well, run the workflow with:
 
     - using .fasta not .fas
     - wrong capitalisation of the samples file name
+    - spaces in filename, use_underscore_instead
     - wrong location (must be in `/resources/samples/`)
     - failure to install the environment with conda/mamba
         - try `mamba env create -f envs/environment.yaml`

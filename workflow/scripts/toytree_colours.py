@@ -7,7 +7,7 @@ import os
 # Snakemake
 newick = snakemake.input.nwk
 newtips_list = snakemake.input.added
-outfile = snakemake.output[0]
+outfile = snakemake.output
 
 # Load the tree
 with open(newick) as f:
@@ -84,6 +84,7 @@ elif mad_root:
         rtree = tree1.mod.root_on_midpoint()
 
 # Load tip names of newly-added sequences and handle missing files
+tips_to_mark = set()
 if newtips_list and os.path.exists(newtips_list):
     with open(newtips_list) as f:
         tips_to_mark = {line.strip() for line in f if line.strip()}
@@ -96,72 +97,63 @@ else:
 # Original tip name list
 original_names = rtree.get_tip_labels()
 
-# Add triangle icon to added taxa
-tip_labels = [f"▲ {name}" if name in tips_to_mark else name for name in original_names]
-# ----------------
-
-
 # Mapping of species substrings to colors
 species_colors = {
-    "javanica": "#9f2b2b",
-    "floridensis": "#f205cb",
-    "arenaria": "#9e046b",
-    "incognita": "#f90505",
-    "morocciensis": "#a50303",
-    "haplanaria": "#aa11f1",
+# clade 1
+    "javanica": "#f32727",
+    "floridensis": "#f04f27",
+    "arenaria": "#ea312b",
+    "incognita": "#cb1818",
+    "morocciensis": "#f31212",
+    "konaensis": "#a629e0",
+    "arabicida": "#a527df",
+    "izalcoensis": "#a620e4",
+    "lopezi": "#9914ec",
+    "paranaensis": "#861bbc",
+    "hispanica": "#d06df1",
+    "luci": "#bd5ded",
+    "haplanaria": "#be5deb",
     "ethiopica": "#cd6df9",
-    "konaensis": "#e7c2f8",
-    "arabicida": "#c9b2d4",
-    "paranaensis": "#9f7bb1",
-    "hispanica": "#bd8ed2",
-    "luci": "#cf88f2",
-    "enterolobii": "#f16435",
-    "hapla": "#c85490",
-    "partityla": "#d6557c",
-    "microtyla": "#f2a6b0",
-    "spartelensis": "#c67891",
-    "dunensis": "#d46286",
-    "ardenensis": "#6f4351",
+    "enterolobii": "#aa3812",
+# clade 2
+    "hapla": "#2151d7",
+    "partityla": "#4168e7",
+    "microtyla": "#738efa",
+    "spartelensis": "#4b7bca",
+    "dunensis": "#4669b4",
+    "ardenensis": "#3851f4",
     "duytsi": "#5A5859",
-    "graminicola": "#7bbbe3",
-    "oryzae": "#83cdfa",
-    "kralli": "#a6cde5",
-    "naasi": "#70a7c9",
-    "minor": "#1181c7",
-    "chitwoodi": "#5384a3",
-    "fallax": "#5ea9d7",
-    "exigua": "#4a697c",
+    "silvestris": "#7a9dce",
+    "maritima": "#568fd8",
+    "spartinae": "#5389d4",
+    "marylandi": "#518cde",
+    "graminis":  "#68a1f0",
+# clade 3
+    "graminicola": "#38af0d",
+    "oryzae": "#46ba54",
+    "kralli": "#1cc42d",
+    "exigua": "#2FC51B",
+    "naasi": "#28b11f",
+    "minor": "#0f6c1b",
+    "chitwoodi": "#086f07",
+    "fallax": "#266f24",
 }
 
+# labels and styling. Add a triangle if in newly added tips
+tip_labels = [f"▲ {name}" if name in tips_to_mark else name for name in original_names]
 
-# Function to get color based on species name
-def get_color(tip):
-    return next(
-        (color for species, color in species_colors.items() if species in tip),
-        "#33373a",
+# Red if in newly added tips, look up name in species_colors dict, default to black
+tip_colors = [
+    (
+        "red"
+        if name in tips_to_mark
+        else next(
+            (color for species, color in species_colors.items() if species in name),
+            "black",
+        )
     )
-
-
-# Generate color list
-colorlist = [get_color(tip) for tip in rtree.get_tip_labels()]
-
-# Draw tree and get axes
-canvas, axes, mark1 = rtree.draw(
-    width=800,
-    height=1600,
-    # node_hover=True,
-    node_sizes=3,
-    tip_labels_colors=colorlist,
-)
-
-# call annotate method w/ 'axes' as an arg
-mark2 = rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
-
-# -------------------------
-
-
-# Check the original name array for colors so mapping remains accurate
-tip_colors = ["red" if name in tips_to_mark else "black" for name in original_names]
+    for name in original_names
+]
 
 # Draw tree and get axes
 canvas, axes, mark1 = rtree.draw(
@@ -175,6 +167,6 @@ canvas, axes, mark1 = rtree.draw(
 # Annotate tips
 rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
 
-# Save to HTML, or other formats as specified in config
+# Save to HTML
 toytree.save(canvas, str(outfile))
 print(f"Saved tree plot to {outfile}")
