@@ -32,6 +32,7 @@ reference_alignment_clades123: "ref148clades123"
 # Genus reference alignment
 # reference alignment to which samples are added WITHOUT .fas file extension
 reference_alignment: "genus_ref148"
+# ---------------------------------
 
 #  build a tree from the reference alignment only
 #  change "add_sequences: FALSE" above
@@ -39,10 +40,10 @@ ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
 # NEEDS TO BE FIXED
 # filter taxa from reference alignment
-exclude_seqs: False  # TRUE or FALSE, remove seqs based on text file list
-# list of excluded seqs, 1 per line, fasta header line minus >
-exclusion_list: "config/nonclade123.txt"
-filtered_ref_alignment: "reference_filtered"
+# exclude_seqs: False  # TRUE or FALSE, remove seqs based on text file list
+# # list of excluded seqs, 1 per line, fasta header line minus >
+# exclusion_list: "config/nonclade123.txt"
+# filtered_ref_alignment: "reference_filtered"
 
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
@@ -57,10 +58,13 @@ cialign_minlen: "750"
 # IQtree substitution model
 subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
 
-# Tree rooting, only one of these should be True
+# ------------
+# Tree rooting
+# ------------
+# only one of these below should be True
 # recommendation: 
   # whole genus use: outgroup_name: "Pratylenchus"
-  # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica
+  # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica (see below)
 rooting:
   outgroup_root: False
   outgroup_name: "Pratylenchus"
@@ -73,6 +77,9 @@ rooting:
   midpoint_root: False
   mad_root: False
 
+# ------------------------------------
+# Colouring and labelling of tip names
+# ------------------------------------
 #  add (triangle) icons to added sequence names
 add_treename_icons: True
 
@@ -121,7 +128,9 @@ species_colors:
   chitwoodi: "#086f07"
   fallax: "#266f24"
 
-
+# ------
+# Saving
+# ------
 # select graphic formats to save final treefile, default html
 tree_formats:
   - "html"
