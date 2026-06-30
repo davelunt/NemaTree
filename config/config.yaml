@@ -22,22 +22,25 @@ add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
 # give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
 seqs_to_add: "3testadd3"
 
+#  build a tree from the reference alignment only
+#  change "add_sequences: FALSE" above
+ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
+
 # use qc.smk minlength rule to enforce a minimum sequence length
 # min_seq_length: 3000
 
 # -------------------------------
 # Reference alignment
 # --------------------------------
+# TRUE if ref alignment of only RKN clades 1,2 and 3 are 
+# to be used rather than all spp. in the genus. FALSE = genus
+clades123: TRUE 
+# reference alignment clades 123 to which samples are added WITHOUT .fas file extension
+reference_alignment_clades123: "genus_ref148clades_arti"
+
+# Genus reference alignment
 # reference alignment to which samples are added WITHOUT .fas file extension
 reference_alignment: "genus_ref148"
-reference_alignment_clades123: "genus_ref148clades_arti"
-# TRUE if ref alignment of only RKN clades 1,2 and 3 are 
-# to be used rather than all spp. in the genus
-clades123: TRUE 
-
-#  build a tree from the reference alignment only
-#  change "add_sequences: FALSE" above
-ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
 # NEEDS TO BE FIXED
 # filter taxa from reference alignment
@@ -60,6 +63,9 @@ cialign_minlen: "750"
 subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
 
 # Tree rooting, only one of these should be True
+# recommendation: 
+  # whole genus use: outgroup_name: "Pratylenchus"
+  # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica
 rooting:
   outgroup_root: False
   outgroup_name: "Pratylenchus"
@@ -69,16 +75,14 @@ rooting:
     - "M_artiellia_KC875391"
     - "M_baetica_KP896296"
     - "M_baetica_MH011982"
-    # - "M_sp_KT883922"
-    # - "M_suginamiensis_MN101831"
-    # - "M_mali_KF895400"
-    # - "M_mali_EU669949"
-    # - "M_mali_KJ636400"
   midpoint_root: False
   mad_root: False
 
 #  add icons to added sequence names
 add_treename_icons: True
+
+# colour names of species
+species_colours: True
 
 # select graphic formats to save final treefile, default html
 tree_formats:
