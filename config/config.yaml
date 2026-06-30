@@ -20,7 +20,7 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # add sequences to the reference alignment?
 add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
 # give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
-seqs_to_add: "5testadd"
+seqs_to_add: "5testadd2"
 
 # use qc.smk minlength rule to enforce a minimum sequence length
 # min_seq_length: 3000
@@ -33,16 +33,17 @@ reference_alignment: "genus_ref148"
 reference_alignment_clades123: "clades123_artieliaOG"
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus
-clades123: FALSE 
+clades123: TRUE 
 
 #  build a tree from the reference alignment only
 #  change "add_sequences: FALSE" above
 ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
+# NEEDS TO BE FIXED
 # filter taxa from reference alignment
-exclude_seqs: FALSE  # TRUE or FALSE, remove seqs based on text file list
+exclude_seqs: False  # TRUE or FALSE, remove seqs based on text file list
 # list of excluded seqs, 1 per line, fasta header line minus >
-exclusion_list: "config/excluded.txt"
+exclusion_list: "config/nonclade123.txt"
 filtered_ref_alignment: "reference_filtered"
 
 # Generate sequence plots, supressing this will save some time
@@ -60,12 +61,16 @@ subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
 
 # Tree rooting, only one of these should be True
 rooting:
-  outgroup_root: True
+  outgroup_root: False
   outgroup_name: "Pratylenchus"
-  outgroup_list: False
+  outgroup_list: True
   outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
     - "M_artiellia_AF442192"
+    - "M_artiellia_KC875391"
     - "M_baetica_KP896296"
+    - "M_baetica_MH011982"
+    # - "M_artiellia_KC875391_OG"
+    # - "M_baetica_KP896296_OG"
   midpoint_root: False
   mad_root: False
 

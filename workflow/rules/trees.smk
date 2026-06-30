@@ -20,6 +20,8 @@
 
 # ML phylogenetic analysis
 rule iqtree:
+    message:
+        "Building ML tree with IQtree for sample {wildcards.sample}.fas"
     input:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
@@ -49,4 +51,4 @@ rule toytree_plot:
     output:
         "results/reporting/toytree/{sample}_mafft_cialign_iqtree.{ext}",
     script:
-        "../scripts/toytre.py"
+        "../scripts/toytree_root.py"

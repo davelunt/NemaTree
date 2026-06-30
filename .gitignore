@@ -1,5 +1,6 @@
 results/**
 workflow/scripts/old/**
+workflow/rules/old/**
 resources/old/**
 config/old/**
 logs/**

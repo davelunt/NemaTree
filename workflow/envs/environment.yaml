@@ -8,7 +8,8 @@ dependencies:
   - snakemake
   - python
   - snakefmt # re-format snakemake grammar
-  - matplotlib 
+  - matplotlib
+  - numpy<2.0 # CIalign needs older version
   - graphviz
   - pandas
   - altair
@@ -22,11 +23,9 @@ dependencies:
   
   # alignments
   - mafft # mulitple sequence alignment
-#  - trimal # alignment trimming
   - amas # alignment manipulation
   - cialign # alignment cleaning
 
   # trees
-#  - Fasttree # tree construction
   - iqtree # tree construction
   - toytree # tree visualization

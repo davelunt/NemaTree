@@ -38,7 +38,6 @@ if outgroup_root:
         raise ValueError(
             "Config error: rooting.outgroup_root=True requires rooting.outgroup_name (string)."
         )
-    # Use '~Name' to treat all tips containing Name as outgroup
     pattern_label = f"~{outgroup_name}"
     try:
         rtree = tree1.root(pattern_label)
@@ -50,14 +49,12 @@ if outgroup_root:
         rtree = tree1.mod.root_on_midpoint()
 
 elif outgroup_list:
-    # listnames = cfg.get('outgroup_list_names', [])
     if not isinstance(listnames, list) or not listnames:
         raise ValueError(
             "Config error: rooting.outgroup_list=True requires rooting.outgroup_list_names "
             "(a non-empty list of tip labels or patterns)."
         )
 
-    # Validate presence of exact names
     labels = set(tree1.get_tip_labels())
     missing = [n for n in listnames if (not n.startswith("~") and n not in labels)]
     if missing:
@@ -66,7 +63,6 @@ elif outgroup_list:
         )
 
     try:
-        # Unpack the list into separate args: root("r3", "r4", ...)
         rtree = tree1.root(*listnames)
         print(f"Rooted on outgroup(s): {listnames}")
     except Exception as e:
@@ -88,7 +84,6 @@ elif mad_root:
         rtree = tree1.mod.root_on_midpoint()
 
 # Load tip names of newly-added sequences and handle missing files
-tips_to_mark = set()
 if newtips_list and os.path.exists(newtips_list):
     with open(newtips_list) as f:
         tips_to_mark = {line.strip() for line in f if line.strip()}
@@ -97,27 +92,12 @@ else:
         print(
             f"Warning: Tip list file not found: {newtips_list}. Proceeding without highlights."
         )
-    # else: no 'added' input provided; proceed silently
-
-# Load tip names of newly-added sequences and handle missing files
-tips_to_mark = set()
-if newtips_list and os.path.exists(newtips_list):
-    with open(newtips_list) as f:
-        tips_to_mark = {line.strip() for line in f if line.strip()}
-else:
-    if newtips_list:
-        print(
-            f"Warning: Tip list file not found: {newtips_list}. Proceeding without highlights."
-        )
-    # else: no 'added' input provided; proceed silently
 
 # Original tip name list
 original_names = rtree.get_tip_labels()
 
 # Add triangle icon to added taxa
-tip_labels = [
-    f"&#9650; {name}" if name in tips_to_mark else name for name in original_names
-]
+tip_labels = [f"▲ {name}" if name in tips_to_mark else name for name in original_names]
 
 # Check the original name array for colors so mapping remains accurate
 tip_colors = ["red" if name in tips_to_mark else "black" for name in original_names]
@@ -135,5 +115,5 @@ canvas, axes, mark1 = rtree.draw(
 rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
 
 # Save to HTML, or other formats as specified in config
-toytree.save(canvas, outfile)
+toytree.save(canvas, str(outfile))
 print(f"Saved tree plot to {outfile}")
