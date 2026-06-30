@@ -13,6 +13,7 @@ dependencies:
   - pandas
   - altair
   - vl-convert-python # saving graphics formats
+  - quarto # report building
 
   # sequences and general
   - biopython

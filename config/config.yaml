@@ -20,7 +20,7 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # add sequences to the reference alignment?
 add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
 # give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
-seqs_to_add: "testadd"
+seqs_to_add: "5testadd"
 
 # use qc.smk minlength rule to enforce a minimum sequence length
 # min_seq_length: 3000
@@ -29,7 +29,7 @@ seqs_to_add: "testadd"
 # Reference alignment
 # --------------------------------
 # reference alignment to which samples are added WITHOUT .fas file extension
-reference_alignment: "genus_ref142"
+reference_alignment: "genus_ref148"
 reference_alignment_clades123: "clades123_artieliaOG"
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus
@@ -40,7 +40,7 @@ clades123: FALSE
 ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
 # filter taxa from reference alignment
-exclude_seqs: TRUE  # TRUE or FALSE, remove seqs based on text file list
+exclude_seqs: FALSE  # TRUE or FALSE, remove seqs based on text file list
 # list of excluded seqs, 1 per line, fasta header line minus >
 exclusion_list: "config/excluded.txt"
 filtered_ref_alignment: "reference_filtered"
