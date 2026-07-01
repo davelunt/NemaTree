@@ -8,13 +8,14 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # -------------------------------
 # Your sequences to add (REQUIRED)
 # --------------------------------
+samples:
+  3testadd5: "resources/samples/3testadd5.fas"
 
 # give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
-seqs_to_add: "3testadd5"
-# seqs_to_add: "resources/samples/3testadd5.fas"
+# seqs_to_add: "3testadd5"
 
 # enforce a minimum sequence length of added sequences
-enforce_minlength: False
+enforce_minlength: True
 min_seq_length: 500
 
 # -------------------------------

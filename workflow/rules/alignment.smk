@@ -1,15 +1,15 @@
 # Rules relating to alignments
 # ------------------------------
 
-# add sample sequences to the reference alignment
 rule mafft_add_seqs:
     input:
-        newseqs = get_added_seqs, # current validated and filtered sequences
-        ref =  REFERENCE,
+        newseqs = get_added_seqs, 
+        ref = REFERENCE,
     output:
-        newalignment="results/mafft/{sample}_mafft.fas",
+        newalignment = "results/mafft/{sample}_mafft.fas"
     shell:
         "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
+
 
 # check that sequences were added to the reference alignment and exit if not
 rule check_seqs_added:
