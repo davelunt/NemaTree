@@ -1,6 +1,12 @@
 # Phylogenetic analysis of Root-Knot Nematode 18S rRNA sequences
 
-This reproducible workflow processes 18S rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.
+**This reproducible workflow processes 18S rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.**
+
+Released under a permissive MIT license, you may pretty much do as you like. If you are able to cite and distribute this work it would be appreciated:
+
+> Lunt, DH (2026). Reproducible phylogenetic analysis of Root-Knot Nematode 18S rRNA sequences. [https://github.com/davelunt/RKN-RRNA](https://github.com/davelunt/RKN-RRNA)
+
+If you have issues, or would like additions, I may be able to help. If you improve this workflow, either contribute back to this repository or let me know, I would like to use that improvement myself.
 
 ## Quickstart - for people used to this sort of thing
 
@@ -11,7 +17,9 @@ This reproducible workflow processes 18S rRNA sequences from Root-Knot Nematodes
 
 ## Workflow Overview
 
-The user should provide fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension.
+![DAG rule-graph of snakemake workflow](docs/rule-graph.png)
+
+The user should provide fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. See [sequence help doc](docs/sequence_prep.md)
 
 The workflow can be configured using the `config.yaml` file, where you can specify parameters such as the minimum sequence length and the reference alignment file.
 
@@ -30,9 +38,7 @@ The workflow will:
     - install `mamba` and `conda` if you don't have them already
     - try `mamba env create -f envs/environment.yaml`
 
-You should have miniconda installed. See instructions at the website https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html and install `mamba` with `conda install conda-forge::mamba`
-
-Installing and using mamba may greatly increase the speed of creating the environment and is highly recommended. Although possibly slow the first time, creating this environment only needs to be done once per machine, not each time the workflow is run.
+Extra help is available in the [installation help doc](docs/installation.md)
 
 ## Running the workflow
 
@@ -40,7 +46,7 @@ Installing and using mamba may greatly increase the speed of creating the enviro
 
 Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. No spaces in filenames. Do not provide multiuple files, place all fasta records in one fasta file. 
 
-Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas > resources/samples/myseqsname.fas` to combine all fasta files into one file.
+Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas* > resources/samples/myseqsname.fas` to combine all fasta files into one file.
 
 ### Check `config/config.yaml`
 
@@ -73,12 +79,13 @@ If all is well, run the workflow with:
         - try `conda activate rkn-rrna`
     - snakemake times out waiting for IQ-tree after 30s. Use `--latency-wait 300`
     - losing the final tree
-        - try `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html`
+        - try `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
 
 ## Help
 
 The documentation in `docs/` contains some more extensive help and advice:
 
+- [installation](docs/installation.md): Information on installing the workflow and dependencies
 - [sequence_prep](docs/sequence_prep.md): Information on preparing sequences to add
 - [alignments](docs/alignments.md): Information on how sequence alignments are processed
 - [tree_formatting](docs/tree_formatting.md): Information on tree formatting and rooting
