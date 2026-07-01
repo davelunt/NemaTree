@@ -8,14 +8,9 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # -------------------------------
 # Your sequences to add (REQUIRED)
 # --------------------------------
-add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
 
 # give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
-seqs_to_add: "3testadd4"
-
-#  build a tree from the reference alignment only
-#  change "add_sequences: FALSE" above
-ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
+seqs_to_add: "3testadd5"
 
 # enforce a minimum sequence length of added sequences
 enforce_minlength: False
