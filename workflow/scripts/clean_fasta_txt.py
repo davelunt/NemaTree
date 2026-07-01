@@ -1,7 +1,7 @@
 from Bio import SeqIO
 import re
 
-input_file = snakemake.input[0]
+input_file = snakemake.input.raw
 output_file = snakemake.output.seqs
 log_altered = snakemake.output.log
 log_all = snakemake.output.names

@@ -3,7 +3,8 @@
 # remove -.? from sequences. Report to log file
 rule clean_supplied_fasta:
     input:
-        "resources/samples/{sample}.fas",
+        # "resources/samples/{sample}.fas",
+        raw = get_raw_input,
     output:
         seqs="results/samples/{sample}_validated.fas",
         log="results/reporting/validated/{sample}_clean_fasta_log.txt",
@@ -14,22 +15,13 @@ rule clean_supplied_fasta:
         "../scripts/clean_fasta_txt.py"
 
 
-# appends a unique number to each seq ID: >seqA to >seqA_001
-# rule fasta_number_headers:
-#     input:
-#         "results/samples/{sample}_validated.fas",
-#     output:
-#         "results/samples/{sample}_numbered.fas",
-#     shell:
-#         'seqkit replace -p $ -r "_{nr:03d}" {input} > {output}'
-
-# enforce a minimum sequence length, of added sequences
-# specified in the config file
+# Conditional rule (only runs if enforce_minlength is True)
+# excludes sequences less than config "min_seq_length"
 rule minlength:
     input:
         "results/samples/{sample}_validated.fas",
     output:
-        "results/samples/{sample}_minlength.fas",
+        "results/samples/{sample}_valid_minlen.fas",
     params:
         minlength = config["min_seq_length"],
     shell:
