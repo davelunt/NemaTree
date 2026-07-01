@@ -11,7 +11,7 @@ conda: "../envs/environment.yaml"  # leave this unedited
 add_sequences: TRUE # FALSE will build a phylogeny of reference sequences only
 
 # give fasta "basename" in resources/samples/basename.fas WITHOUT the .fas extension
-seqs_to_add: "3testadd3"
+seqs_to_add: "3testadd4"
 
 #  build a tree from the reference alignment only
 #  change "add_sequences: FALSE" above
@@ -27,20 +27,13 @@ min_seq_length: 500
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus. FALSE = genus
 clades123: TRUE 
-# reference alignment clades 123 to which samples are added WITHOUT .fas file extension
-reference_alignment_clades123: "ref148clades123"
+# path to reference alignment clades 123 to which samples are added
+reference_alignment_clades123: "resources/reference/ref148clades123.fas"
 
 # Genus reference alignment
-# reference alignment to which samples are added WITHOUT .fas file extension
-reference_alignment: "genus_ref148"
+# path to genus reference alignment to which samples are added
+reference_alignment: "resources/reference/genus_ref148.fas"
 # ---------------------------------
-
-# NEEDS TO BE FIXED
-# filter taxa from reference alignment
-# exclude_seqs: False  # TRUE or FALSE, remove seqs based on text file list
-# # list of excluded seqs, 1 per line, fasta header line minus >
-# exclusion_list: "config/nonclade123.txt"
-# filtered_ref_alignment: "reference_filtered"
 
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output

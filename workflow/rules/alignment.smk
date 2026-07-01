@@ -1,26 +1,11 @@
 # Rules relating to alignments
 # ------------------------------
 
-# remove sequences from reference alignment according to exclusion list
-from workflow.rules.common import get_added_seqs
-
-
-rule filter_reference_alignment:
-    input:
-        ref_orig=get_ref_alignment,
-        remove_list=config["exclusion_list"],
-    output:
-        new_ref=REF_FILTERED,
-    shell:
-        "seqkit grep -v -n -f {input.remove_list} {input.ref_orig} > {output.new_ref}"
-
-
 # add sample sequences to the reference alignment
 rule mafft_add_seqs:
     input:
-        # newseqs="results/samples/{sample}_validated.fas",
         newseqs = get_added_seqs, # current validated and filtered sequences
-        ref = get_ref_alignment, # current reference from common.smk rule
+        ref =  REFERENCE,
     output:
         newalignment="results/mafft/{sample}_mafft.fas",
     shell:
@@ -32,7 +17,7 @@ rule check_seqs_added:
         seqs_to_add=get_added_seqs,
         combined_alignment="results/mafft/{sample}_mafft.fas",
     params:
-        reflibrary = get_ref_alignment,
+        reflibrary = REFERENCE,
     output:
         log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
     script:

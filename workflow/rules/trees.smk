@@ -1,24 +1,8 @@
 # Phylogenetic analysis
 # =====================
 
-# FastTree, build ML tree
-# --------------------------------------------------
-
-# rule fasttree:
-#     input:
-#         expand("results/mafft/{sample}_mafft.fas", sample=SAMPLES),
-#     output:
-#         expand("results/fasttree/{sample}_mafft_fasttree.nwk", sample=SAMPLES),
-#     shell:
-#         "FastTree -quiet -gtr -nt {input} > {output}"
-
-
-# IQtree, build ML tree. May need to add --latency-wait SECONDS flag to snakemake command
-# to allow for longer processing time.
-# --------------------------------------------------
-
-
-# ML phylogenetic analysis
+# IQtree, build ML tree
+# ----------------------
 rule iqtree:
     message:
         "Building ML tree with IQtree for sample {wildcards.sample}.fas"
@@ -46,9 +30,9 @@ rule iqtree:
 # ---------------------------------------------------------
 rule toytree_plot:
     input:
-        nwk="results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
+        nwk="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile",
         added="results/reporting/validated/{sample}_all_fasta_headers.txt",
     output:
-        "results/reporting/toytree/{sample}_mafft_cialign_iqtree.{ext}",
+        "results/reporting/toytree/{sample}_mafft_cialign_cleaned_iqtree.{ext}",
     script:
         "../scripts/toytree_colours.py"
