@@ -2,13 +2,13 @@
 
 The workflow has quality control steps for the sequences to be added, but it is also important to prepare correctly.
 
-Sequences need to be in a single `.fas` file in `resources/samples`. You will need to add the basename of this file to the `config/config.yaml` file (mysamples for mysamples.fas).
+Sequences should ideally to be in a single DNA fasta file in `resources/samples`. You will need to add the location of this file to `config/config.yaml`
 
 If you need to concatenate multiple fasta files into one, you can use the following command:
 
 `cat *.fas* > mysamples.fas`
 
-This will concatenate `.fas` and `.fasta` files but not `.fna` so long as you are in the same directory as the files. 
+This will concatenate `.fas` and `.fasta` files so long as you are in the same directory as the files. 
 
 You must not have spaces in filenames that are going to be processed by a workflow. Use name_underscores or name-hyphens or camelCase instead.
 

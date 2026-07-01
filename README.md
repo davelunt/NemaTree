@@ -12,14 +12,14 @@ If you have issues, or would like additions, I may be able to help. If you impro
 
 1. git clone the repo and create conda environment from `envs/environment.yaml`
 2. add sequences to `resources/samples/myseqsname.fas`
-3. add `myseqsname` to `config/config.yaml` as `seqs_to_add:`
+3. add `resources/samples/myseqsname.fas` to `config/config.yaml`
 4. final tree: `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html`
 
 ## Workflow Overview
 
 ![DAG rule-graph of snakemake workflow](docs/rule-graph.png)
 
-The user should provide fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. See [sequence help doc](docs/sequence_prep.md)
+The user should provide DNA fasta sequences in a file in the `resources/samples/` directory. See [sequence help doc](docs/sequence_prep.md)
 
 The workflow can be configured using the `config.yaml` file, where you can specify parameters such as the minimum sequence length and the reference alignment file.
 
@@ -42,9 +42,9 @@ Extra help is available in the [installation help doc](docs/installation.md)
 
 ## Running the workflow
 
-### Provide a single sequence file with .fas extension
+### Provide a sequence file
 
-Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. No spaces in filenames. Do not provide multiuple files, place all fasta records in one fasta file. 
+Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. No spaces in filenames. 
 
 Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas* > resources/samples/myseqsname.fas` to combine all fasta files into one file.
 
@@ -52,10 +52,10 @@ Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas*
 
 This file should contain:
 
-- the basename of your `.fas` file containing your samples, e.g. myseqsname (REQUIRED)
-- the basename of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
+- the path to your file containing your samples (REQUIRED)
+- the name of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
 
-Except for the name of your sample file, all other config parameters have default values and can be left as is. You can also check `docs/tree_formatting.md` for more information on getting the best tree.
+Except for the sample file, all other config parameters have default values and can be left as is. You can also check `docs/tree_formatting.md` for more information on getting the best tree.
 
 ### Dry run, then run the workflow
 
@@ -69,10 +69,8 @@ If all is well, run the workflow with:
 
 ### Common problems
 
-    - using .fasta not .fas
     - wrong capitalisation of the samples file name
     - spaces in filename, use_underscore_instead
-    - wrong location (must be in `/resources/samples/`)
     - failure to install the environment with conda/mamba
         - try `mamba env create -f envs/environment.yaml`
     - failure to activate the environment
@@ -86,6 +84,7 @@ If all is well, run the workflow with:
 The documentation in `docs/` contains some more extensive help and advice:
 
 - [installation](docs/installation.md): Information on installing the workflow and dependencies
+- [configure](docs/configure.md): Information on the config.yaml file
 - [sequence_prep](docs/sequence_prep.md): Information on preparing sequences to add
 - [alignments](docs/alignments.md): Information on how sequence alignments are processed
 - [tree_formatting](docs/tree_formatting.md): Information on tree formatting and rooting
