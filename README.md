@@ -17,7 +17,7 @@ If you have issues, or would like additions, I may be able to help. If you impro
 
 ## Workflow Overview
 
-![DAG rule-graph of snakemake workflow](docs/rule-graph.png)
+![DAG rule-graph of snakemake workflow](docs/images/rule-graph.png)
 
 The user should provide DNA fasta sequences in a file in the `resources/samples/` directory. See [sequence help doc](docs/sequence_prep.md)
 
