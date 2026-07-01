@@ -1,7 +1,7 @@
 from Bio import SeqIO
 import re
 
-input_file = snakemake.input[0]
+input_file = snakemake.input.seqs
 output_file = snakemake.output.seqs
 log_altered = snakemake.output.log
 log_all = snakemake.output.names
@@ -10,7 +10,6 @@ log_all = snakemake.output.names
 def sanitize_fasta_headers_and_sequences(input_file, output_file, log_altered, log_all):
     altered_headers = 0
     altered_sequences = 0
-
 
     # Parse all records first to check for empty input
     records = list(SeqIO.parse(input_file, "fasta"))

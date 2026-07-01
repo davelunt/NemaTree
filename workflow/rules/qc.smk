@@ -3,7 +3,8 @@
 # remove -.? from sequences. Report to log file
 rule clean_supplied_fasta:
     input:
-        "resources/samples/{sample}.fas",
+        seqs="resources/samples/{sample}.fas",
+        # seqs=SAMPLES,
     output:
         seqs="results/samples/{sample}_validated.fas",
         log="results/reporting/validated/{sample}_clean_fasta_log.txt",
