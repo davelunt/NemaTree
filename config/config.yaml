@@ -17,8 +17,9 @@ seqs_to_add: "3testadd3"
 #  change "add_sequences: FALSE" above
 ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
-# use qc.smk minlength rule to enforce a minimum sequence length
-# min_seq_length: 3000
+# enforce a minimum sequence length of added sequences
+enforce_minlength: False
+min_seq_length: 500
 
 # -------------------------------
 # Reference alignment
@@ -33,10 +34,6 @@ reference_alignment_clades123: "ref148clades123"
 # reference alignment to which samples are added WITHOUT .fas file extension
 reference_alignment: "genus_ref148"
 # ---------------------------------
-
-#  build a tree from the reference alignment only
-#  change "add_sequences: FALSE" above
-ref_only: FALSE # TRUE if phylogeny of only reference alignment is required
 
 # NEEDS TO BE FIXED
 # filter taxa from reference alignment

@@ -19,6 +19,8 @@ The workflow will:
 
 The workflow is reproducible and self-documenting.
 
+![DAG rule graph](docs/rule-graph.png) of the workflow.
+
 ## Configuring the workflow
 
 The workflow can be configured using the `config/config.yaml` file. You can specify parameters such as the reference alignment file, whether to exclude certain sequences, and how to root and colour the tree.
@@ -29,7 +31,7 @@ The workflow can be configured using the `config/config.yaml` file. You can spec
 
 Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory with the `.fas` file extension. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. Do not provide multiuple files, place all fasta records in one fasta file. 
 
-Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas > resources/samples/your_sample_name.fas` to combine all fasta files into one file.
+Help on preparing sequences is available in the [docs/sequence_prep.md](docs/sequence_prep.md) file.
 
 ### Check the config.yaml
 
@@ -67,3 +69,9 @@ this will ask snakemake to wait 300 seconds instead
 #### wrong outgroups
 
 toytree will complain and fgail if your outgroup taxon is not in your dataset
+
+## Help
+
+For help with formatting the tree, see the [docs/tree_formatting.md](docs/tree_formatting.md) file. 
+
+For help with preparing sequences, see the [docs/sequence_prep.md](docs/sequence_prep.md) file.

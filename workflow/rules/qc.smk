@@ -14,22 +14,23 @@ rule clean_supplied_fasta:
         "../scripts/clean_fasta_txt.py"
 
 
-# appends a unique number to each seq ID: >seq1 to >seq1_1
+# appends a unique number to each seq ID: >seqA to >seqA_001
 # rule fasta_number_headers:
 #     input:
-#         expand("results/qc/{sample}_minlength.fas", sample=SAMPLES),
+#         "results/samples/{sample}_validated.fas",
 #     output:
-#         "results/qc/{sample}_numbered.fas",
+#         "results/samples/{sample}_numbered.fas",
 #     shell:
-#         'seqkit replace -p $ -r "_{nr}" {input} > {output}'
+#         'seqkit replace -p $ -r "_{nr:03d}" {input} > {output}'
 
-# enforce a minimum sequence length, specified in the config file
-# rule minlength:
-#     input:
-#         expand("resources/samples/{sample}.fas", sample=SAMPLES),
-#     output:
-#         "results/qc/{sample}_minlength.fas",
-#     params:
-#         minlength = config["min_seq_length"],
-#     shell:
-#         "seqkit seq -m {params.minlength} -g {input} > {output}"
+# enforce a minimum sequence length, of added sequences
+# specified in the config file
+rule minlength:
+    input:
+        expand("resources/samples/{sample}.fas", sample=SAMPLES),
+    output:
+        "results/qc/{sample}_minlength.fas",
+    params:
+        minlength = config["min_seq_length"],
+    shell:
+        "seqkit seq -m {params.minlength} -g {input} > {output}"
