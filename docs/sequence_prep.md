@@ -18,7 +18,7 @@ The quality control will remove spaces in the fasta header and replace with unde
 
 ## Unique names
 
-Sequences with identical names will be dropped from the analysis. You can however use this command to add a unique number to the end of the header line. Make sure the conda environment is activated (to have Seqkit installed). This changes seqA to SeqA_001:
+Sequences with identical names will be dropped from the analysis after the alignment. You can however use this command to add a unique number to the end of the header line. Make sure the conda environment is activated (to have Seqkit installed). This changes seqA to SeqA_001:
 
 `seqkit replace -p $ -r "_{nr:03d}" mysamples.fas > mysamples_unique.fas`
 

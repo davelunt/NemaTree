@@ -74,3 +74,11 @@ If all is well, run the workflow with:
     - snakemake times out waiting for IQ-tree after 30s. Use `--latency-wait 300`
     - losing the final tree
         - try `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html`
+
+## Help
+
+The documentation in `docs/` contains some more extensive help and advice:
+
+- [sequence_prep](docs/sequence_prep.md): Information on preparing sequences to add
+- [alignments](docs/alignments.md): Information on how sequence alignments are processed
+- [tree_formatting](docs/tree_formatting.md): Information on tree formatting and rooting

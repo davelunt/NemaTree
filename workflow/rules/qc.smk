@@ -27,9 +27,9 @@ rule clean_supplied_fasta:
 # specified in the config file
 rule minlength:
     input:
-        expand("resources/samples/{sample}.fas", sample=SAMPLES),
+        "results/samples/{sample}_validated.fas",
     output:
-        "results/qc/{sample}_minlength.fas",
+        "results/samples/{sample}_minlength.fas",
     params:
         minlength = config["min_seq_length"],
     shell:

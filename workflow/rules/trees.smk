@@ -25,10 +25,10 @@ rule iqtree:
     input:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
-        treefile="results/iqtree/{sample}_mafft_cialign_iqtree.treefile",
+        treefile="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile",
     params:
         model=config["subst_model"],
-        prefix="results/iqtree/{sample}_mafft_cialign_iqtree",
+        prefix="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree",
     shell:
         """
         iqtree -s {input} \

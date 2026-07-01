@@ -1,3 +1,4 @@
+from logging import config
 from pathlib import Path
 
 # reference alignments
@@ -22,3 +23,11 @@ def get_ref_alignment(_wc):
 def get_ref_alignment_stub(_wc):
     ref_path = Path(get_ref_alignment(_wc))  # convert to Path object
     return ref_path.stem  # returns filename without suffix
+
+
+def get_added_seqs(wildcards):
+    return (
+        f"results/samples/{wildcards.sample}_minlength.fas"
+        if config.get("enforce_minlength", False)
+        else f"results/samples/{wildcards.sample}_validated.fas"
+    )

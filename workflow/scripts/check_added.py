@@ -1,6 +1,8 @@
+# check that sequences were added to the reference alignment and exit if not
+
 from Bio import SeqIO
 
-# files from snakemake
+# Files from Snakemake
 seqs_to_add = snakemake.input.seqs_to_add
 combined_alignment = snakemake.input.combined_alignment
 reflibrary = snakemake.params.reflibrary
@@ -16,26 +18,51 @@ count1 = count_fasta_records(seqs_to_add)
 count2 = count_fasta_records(reflibrary)
 count3 = count_fasta_records(combined_alignment)
 
-# Prepare log messages
+# Initial log baseline
 log_messages = [
     f"Number of records in {seqs_to_add}: {count1}",
     f"Number of records in {reflibrary}: {count2}",
     f"Number of records in {combined_alignment}: {count3}",
 ]
 
-if count1 + count2 != count3:
+
+def write_log_and_fail(error_message):
+    """Helper to ensure logs are fully captured before crashing the pipeline."""
+    log_messages.append(f"FATAL ERROR: {error_message}")
+    with open(logfile, "w") as f:
+        f.write("\n".join(log_messages) + "\n")
+    raise ValueError(error_message)
+
+
+# Throw exception and quit if count1 is zero
+if count1 == 0:
+    write_log_and_fail(f"No new sequences found in {seqs_to_add}. Nothing to process.")
+
+# Throw exception and quit if count2 is zero
+if count2 == 0:
+    write_log_and_fail(f"The reference library {reflibrary} is completely empty.")
+
+# Throw exception and quit if count3 is less than or equal to count2
+if count3 <= count2:
+    write_log_and_fail(
+        f"Combined alignment count ({count3}) is not greater than reference alignment count ({count2}). "
+        f"No records were actually appended to the final pool."
+    )
+
+# Warn if count3 is less than count1 + count2
+if count3 < (count1 + count2):
     log_messages.append(
-        "WARNING: The sum of records in the first two files does not equal the number of records in the combined alignment. Please check."
+        f"WARNING: Combined alignment has fewer sequences ({count3}) than expected ({count1 + count2}). "
+        f"Some sequences may have had identical matching IDs and were merged/dropped by the aligner."
     )
 else:
     log_messages.append(
-        "Check passed: The sum of sequences in the first two files matches the final alignment."
+        "Check passed: Target sequence counts match expected totals perfectly."
     )
 
-# Print to console and write to log file
+# Standard success pathway execution
 for message in log_messages:
     print(message)
 
 with open(logfile, "w") as f:
-    for message in log_messages:
-        f.write(message + "\n")
+    f.write("\n".join(log_messages) + "\n")
