@@ -1,11 +1,14 @@
+# ==================================================
 # Root-Knot Nematode SSU rRNA phylogenetic analysis
-# -------------------------------------------------
-# control by editing the config file
+# ==================================================
 
+# control workflow by editing the config file
 configfile: "config/config.yaml"
 
-# samples to add to reference alignment, defined in config file
-SAMPLES = config["seqs_to_add"]
+include: "rules/common.smk"
+
+# samples to add to reference alignment are defined in config file
+# SAMPLES is defined in common.smk and can be used below (and globally)
 
 # specify reference alignment in config
 if config["clades123"]:
@@ -13,19 +16,12 @@ if config["clades123"]:
 else:
     REFERENCE = config["reference_alignment"]
 
-
 # output formats for trees, default is html (also png, pdf, svg)
 TREEFORMATS = config.get("tree_formats", ["html"])
 
-# -------------------------------
-# include rule files
-include: "rules/common.smk"
-include: "rules/qc.smk"
-include: "rules/alignment.smk"
-include: "rules/trees.smk"
-include: "rules/reports.smk"
-# -------------------------------
-
+#  ------------
+# TARGET RULE
+# -------------
 rule all:
     input:
         expand("results/samples/{sample}_validated.fas", sample=SAMPLES),
@@ -42,3 +38,11 @@ rule all:
             if config.get("generate_seq_plots", False) else [],
         expand("results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile", sample=SAMPLES),
         expand("results/reporting/toytree/{sample}_mafft_cialign_cleaned_iqtree.{ext}", sample=SAMPLES, ext=TREEFORMATS),
+
+# --------------------
+# include rule files
+# --------------------
+include: "rules/qc.smk"
+include: "rules/alignment.smk"
+include: "rules/trees.smk"
+include: "rules/reports.smk"
