@@ -74,7 +74,7 @@ If all is well, run the workflow with:
     - failure to install the environment with conda/mamba
         - try `mamba env create -f envs/environment.yaml`
     - failure to activate the environment
-        - try `conda activate rkn-rrna`
+        - try `conda activate rknrrna`
     - snakemake times out waiting for IQ-tree after 30s. Use `--latency-wait 300`
     - losing the final tree
         - try `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
