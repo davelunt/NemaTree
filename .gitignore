@@ -1,6 +1,7 @@
 results/**
 workflow/scripts/old/**
 workflow/rules/old/**
+workflow/envs/blackenv.yaml
 resources/old/**
 config/old/**
 logs/**
@@ -9,4 +10,3 @@ logs/**
 .DS_Store*
 pastebin.txt
 **/lint.txt
-testsnake.smk

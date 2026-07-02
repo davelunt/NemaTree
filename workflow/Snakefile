@@ -19,6 +19,7 @@ else:
 # output formats for trees, default is html (also png, pdf, svg)
 TREEFORMATS = config.get("tree_formats", ["html"])
 
+
 #  ------------
 # TARGET RULE
 # -------------
@@ -38,6 +39,7 @@ rule all:
             if config.get("generate_seq_plots", False) else [],
         expand("results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile", sample=SAMPLES),
         expand("results/reporting/toytree/{sample}_mafft_cialign_cleaned_iqtree.{ext}", sample=SAMPLES, ext=TREEFORMATS),
+
 
 # --------------------
 # include rule files
