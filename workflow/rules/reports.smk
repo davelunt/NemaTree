@@ -49,10 +49,12 @@ rule AMAS_alignment_stats:
 # CIAlign, alignment reporting and visualisations
 rule CIAlign_aln_statsvisuals:
     input:
-        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+        fasta = "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
-        "results/reporting/cialign/{sample}_mafft_cialign_output.png",
+        img = "results/reporting/cialign/{sample}_mafft_cialign_output.png",
     params:
-        stub="results/reporting/cialign/{sample}_mafft_cialign",
+        stub = lambda wildcards, output: output.img.replace("_output.png", ""),
     shell:
-        "CIAlign --infile {input} --outfile_stem {params.stub} --visualise --plot_stats_input"
+        """
+        CIAlign --infile {input.fasta} --outfile_stem {params.stub} --visualise --plot_stats_input
+        """

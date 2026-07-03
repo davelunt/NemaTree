@@ -19,8 +19,8 @@ Also see [sequence-prep.md](sequence-prep.md)
 
 There are two reference sequence alignment files supplied in resourcfes/reference.
 
-- `genus_ref148.fas` contains (N=148) sequences from species across the entire genus, and Pratylenchus outgroups.
-- `ref148clades123.fas` contains a subset of the genus data consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group). Two M. artiellia and two M. baetica are included as outgroups.
+- `genus_ref6.fas` contains (N=146) sequences from species across the entire genus, and Pratylenchus outgroups.
+- `ref146clades123.fas` contains a subset of the genus data (N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group). Two M. artiellia and two M. baetica are included as outgroups.
 
 Choose whether you want to add sequences to the whole genus data (`clades123: FALSE`) or just clades 123 data (`clades123: TRUE`).
 
@@ -30,6 +30,15 @@ Alignment plots can be deactivated here
 
 CIAlign options are also here
 
+### Minimum sequence length in alignment
+
+use config to set `cialign_len_filter: True`
+
+the minimum length to retain can be set with `cialign_minlen: "500"`
+
+If there are sequences you want to keep despite the length put their names, one per line, in `retain_short_list: "config/retain_short_list.txt"`
+
+`config/retain_short.txt` must exist in this folder if you are removing short sequences from the alignment with CIAlign ie `cialign_len_filter: True` in config. If it the file is empty, no sequences will avoid the filter. If it does not exists, the workflow will crash when `cialign_len_filter: True`
 
 ## Tree contruction and rooting
 

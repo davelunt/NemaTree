@@ -1,6 +1,7 @@
 # Rules relating to alignments
 # ------------------------------
 
+# add sample seqs to reference alignment
 rule mafft_add_seqs:
     input:
         newseqs = get_added_seqs, 
@@ -34,32 +35,57 @@ rule remove_duplicate_names:
     shell:
         "seqkit rmdup -n {input} > {output.aln} -D {output.duplist}"
 
-# rule CIAlign_remove_short_seqs:
+
+# remove aligned sequences if nucleotide count below threshold
+rule CIAlign_remove_short_seqs:
+    input:
+        fasta = "results/mafft/{sample}_mafft_nodups.fas",
+    output:
+        "results/cialign/{sample}_mafft_cialign_shortremoved.fasta",
+    params:
+        minlen = config.get("cialign_minlen", 300),
+        shortlist = config.get("cialign_retain_short_list", "config/retain_short.txt"),
+        stem = lambda wildcards: f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved",
+    shell:
+        """
+        CIAlign \
+            --infile {input.fasta} \
+            --outfile_stem {params.stem} \
+            --remove_short \
+            --remove_min_length {params.minlen} \
+            --remove_short_retain_list "{params.shortlist}"
+        """
+
+
+# CIAlign alignment quality control. Removes divergent sequences and trims the alignment ends
+# rule CIAlign_remove_divergent_trim:
 #     input:
 #         "results/mafft/{sample}_mafft_nodups.fas",
 #     output:
-#         "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved.fasta",
+#         "results/cialign/{sample}_mafft_cialign.fasta",
 #     params:
-#         minlen = config.get("cialign_min_sequence_length", 700),
-#         shortlist = config.get("cialign_short_sequence_retain_list", []),
-#         stem = "results/cialign/{sample}/{sample}_mafft_cialign_shortremoved",
+#         # get path stub from output. See common.smk
+#         stub = get_cialign_stub,
+#         # stub="results/cialign/{sample}_mafft_cialign",
 #     shell:
 #         """
-#         CIAlign --infile {input} \
-#                 --remove_min_length {params.minlen} \
-#                 --remove_short_retain_list {params.shortlist} \
-#                 --outfile_stem {params.stem}
+#         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
 #         """
 
-# CIAlign alignment quality control. Removes divergent sequences and trims the alignment ends
+
 rule CIAlign_remove_divergent_trim:
     input:
-        "results/mafft/{sample}_mafft_nodups.fas",
+        # "results/mafft/{sample}_mafft_nodups.fas",
+        alignment = get_cialignment, # either shortseqs removed or not depending on config
     output:
-        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+        cleaned = "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+        log     = "results/cialign/{sample}_mafft_cialign_log.txt",
+        removed = "results/cialign/{sample}_mafft_cialign_removed.txt",
     params:
-        stub="results/cialign/{sample}_mafft_cialign",
+        # create naming stub for CIAlign and keep names consistent
+        stub = lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
     shell:
         """
-        CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
+        CIAlign --infile {input.alignment} --outfile_stem {params.stub} --remove_divergent --crop_ends
         """
+

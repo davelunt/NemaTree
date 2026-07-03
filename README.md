@@ -48,6 +48,8 @@ Make sure you have provided (DNA not RNA) fasta sequences in a file in the `reso
 
 Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas* > resources/samples/myseqsname.fas` to combine all fasta files into one file.
 
+As a test, try setting the sequence file as `testadd.fas` then running it as described below.
+
 ### Check `config/config.yaml`
 
 This file should contain:
@@ -66,6 +68,9 @@ Begin with a dry run to check setup and that all files are present.
 If all is well, run the workflow with:
 
 `snakemake --cores 4 --latency-wait 300`
+
+You should now have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/_mafft_cialign_cleaned_iqtree.html`
+
 
 ### Common problems
 

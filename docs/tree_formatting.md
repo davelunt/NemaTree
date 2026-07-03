@@ -41,3 +41,9 @@ If you are building trees of clades 1,2 and 3 I would suggest using M.artiellia 
 ```
 
 Midpoint rooting and minimum ancestral deviation (MAD) rooting produce good trees also.
+
+## Relationships within clade 1
+
+The relationships **within** clade 1 are very unstable. I would not be confident about inferring too much here with this SSU-rRNA dataset which has low diversity. We would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are allopolyploids, phylogenomics seems to be the best approach.
+
+Summary: this workflow is great at placing unknown RKN samples into a phylogenetic context, but the resolution of closely related species may need more (carefully selected) data.

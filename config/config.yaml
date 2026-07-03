@@ -9,10 +9,10 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # Sequences to add (REQUIRED)
 # --------------------------------
 samples:
-  3testadd5: "resources/samples/3testadd5.fas"
+  extras4: "resources/samples/extras4.fas"
 
 # set a minimum sequence length for sequences you are adding
-enforce_minlength: True
+enforce_minlength: False
 min_seq_length: 500
 
 # -------------------------------
@@ -20,13 +20,13 @@ min_seq_length: 500
 # --------------------------------
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus. FALSE = genus
-clades123: TRUE 
+clades123: True 
 # path to reference alignment clades 123 to which samples are added
-reference_alignment_clades123: "resources/reference/ref148clades123.fas"
+reference_alignment_clades123: "resources/reference/ref146clades123.fas"
 
 # Genus reference alignment
 # path to genus reference alignment to which samples are added
-reference_alignment: "resources/reference/genus_ref148.fas"
+reference_alignment: "resources/reference/genus_ref146.fas"
 # ---------------------------------
 
 # Generate sequence plots, supressing this will save some time
@@ -34,10 +34,10 @@ reference_alignment: "resources/reference/genus_ref148.fas"
 generate_seq_plots: False
 
 # CIAlign
+cialign_len_filter: True # Filter short sequences from alignment
+cialign_minlen: "500" # minimum sequence length (bp)
 # list of sequences to keep despite length filtering
-retain_short_list: "config/retain_short_list.txt"
-# minimum sequence length (bp)
-cialign_minlen: "750"
+cialign_retain_short_list: "config/retain_short.txt"
 
 # IQtree substitution model
 subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
@@ -58,6 +58,8 @@ rooting:
     - "M_artiellia_KC875391"
     - "M_baetica_KP896296"
     - "M_baetica_MH011982"
+    # - "M_suginamiensis_MN101831"
+    # - "M_mali_KJ636400"
   midpoint_root: False
   mad_root: False
 
