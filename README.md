@@ -1,10 +1,10 @@
-# Phylogenetic analysis of Root-Knot Nematode 18S rRNA sequences
+# NemaTree - Phylogenetic analysis of Root-Knot Nematode rRNA sequences
 
-**This reproducible workflow processes 18S rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.**
+**This reproducible workflow processes rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.**
 
 Released under a permissive MIT license, you may pretty much do as you like. If you are able to cite and distribute this work it would be appreciated:
 
-> Lunt, DH (2026). Reproducible phylogenetic analysis of Root-Knot Nematode 18S rRNA sequences. [https://github.com/davelunt/RKN-RRNA](https://github.com/davelunt/RKN-RRNA)
+> Lunt, DH (2026). Reproducible phylogenetic analysis of Root-Knot Nematode rRNA sequences. [https://github.com/davelunt/NemaTree](https://github.com/davelunt/NemaTree)
 
 If you have issues, or would like additions, I may be able to help. If you improve this workflow, either contribute back to this repository or let me know, I would like to use that improvement myself.
 
@@ -33,7 +33,7 @@ The workflow will:
 ## Set up the workflow
 
 1. download the workflow from GitHub
-    - try: `git clone https://github.com/davelunt/RKN-RRNA.git`
+    - try: `git clone https://github.com/davelunt/NemaTree.git`
 2. prepare the software environment using `mamba` or `conda` and the `environment.yaml` file
     - install `mamba` and `conda` if you don't have them already
     - try `mamba env create -f envs/environment.yaml`
