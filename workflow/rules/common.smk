@@ -23,11 +23,11 @@ def get_cialignment(wildcards):
     Pass the current alignment, which can vary based on config
     """
     if config.get("cialign_len_filter", False):
-        return f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved_cleaned.fasta"
+        return f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved.fas"
     else:
         return f"results/mafft/{wildcards.sample}_mafft_nodups.fas" 
 
-
+# 
 # get path stub to save report output from CIAlign. Parsed from output file
 # used in rule reports.smk:CIAlign_aln_statsvisuals
 # def get_cialign_reportstub(wildcards, output):

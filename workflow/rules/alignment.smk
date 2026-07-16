@@ -41,7 +41,7 @@ rule CIAlign_remove_short_seqs:
     input:
         fasta = "results/mafft/{sample}_mafft_nodups.fas",
     output:
-        "results/cialign/{sample}_mafft_cialign_shortremoved.fasta",
+        "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta",
     params:
         minlen = config.get("cialign_minlen", 300),
         shortlist = config.get("cialign_retain_short_list", "config/retain_short.txt"),
