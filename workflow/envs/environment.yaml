@@ -1,4 +1,4 @@
-name: rknrrna
+name: nematree
 
 channels:
   - conda-forge
@@ -12,7 +12,7 @@ dependencies:
   - numpy<2.0 # CIalign needs older version
   - graphviz
   - pandas
-  - altair
+  - altair # graphics library
   - vl-convert-python # saving graphics formats
   - quarto # report building
 
