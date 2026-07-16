@@ -15,7 +15,7 @@ The first two sections, git and conda/mamba are the most difficult but only have
 ## git
 
 - The workflow is hosted on github.com/davelunt/RKN-RRNA
-- You can click the download button or use `git clone https://github.com/davelunt/RKN-RRNA.git` at the command line
+- You can click the download button or use `git clone https://github.com/davelunt/NemaTree.git` at the command line
 
 ## conda and mamba package managers
 

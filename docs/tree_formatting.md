@@ -2,11 +2,11 @@
 
 ## I like the tree and want to save it as an image for a publication
 
-The best way to get complete control is to take the results/iqtree/<sample_name>.treefile produced by IQ-tree and to optimse it using toytree outside of the workflow.
+Default output is html. Using the config you can also save in other file formats, eg .png or .svg.
 
-You can save it as a graphics format such as .png or .svg
-You can change the colours
-You can set the image size
+If you need to make modifications the best way to get complete control over formatting is to take the `results/iqtree/<sample_name>.treefile` produced by IQ-tree and to optimse it using toytree outside of the workflow.
+
+You will be able to change the colours, set the image size etc.
 
 Many options can be copied from `workflow/scripts/toytree.py`, `.../toytreref.py` or you can use the toytree documentation at https://toytree.readthedocs.io
 
