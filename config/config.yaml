@@ -58,8 +58,6 @@ rooting:
     - "M_artiellia_KC875391"
     - "M_baetica_KP896296"
     - "M_baetica_MH011982"
-    # - "M_suginamiensis_MN101831"
-    # - "M_mali_KJ636400"
   midpoint_root: False
   mad_root: False
 
@@ -120,6 +118,6 @@ species_colors:
 # select graphic formats to save final treefile, default html
 tree_formats:
   - "html"
-  # - "png"
+  - "png"
   # - "pdf"
   # - "svg"
