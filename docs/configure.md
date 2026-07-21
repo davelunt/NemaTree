@@ -20,16 +20,11 @@ Also see [sequence-prep.md](sequence-prep.md)
 
 There are two reference sequence alignment files supplied in resources/reference.
 
-- `genus_ref145.fas` contains (N=145) sequences from species across the entire genus, and Pratylenchus outgroups.
-- `ref145clades123.fas` contains a subset of the genus data (~N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group) sensu Holterman et al (2009), de Ley et al (2002). Two M. artiellia and two M. baetica are included as outgroups.
+- `genus_ref158.fas` contains (N=158) sequences from species across the entire genus, and Pratylenchus outgroups.
+- `ref158clades123.fas` contains a subset of the genus data (~N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group) sensu Holterman et al (2009), de Ley et al (2002). Two M. artiellia and two M. baetica are included as outgroups.
 
 Choose whether you want to add sequences to the whole genus data (`clades123: FALSE`) or just clades 123 data (`clades123: TRUE`).
 
-
-De Ley et al. Phylogenetic Analyses of Meloidogyne Small Subunit rDNA. J Nematol. 2002;34: 319–327
-
-Holterman et al. Small subunit rDNA-based phylogeny of the Tylenchida sheds light on relationships among some high-impact plant-parasitic nematodes and the evolution of plant feeding. Phytopathology. 2009;99: 227–235. doi:10.1094/PHYTO-99-3-0227
-  
 
 ### Modifying reference alignments
 
@@ -54,6 +49,7 @@ An example list can be found in `config/nonclades123.txt`. This needs to be care
 
 Alignment plots can be deactivated in the config file using `generate_seq_plots: False`
 
+
 ## Minimum sequence length in alignment
 
 CIAlign options to length filter are also in config. This will reduce the number of taxa in the tree, but increase the quality of the phylogeny. 
@@ -66,6 +62,7 @@ cialign_minlen: 700 # minimum sequence length (bp)
 If there are sequences you want to keep despite the length put their names, one per line, in `retain_short_list: "config/retain_short_list.txt"`
 
 `config/retain_short.txt` must exist if you are removing short sequences from the alignment with CIAlign ie `cialign_len_filter: True` in config. If the file is empty, no sequences will avoid the filter. If the file does not exist, the workflow will likely crash when you have `cialign_len_filter: True`. An empty `retain_short.txt` is provided in the config directory.
+
 
 ## Tree contruction and rooting
 
@@ -80,3 +77,11 @@ If you are using the whole genus reference alignment, the tree will be rooted on
 If you are using the clades123 reference alignment, the tree will be rooted by using the outgroup clade containing M. artiellia and M. baetica. Use `outgroup_list: TRUE`
 
 Changing these options should not require the entire workflow to be rerun. Delete the `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html` file and rerun the workflow to generate a new tree image with the new root from the previous IQ-tree treefile.
+
+
+## References
+
+De Ley et al. Phylogenetic Analyses of Meloidogyne Small Subunit rDNA. J Nematol. 2002;34: 319–327
+
+Holterman et al. Small subunit rDNA-based phylogeny of the Tylenchida sheds light on relationships among some high-impact plant-parasitic nematodes and the evolution of plant feeding. Phytopathology. 2009;99: 227–235. doi:10.1094/PHYTO-99-3-0227
+  
