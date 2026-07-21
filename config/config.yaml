@@ -1,5 +1,5 @@
 # ==================================================
-#               RKN-rRNA: CONFIGFILE
+#               NemaTree: CONFIGFILE
 # ==================================================
 # this file should be edited by the user to configure the analysis
 # ==================================================
@@ -8,10 +8,11 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # -------------------------------
 # Sequences to add (REQUIRED)
 # --------------------------------
+# specify a name: "filepath" pair
 samples:
   extras5g2: "resources/samples/extras5.fas"
 
-# set a minimum sequence length for sequences you are adding
+# option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False
 min_seq_length: 500
 
@@ -21,10 +22,11 @@ min_seq_length: 500
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus. FALSE = genus
 clades123: False 
-# path to reference alignment clades 123 to which samples are added
+
+# Clades 1, 2 and 3 reference alignment (if required)
 reference_alignment_clades123: "resources/reference/ref145clades123.fas"
 
-# Genus reference alignment
+# Genus reference alignment (if required)
 # path to genus reference alignment to which samples are added
 reference_alignment: "resources/reference/genus_ref158.fas"
 # ---------------------------------
@@ -39,14 +41,19 @@ cialign_minlen: 500 # minimum sequence length (bp)
 
 # list of sequences to keep whatever their length
 # this file must exist (although it may be empty) when cialign_len_filter: True
+# an empty file has been provided in the config directory
 cialign_retain_short_list: "config/retain_short.txt"
 
+# =============
+# Phylogenetics
+# =============
+
 # IQtree substitution model
+# -------------------------
 subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
 
-# ------------
-# Tree rooting
-# ------------
+# Rooting the phylogenetic tree (in toytree)
+# ------------------------------------------
 # only one of these below should be True
 # recommendation: 
   # whole genus use: outgroup_name: "Pratylenchus"
@@ -63,7 +70,6 @@ rooting:
   midpoint_root: False
   mad_root: False
 
-# ------------------------------------
 # Colouring and labelling of tip names
 # ------------------------------------
 #  add (triangle) icons to added sequence names
@@ -114,9 +120,10 @@ species_colors:
   chitwoodi: "#086f07"
   fallax: "#266f24"
 
-# ------
-# Saving
-# ------
+# ===================
+# Saving the treefile
+# ===================
+
 # select graphic formats to save final treefile, default html
 tree_formats:
   - "html"
