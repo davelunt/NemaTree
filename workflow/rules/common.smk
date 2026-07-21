@@ -23,6 +23,6 @@ def get_cialignment(wildcards):
     Pass the current alignment, which can vary based on config
     """
     if config.get("cialign_len_filter", False):
-        return f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved.fas"
+        return f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved_cleaned.fasta"
     else:
         return f"results/mafft/{wildcards.sample}_mafft_nodups.fas" 

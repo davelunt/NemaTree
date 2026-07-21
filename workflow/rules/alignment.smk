@@ -71,3 +71,4 @@ rule CIAlign_remove_divergent_trim:
         CIAlign --infile {input.alignment} --outfile_stem {params.stub} --remove_divergent --crop_ends
         """
 
+

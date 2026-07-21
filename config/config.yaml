@@ -10,7 +10,7 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # --------------------------------
 # specify a name: "filepath" pair
 samples:
-  extras5g2: "resources/samples/extras5.fas"
+  extras5g700: "resources/samples/extras5.fas"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False
@@ -33,11 +33,11 @@ reference_alignment: "resources/reference/genus_ref158.fas"
 
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
-generate_seq_plots: False
+generate_seq_plots: True
 
 # CIAlign
-cialign_len_filter: False # Filter short sequences from alignment
-cialign_minlen: 500 # minimum sequence length (bp)
+cialign_len_filter: True # Filter short sequences from alignment
+cialign_minlen: 700 # minimum sequence length (bp)
 
 # list of sequences to keep whatever their length
 # this file must exist (although it may be empty) when cialign_len_filter: True
