@@ -3,11 +3,14 @@
 This is an overview of the files written by the workflow
 `sample` at the start of each name is text defined in config/config.yaml as the name given to your input fasta file
 
+The final treefile you will want to look at is `reporting/toytree/sample_mafft_cialign_cleaned_iqtree.html`
+
 The results files below are alphabetical not in order of being processed
 
 Some output is created or not depending on your config settings
 
-The final treefile you will want to look at is `reporting/toytree/sample_mafft_cialign_cleaned_iqtree.html`
+rule `CIAlign_aln_statsvisuals` uses "results/reporting/cialign/{sample}_mafft_cialign_output.png" as output, but in reality CIAlign saves many more files (see below). This may not be best practice and a `directory()` as output could be better. It does however generate outputs correctly.
+
 
 results/
     cialign/

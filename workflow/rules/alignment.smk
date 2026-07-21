@@ -82,7 +82,6 @@ rule CIAlign_remove_divergent_trim:
         log     = "results/cialign/{sample}_mafft_cialign_log.txt",
         removed = "results/cialign/{sample}_mafft_cialign_removed.txt",
     params:
-        # create naming stub for CIAlign and keep names consistent
         stub = lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
     shell:
         """
