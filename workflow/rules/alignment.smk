@@ -57,25 +57,8 @@ rule CIAlign_remove_short_seqs:
         """
 
 
-# CIAlign alignment quality control. Removes divergent sequences and trims the alignment ends
-# rule CIAlign_remove_divergent_trim:
-#     input:
-#         "results/mafft/{sample}_mafft_nodups.fas",
-#     output:
-#         "results/cialign/{sample}_mafft_cialign.fasta",
-#     params:
-#         # get path stub from output. See common.smk
-#         stub = get_cialign_stub,
-#         # stub="results/cialign/{sample}_mafft_cialign",
-#     shell:
-#         """
-#         CIAlign --infile {input} --outfile_stem {params.stub} --remove_divergent --crop_ends
-#         """
-
-
 rule CIAlign_remove_divergent_trim:
     input:
-        # "results/mafft/{sample}_mafft_nodups.fas",
         alignment = get_cialignment, # either shortseqs removed or not depending on config
     output:
         cleaned = "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
