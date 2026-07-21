@@ -2,17 +2,18 @@
 #  ------------
 
 
-# SEQKIT, report on initial fasta file
+# SEQKIT, report on validated samples fasta file
 rule seq_stats_initial:
     input:
         valid="results/samples/{sample}_validated.fas",
     output:
-        "results/reporting/seqkit/{sample}_initial_seqkit_report.md",
+        "results/reporting/seqkit/{sample}_seqkit_report.md",
     shell:
         "seqkit stats -b {input.valid} | csvtk csv2md -t > {output}"
 
 
 # plot sequence length histogram of fasta sequences added
+# if config generate_seq_plots: TRUE
 rule plot_seq_len:
     input:
         "results/samples/{sample}_validated.fas",
@@ -25,6 +26,7 @@ rule plot_seq_len:
 
 
 # plot sequence length histogram of alignment seqs
+# if config generate_seq_plots: TRUE
 rule plot_alnseq_len:
     input:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
@@ -47,6 +49,7 @@ rule AMAS_alignment_stats:
 
 
 # CIAlign, alignment reporting and visualisations
+# if config generate_seq_plots: TRUE
 rule CIAlign_aln_statsvisuals:
     input:
         fasta = "results/cialign/{sample}_mafft_cialign_cleaned.fasta",

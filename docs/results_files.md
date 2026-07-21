@@ -34,8 +34,10 @@ results/
         amas/
             sample_mafft_cialign_amas.tsv
         cialign/
-            # if plot printing is enabled
             sample_mafft_cialign_cleaned.fasta
+            sample_mafft_cialign_removed.txt
+            sample_mafft_cialign_log.txt
+            # if generate_seq_plots is True in config
             sample_mafft_cialign_input_changefreq.png
             sample_mafft_cialign_input_column_stats.tsv
             sample_mafft_cialign_input_coverage.png
@@ -43,19 +45,21 @@ results/
             sample_mafft_cialign_input_resfreq.png
             sample_mafft_cialign_input_shannon_entropy.png
             sample_mafft_cialign_input.png
-            sample_mafft_cialign_log.txt
             sample_mafft_cialign_markup_legend.png
             sample_mafft_cialign_markup.png
             sample_mafft_cialign_output.png
-            sample_mafft_cialign_removed.txt
         mafft/
             sample_checkaddseqs_log.txt
-        ?plots/
-            sample_length_histogram.html
+        plots/
+            # if generate_seq_plots is True in config
             sample_length_histogram.png
+            sample_length_histogram.html
             sample_lengths.tsv
-        ?seqkit/
-            initial_seqkit_report.md
+            sample_alnseqlength_histogram.png
+            sample_alnseqlength_histogram.html
+            sample_alnseqlengths.tsv
+        seqkit/
+            sample_seqkit_report.md
         text/
         toytree/
             sample_mafft_cialign_cleaned_iqtree.html

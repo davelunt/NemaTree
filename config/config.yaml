@@ -31,7 +31,7 @@ reference_alignment: "resources/reference/genus_ref145.fas"
 
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
-generate_seq_plots: False
+generate_seq_plots: True
 
 # CIAlign
 cialign_len_filter: True # Filter short sequences from alignment
