@@ -24,7 +24,7 @@ rule plot_seq_len:
         "../scripts/plot_lens.py"
 
 
-# plot sequence length histogram of fasta sequences added
+# plot sequence length histogram of alignment seqs
 rule plot_alnseq_len:
     input:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",

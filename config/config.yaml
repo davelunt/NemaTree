@@ -22,11 +22,11 @@ min_seq_length: 500
 # to be used rather than all spp. in the genus. FALSE = genus
 clades123: True 
 # path to reference alignment clades 123 to which samples are added
-reference_alignment_clades123: "resources/reference/ref146clades123.fas"
+reference_alignment_clades123: "resources/reference/ref145clades123.fas"
 
 # Genus reference alignment
 # path to genus reference alignment to which samples are added
-reference_alignment: "resources/reference/genus_ref146.fas"
+reference_alignment: "resources/reference/genus_ref145.fas"
 # ---------------------------------
 
 # Generate sequence plots, supressing this will save some time
