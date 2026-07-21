@@ -1,45 +1,59 @@
+"""
+Rule test code for unit testing of rules generated with Snakemake 9.23.1.
+"""
+
 import os
 import sys
-
-import subprocess as sp
-from tempfile import TemporaryDirectory
 import shutil
-from pathlib import Path, PurePosixPath
+import tempfile
+from pathlib import Path
+from subprocess import check_output
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-import common
 
+def test_remove_duplicate_names(conda_prefix):
 
-def test_remove_duplicate_names():
-
-    with TemporaryDirectory() as tmpdir:
+    with tempfile.TemporaryDirectory() as tmpdir:
         workdir = Path(tmpdir) / "workdir"
-        data_path = PurePosixPath(".tests/unit/remove_duplicate_names/data")
-        expected_path = PurePosixPath(".tests/unit/remove_duplicate_names/expected")
+        config_path = Path(".tests/unit/remove_duplicate_names/config")
+        data_path = Path(".tests/unit/remove_duplicate_names/data")
+        expected_path = Path(".tests/unit/remove_duplicate_names/expected")
+
+        # Copy config to the temporary workdir.
+        shutil.copytree(config_path, workdir)
 
         # Copy data to the temporary workdir.
-        shutil.copytree(data_path, workdir)
-
-        # dbg
-        print("results/mafft/Moleae_mafft_nodups.fas results/mafft/Moleae_mafft_duplist.txt", file=sys.stderr)
+        shutil.copytree(data_path, workdir, dirs_exist_ok=True)
 
         # Run the test job.
-        sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
-            "results/mafft/Moleae_mafft_nodups.fas results/mafft/Moleae_mafft_duplist.txt",
-            "-f", 
-            "-j1",
-            "--target-files-omit-workdir-adjustment",
-    
-            "--directory",
-            workdir,
-        ])
+        check_output(
+            [
+                "python",
+                "-m",
+                "snakemake",
+                "results/mafft/extras5g2_mafft_nodups.fas",
+                "results/mafft/extras5g2_mafft_duplist.txt",
+                "--snakefile",
+                "workflow/Snakefile",
+                "-f",
+                "--notemp",
+                "--show-failed-logs",
+                "-j1",
+                "--target-files-omit-workdir-adjustment",
+                "--allowed-rules",
+                "remove_duplicate_names",
+                "--configfile",
+                "config/config.yaml",
+                "--directory",
+                workdir,
+            ]
+            + conda_prefix
+        )
 
-        # Check the output byte by byte using cmp.
+        # Check the output byte by byte using cmp/zmp/bzcmp/xzcmp.
         # To modify this behavior, you can inherit from common.OutputChecker in here
-        # and overwrite the method `compare_files(generated_file, expected_file), 
+        # and overwrite the method `compare_files(generated_file, expected_file),
         # also see common.py.
+        import common
         common.OutputChecker(data_path, expected_path, workdir).check()

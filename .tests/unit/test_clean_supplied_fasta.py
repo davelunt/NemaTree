@@ -1,45 +1,60 @@
+"""
+Rule test code for unit testing of rules generated with Snakemake 9.23.1.
+"""
+
 import os
 import sys
-
-import subprocess as sp
-from tempfile import TemporaryDirectory
 import shutil
-from pathlib import Path, PurePosixPath
+import tempfile
+from pathlib import Path
+from subprocess import check_output
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-import common
 
+def test_clean_supplied_fasta(conda_prefix):
 
-def test_clean_supplied_fasta():
-
-    with TemporaryDirectory() as tmpdir:
+    with tempfile.TemporaryDirectory() as tmpdir:
         workdir = Path(tmpdir) / "workdir"
-        data_path = PurePosixPath(".tests/unit/clean_supplied_fasta/data")
-        expected_path = PurePosixPath(".tests/unit/clean_supplied_fasta/expected")
+        config_path = Path(".tests/unit/clean_supplied_fasta/config")
+        data_path = Path(".tests/unit/clean_supplied_fasta/data")
+        expected_path = Path(".tests/unit/clean_supplied_fasta/expected")
+
+        # Copy config to the temporary workdir.
+        shutil.copytree(config_path, workdir)
 
         # Copy data to the temporary workdir.
-        shutil.copytree(data_path, workdir)
-
-        # dbg
-        print("resources/samples/Moleae_validated.fas results/reporting/validated/Moleae_clean_fasta_log.txt results/reporting/validated/Moleae_all_fasta_headers.txt", file=sys.stderr)
+        shutil.copytree(data_path, workdir, dirs_exist_ok=True)
 
         # Run the test job.
-        sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
-            "resources/samples/Moleae_validated.fas results/reporting/validated/Moleae_clean_fasta_log.txt results/reporting/validated/Moleae_all_fasta_headers.txt",
-            "-f", 
-            "-j1",
-            "--target-files-omit-workdir-adjustment",
-    
-            "--directory",
-            workdir,
-        ])
+        check_output(
+            [
+                "python",
+                "-m",
+                "snakemake",
+                "results/samples/extras5g2_validated.fas",
+                "results/reporting/validated/extras5g2_clean_fasta_log.txt",
+                "results/reporting/validated/extras5g2_all_fasta_headers.txt",
+                "--snakefile",
+                "workflow/Snakefile",
+                "-f",
+                "--notemp",
+                "--show-failed-logs",
+                "-j1",
+                "--target-files-omit-workdir-adjustment",
+                "--allowed-rules",
+                "clean_supplied_fasta",
+                "--configfile",
+                "config/config.yaml",
+                "--directory",
+                workdir,
+            ]
+            + conda_prefix
+        )
 
-        # Check the output byte by byte using cmp.
+        # Check the output byte by byte using cmp/zmp/bzcmp/xzcmp.
         # To modify this behavior, you can inherit from common.OutputChecker in here
-        # and overwrite the method `compare_files(generated_file, expected_file), 
+        # and overwrite the method `compare_files(generated_file, expected_file),
         # also see common.py.
+        import common
         common.OutputChecker(data_path, expected_path, workdir).check()
