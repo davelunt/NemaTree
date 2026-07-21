@@ -2,7 +2,7 @@
 
 Configure the workflow by editing `config/config.yaml`
 
-## sequences
+## Sequences
 
 You must specify your sample fasta file in config.yaml (REQUIRED).
 
@@ -15,14 +15,34 @@ Although technically you can list multiple files here under samples, you should 
 
 Also see [sequence-prep.md](sequence-prep.md)
 
+
 ## Reference libraries
 
-There are two reference sequence alignment files supplied in resourcfes/reference.
+There are two reference sequence alignment files supplied in resources/reference.
 
-- `genus_ref6.fas` contains (N=146) sequences from species across the entire genus, and Pratylenchus outgroups.
-- `ref146clades123.fas` contains a subset of the genus data (N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group). Two M. artiellia and two M. baetica are included as outgroups.
+- `genus_ref145.fas` contains (N=145) sequences from species across the entire genus, and Pratylenchus outgroups.
+- `ref145clades123.fas` contains a subset of the genus data (~N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group). Two M. artiellia and two M. baetica are included as outgroups.
 
 Choose whether you want to add sequences to the whole genus data (`clades123: FALSE`) or just clades 123 data (`clades123: TRUE`).
+
+### Modifying reference alignments
+
+Mostly you will just want to use the high quality reference alignments provided. You may however have new sequences on the databases, or your own sequences that you wanto to be part of a new reference.
+
+The easiest way to do this could be to add those new sequences to the old reference alignment using this workflow, and then copy `results/cialign/{sample}_mafft_cialign_cleaned.fasta` to `resources/reference`, rename as your new reference alignment, and modify the config file to point at it.
+
+### Creating clades123 from the genus reference
+
+If you have a new genus reference file but wish a version appropriate for just clades123 you can generate this using seqkit:
+
+`seqkit grep -v -n -f nonclades123.txt genus_refNNN.fas > clades123_genusNNN.fas`
+
+`remove_nonclades.txt` is a file with fasta record names (no ">") to be excluded from the genus alignment (`genus_refNNN.fas`) to create the clades123 alignment (`clades123_genusNNN.fas`). One record per line, no commas or other formatting.
+
+An example list can be found in `config/nonclades123.txt`. This needs to be carefully checked against your full genus tree to make sure it contains all the sequences you wish to exclude.
+
+**The Mali decision:** It is likely (but not certain) that the clade containing M.mali and relatives are closer to clades 123 than are M.artiellia and M.baetica. Should they be used as outgroup instead? Maybe, maybe not. I find that including this clade, or specifying it as the outgroup to clades 123, leads to less-resolved relationships within clades 123. To my eyes a more informative tree is generated **excluding these sequences** and rooting on M.artiellia and M.baetica. Thesed taxa seem to have more influence on short sequences in the ingroup, pulling them to 'unresolved' locations. In an ideal world all data would be included, but where we have short sequences, or very closely related sequences, phylogenetic relationships can be easily disturbed. You can decide for yourself but I usually retain all sequences for the genus level tree and exclude this group as described above for clades 123.
+
 
 ## Alignment plots and tables
 

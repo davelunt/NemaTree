@@ -1,10 +1,14 @@
-# Sequence alignments
+# Reference alignments and sequence alignments
+
+## Reference alignments
+
+The reference alignment must be specified in the config.yaml file
 
 ## Duplicate names
 
 If you add a sequence with a name that is already in the reference alignment, it will be dropped from the analysis. This is probably what you want.
 
-There is currently no easy way to fix this in the workflow, since it is an edge case that you will want to retain these. Should you wish to keep these you can  use Seqkit to add a unique counter to duplicated names, as described in the [sequence preparation](sequence_prep.md) section. You will need to run this on the initial mafft alignment `results/mafft/{sample}_mafft.fas` then delete all later (downstream)files in the results directory and re-run the workflow. This will re-run the alignment with the new unique names.
+There is currently no easy way to fix this in the workflow, since it is an edge case that you will want to retain these. Should you wish to keep these you can use Seqkit to add a unique counter to duplicated names, as described in the [sequence preparation](sequence_prep.md) section. You will need to run this on the initial mafft alignment `results/mafft/{sample}_mafft.fas` then delete all later (downstream)files in the results directory and re-run the workflow. This will re-run the alignment with the new unique names.
 
 ## Removing outlier sequences
 
