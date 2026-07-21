@@ -40,24 +40,24 @@ if count1 == 0:
 
 # Throw exception and quit if count2 is zero
 if count2 == 0:
-    write_log_and_fail(f"The reference library {reflibrary} is completely empty.")
+    write_log_and_fail(f"The reference library {reflibrary} is empty.")
 
 # Throw exception and quit if count3 is less than or equal to count2
 if count3 <= count2:
     write_log_and_fail(
         f"Combined alignment count ({count3}) is not greater than reference alignment count ({count2}). "
-        f"No records were actually appended to the final pool."
+        f"No records appear to have been added"
     )
 
 # Warn if count3 is less than count1 + count2
 if count3 < (count1 + count2):
     log_messages.append(
         f"WARNING: Combined alignment has fewer sequences ({count3}) than expected ({count1 + count2}). "
-        f"Some sequences may have had identical matching IDs and were merged/dropped by the aligner."
+        f"Some sequences may have had identical IDs and were merged/dropped by the aligner."
     )
 else:
     log_messages.append(
-        "Check passed: Target sequence counts match expected totals perfectly."
+        "Check passed: Target sequence counts match expected totals."
     )
 
 # Standard success pathway execution

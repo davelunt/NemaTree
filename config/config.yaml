@@ -9,7 +9,7 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # Sequences to add (REQUIRED)
 # --------------------------------
 samples:
-  extras5: "resources/samples/extras5.fas"
+  extras5g2: "resources/samples/extras5.fas"
 
 # set a minimum sequence length for sequences you are adding
 enforce_minlength: False
@@ -20,23 +20,25 @@ min_seq_length: 500
 # --------------------------------
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus. FALSE = genus
-clades123: True 
+clades123: False 
 # path to reference alignment clades 123 to which samples are added
 reference_alignment_clades123: "resources/reference/ref145clades123.fas"
 
 # Genus reference alignment
 # path to genus reference alignment to which samples are added
-reference_alignment: "resources/reference/genus_ref145.fas"
+reference_alignment: "resources/reference/genus_ref158.fas"
 # ---------------------------------
 
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
-generate_seq_plots: True
+generate_seq_plots: False
 
 # CIAlign
-cialign_len_filter: True # Filter short sequences from alignment
+cialign_len_filter: False # Filter short sequences from alignment
 cialign_minlen: 500 # minimum sequence length (bp)
-# list of sequences to keep despite length filtering
+
+# list of sequences to keep whatever their length
+# this file must exist (although it may be empty) when cialign_len_filter: True
 cialign_retain_short_list: "config/retain_short.txt"
 
 # IQtree substitution model
@@ -50,9 +52,9 @@ subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
   # whole genus use: outgroup_name: "Pratylenchus"
   # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica (see below)
 rooting:
-  outgroup_root: False
+  outgroup_root: True
   outgroup_name: "Pratylenchus"
-  outgroup_list: True
+  outgroup_list: False
   outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
     - "M_artiellia_AF442192"
     - "M_artiellia_KC875391"

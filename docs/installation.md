@@ -51,7 +51,7 @@ Try to run the workflow with:
 
 `snakemake --cores 4 --latency-wait 300`
 
-If you do not get lots of angry red error text then it will run, reporting what it is doing, until the prompt reappears and it is finished. This takes 1-2 minutes on my M2 MacBook Air from 2023 with a small number of sequences. 
+If you do not get lots of angry red error text then it will run, reporting what it is doing, until the prompt reappears and it is finished. This takes 1-2 minutes on a M2 MacBook Air from 2023 with a small number of sequences. 
 
 The final tree is at `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html` (where myseqsname is the name of your sample file). You can open this in a web browser to view the tree.
 

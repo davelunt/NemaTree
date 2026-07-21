@@ -41,24 +41,25 @@ If you have a new genus reference file but wish a version appropriate for just c
 
 An example list can be found in `config/nonclades123.txt`. This needs to be carefully checked against your full genus tree to make sure it contains all the sequences you wish to exclude.
 
-**The Mali decision:** It is likely (but not certain) that the clade containing M.mali and relatives are closer to clades 123 than are M.artiellia and M.baetica. Should they be used as outgroup instead? Maybe, maybe not. I find that including this clade, or specifying it as the outgroup to clades 123, leads to less-resolved relationships within clades 123. To my eyes a more informative tree is generated **excluding these sequences** and rooting on M.artiellia and M.baetica. Thesed taxa seem to have more influence on short sequences in the ingroup, pulling them to 'unresolved' locations. In an ideal world all data would be included, but where we have short sequences, or very closely related sequences, phylogenetic relationships can be easily disturbed. You can decide for yourself but I usually retain all sequences for the genus level tree and exclude this group as described above for clades 123.
+**The Mali decision:** It is likely (but not certain) that the clade containing M.mali and relatives are closer to clades 123 than are M.artiellia and M.baetica. Should they be used as outgroup instead? Maybe, maybe not. I find that including this clade, or specifying it as the outgroup to clades 123, leads to less-resolved relationships within clades 123. To my eyes a more informative tree is generated **excluding these sequences** and rooting on M.artiellia and M.baetica. Thesed taxa seem to have more influence on short sequences in the ingroup, pulling them to 'unresolved' locations. In an ideal world all data would be included, but where we have short sequences, or very closely related sequences, phylogenetic relationships can be easily disturbed. This workflow was designed for utility rather than 'ultimate truth'. You can decide for yourself, but I usually retain all sequences for the genus level tree and exclude this group as described above for clades 123.
 
 
 ## Alignment plots and tables
 
-Alignment plots can be deactivated here
-
-CIAlign options are also here
+Alignment plots can be deactivated in the config file using `generate_seq_plots: False`
 
 ### Minimum sequence length in alignment
 
-use config to set `cialign_len_filter: True`
+CIAlign options to length filter are also in config. This will reduce the number of taxa in the tree, but increase the quality of the phylogeny.
 
-the minimum length to retain can be set with `cialign_minlen: "500"`
+```
+cialign_len_filter: True # Filter short sequences from alignment
+cialign_minlen: 500 # minimum sequence length (bp)
+```
 
 If there are sequences you want to keep despite the length put their names, one per line, in `retain_short_list: "config/retain_short_list.txt"`
 
-`config/retain_short.txt` must exist in this folder if you are removing short sequences from the alignment with CIAlign ie `cialign_len_filter: True` in config. If it the file is empty, no sequences will avoid the filter. If it does not exists, the workflow will crash when `cialign_len_filter: True`
+`config/retain_short.txt` must exist in this folder if you are removing short sequences from the alignment with CIAlign ie `cialign_len_filter: True` in config. If the file is empty, no sequences will avoid the filter. If the file does not exist, the workflow will crash when `cialign_len_filter: True`
 
 ## Tree contruction and rooting
 
