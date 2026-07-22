@@ -40,7 +40,7 @@ rule remove_duplicate_names:
 rule CIAlign_remove_short_seqs:
     input:
         fasta = "results/mafft/{sample}_mafft_nodups.fas",
-        shortlist = config.get("cialign_retain_short_list", "config/retain_short.txt"),
+        shortlist = config["cialign_retain_short_list"],
     output:
         "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta",
     params:
