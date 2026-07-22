@@ -18,5 +18,4 @@ jobs:
         with:
           directory: ".tests/integration"
           snakefile: "workflow/Snakefile"
-          conda-env: "workflow/envs/environment.yaml"
-          args: "--use-conda --show-failed-logs --cores 3 --conda-cleanup-pkgs cache --all-temp"
+          args: "--use-conda --show-failed-logs --cores 3 --conda-cleanup-pkgs cache --all-temp --default-resources conda_env=../../workflow/envs/environment.yaml"
