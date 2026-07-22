@@ -40,11 +40,11 @@ rule remove_duplicate_names:
 rule CIAlign_remove_short_seqs:
     input:
         fasta = "results/mafft/{sample}_mafft_nodups.fas",
+        shortlist = config.get("cialign_retain_short_list", "config/retain_short.txt"),
     output:
         "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta",
     params:
         minlen = config.get("cialign_minlen", 300),
-        shortlist = config.get("cialign_retain_short_list", "config/retain_short.txt"),
         stem = lambda wildcards: f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved",
     shell:
         """
@@ -53,7 +53,7 @@ rule CIAlign_remove_short_seqs:
             --outfile_stem {params.stem} \
             --remove_short \
             --remove_min_length {params.minlen} \
-            --remove_short_retain_list "{params.shortlist}"
+            --remove_short_retain_list "{input.shortlist}"
         """
 
 
