@@ -3,7 +3,7 @@
 # ==================================================
 # this file should be edited by the user to configure the analysis
 # ==================================================
-conda: "../envs/environment.yaml"  # leave this unedited
+conda: "../workflow/envs/environment.yaml"  # leave this unedited
 
 # -------------------------------
 # Sequences to add (REQUIRED)
