@@ -33,4 +33,4 @@ jobs:
         shell: bash -l {0}
         run: |
           micromamba activate nematree
-          snakemake --directory .tests/integration --snakefile workflow/Snakefile --cores 3 --show-failed-logs --all-temp
+          snakemake --directory .tests/integration --snakefile workflow/Snakefile --cores 1 --show-failed-logs --all-temp
