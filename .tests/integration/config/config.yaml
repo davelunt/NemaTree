@@ -10,7 +10,7 @@ conda: "../workflow/envs/environment.yaml"  # leave this unedited
 # --------------------------------
 # specify a name: "filepath" pair
 samples:
-  testadd: ".tests/.integration/data/testadd.fas"
+  testadd: "data/testadd.fas"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False
@@ -24,11 +24,11 @@ min_seq_length: 500
 clades123: False 
 
 # Clades 1, 2 and 3 reference alignment (if required)
-reference_alignment_clades123: ".tests/.integration/clades123_genus18.fas"
+reference_alignment_clades123: "data/clades123_genus18.fas"
 
 # Genus reference alignment (if required)
 # path to genus reference alignment to which samples are added
-reference_alignment: ".tests/.integration/genus_ref18.fas"
+reference_alignment: "data/genus_ref18.fas"
 # ---------------------------------
 
 # Generate sequence plots, supressing this will save some time
@@ -42,7 +42,7 @@ cialign_minlen: 700 # minimum sequence length (bp)
 # list of sequences to keep whatever their length
 # this file must exist (although it may be empty) when cialign_len_filter: True
 # an empty file has been provided in the config directory
-cialign_retain_short_list: "retain_short.txt"
+cialign_retain_short_list: "config/retain_short.txt"
 
 # =============
 # Phylogenetics
