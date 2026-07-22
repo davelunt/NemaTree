@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Snakemake Integration Test
+        uses: snakemake/snakemake-github-action@v1.24.0
+        with:
+          directory: ".tests/integration"
+          snakefile: "workflow/Snakefile"
+          args: "--use-conda --show-failed-logs --cores 3 --conda-cleanup-pkgs cache --all-temp"

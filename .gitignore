@@ -10,4 +10,4 @@ logs/**
 .DS_Store*
 pastebin.txt
 **/lint.txt
-.tests/**
+.tests/unit/**

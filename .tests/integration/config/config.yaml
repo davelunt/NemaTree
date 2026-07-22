@@ -1,0 +1,132 @@
+# ==================================================
+#               NemaTree: CONFIGFILE
+# ==================================================
+# this file should be edited by the user to configure the analysis
+# ==================================================
+conda: "../workflow/envs/environment.yaml"  # leave this unedited
+
+# -------------------------------
+# Sequences to add (REQUIRED)
+# --------------------------------
+# specify a name: "filepath" pair
+samples:
+  testadd: ".tests/.integration/data/testadd.fas"
+
+# option to set a minimum sequence length for sequences you are adding
+enforce_minlength: False
+min_seq_length: 500
+
+# -------------------------------
+# Reference alignment
+# --------------------------------
+# TRUE if ref alignment of only RKN clades 1,2 and 3 are 
+# to be used rather than all spp. in the genus. FALSE = genus
+clades123: False 
+
+# Clades 1, 2 and 3 reference alignment (if required)
+reference_alignment_clades123: ".tests/.integration/clades123_genus18.fas"
+
+# Genus reference alignment (if required)
+# path to genus reference alignment to which samples are added
+reference_alignment: ".tests/.integration/genus_ref18.fas"
+# ---------------------------------
+
+# Generate sequence plots, supressing this will save some time
+# alnseqlength_histogram, length_histogram, mafft_cialign_output
+generate_seq_plots: True
+
+# CIAlign
+cialign_len_filter: True # Filter short sequences from alignment
+cialign_minlen: 700 # minimum sequence length (bp)
+
+# list of sequences to keep whatever their length
+# this file must exist (although it may be empty) when cialign_len_filter: True
+# an empty file has been provided in the config directory
+cialign_retain_short_list: "retain_short.txt"
+
+# =============
+# Phylogenetics
+# =============
+
+# IQtree substitution model
+# -------------------------
+subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
+
+# Rooting the phylogenetic tree (in toytree)
+# ------------------------------------------
+# only one of these below should be True
+# recommendation: 
+  # whole genus use: outgroup_name: "Pratylenchus"
+  # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica (see below)
+rooting:
+  outgroup_root: True
+  outgroup_name: "Pratylenchus"
+  outgroup_list: False
+  outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
+    - "M_artiellia_AF442192"
+    - "M_artiellia_KC875391"
+    - "M_baetica_KP896296"
+    - "M_baetica_MH011982"
+  midpoint_root: False
+  mad_root: False
+
+# Colouring and labelling of tip names
+# ------------------------------------
+#  add (triangle) icons to added sequence names
+add_treename_icons: True
+
+# Species name coloring TRUE/FALSE
+# FALSE is all black names with red for added seqs
+color_by_species: TRUE
+
+# Mapping of species names to colours
+species_colors:
+  # clade 1
+  javanica: "#f32727"
+  floridensis: "#f04f27"
+  arenaria: "#ea312b"
+  incognita: "#cb1818"
+  morocciensis: "#f31212"
+  konaensis: "#a629e0"
+  arabicida: "#a527df"
+  izalcoensis: "#a620e4"
+  lopezi: "#9914ec"
+  paranaensis: "#861bbc"
+  hispanica: "#d06df1"
+  luci: "#bd5ded"
+  haplanaria: "#be5deb"
+  ethiopica: "#cd6df9"
+  enterolobii: "#aa3812"
+  # clade 2
+  hapla: "#2151d7"
+  partityla: "#4168e7"
+  microtyla: "#738efa"
+  spartelensis: "#4b7bca"
+  dunensis: "#4669b4"
+  ardenensis: "#3851f4"
+  duytsi: "#5A5859"
+  silvestris: "#7a9dce"
+  maritima: "#568fd8"
+  spartinae: "#5389d4"
+  marylandi: "#518cde"
+  graminis: "#68a1f0"
+  # clade 3
+  graminicola: "#38af0d"
+  oryzae: "#46ba54"
+  kralli: "#1cc42d"
+  exigua: "#2FC51B"
+  naasi: "#28b11f"
+  minor: "#0f6c1b"
+  chitwoodi: "#086f07"
+  fallax: "#266f24"
+
+# ===================
+# Saving the treefile
+# ===================
+
+# select graphic formats to save final treefile, default html
+tree_formats:
+  - "html"
+  - "png"
+  # - "pdf"
+  # - "svg"
