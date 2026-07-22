@@ -10,7 +10,7 @@ conda: "../envs/environment.yaml"  # leave this unedited
 # --------------------------------
 # specify a name: "filepath" pair
 samples:
-  extras5g700: "resources/samples/extras5.fas"
+  testadd700: "resources/samples/testadd.fas"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False
@@ -21,10 +21,10 @@ min_seq_length: 500
 # --------------------------------
 # TRUE if ref alignment of only RKN clades 1,2 and 3 are 
 # to be used rather than all spp. in the genus. FALSE = genus
-clades123: False 
+clades123: True 
 
 # Clades 1, 2 and 3 reference alignment (if required)
-reference_alignment_clades123: "resources/reference/ref145clades123.fas"
+reference_alignment_clades123: "resources/reference/clades123_genus158.fas"
 
 # Genus reference alignment (if required)
 # path to genus reference alignment to which samples are added
@@ -33,7 +33,7 @@ reference_alignment: "resources/reference/genus_ref158.fas"
 
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
-generate_seq_plots: True
+generate_seq_plots: False
 
 # CIAlign
 cialign_len_filter: True # Filter short sequences from alignment
@@ -59,9 +59,9 @@ subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
   # whole genus use: outgroup_name: "Pratylenchus"
   # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica (see below)
 rooting:
-  outgroup_root: True
+  outgroup_root: False
   outgroup_name: "Pratylenchus"
-  outgroup_list: False
+  outgroup_list: True
   outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
     - "M_artiellia_AF442192"
     - "M_artiellia_KC875391"

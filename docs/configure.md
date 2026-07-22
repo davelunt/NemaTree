@@ -23,7 +23,7 @@ There are two reference sequence alignment files supplied in resources/reference
 - `genus_ref158.fas` contains (N=158) sequences from species across the entire genus, and Pratylenchus outgroups.
 - `ref158clades123.fas` contains a subset of the genus data (~N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group) sensu Holterman et al (2009), de Ley et al (2002). Two M. artiellia and two M. baetica are included as outgroups.
 
-Choose whether you want to add sequences to the whole genus data (`clades123: FALSE`) or just clades 123 data (`clades123: TRUE`).
+Choose whether you want to add sequences to the whole genus data (`clades123: FALSE`) or just clades 123 data (`clades123: TRUE`). Its probably best to start with the whole genus reference, and use clades123 reference when you know (roughly) what you are dealing with.
 
 
 ### Modifying reference alignments
@@ -42,7 +42,7 @@ If you have a new genus reference file but wish a version appropriate for just c
 
 An example list can be found in `config/nonclades123.txt`. This needs to be carefully checked against your full genus tree to make sure it contains all the sequences you wish to exclude.
 
-**The Mali decision:** It is likely that the clade containing M.mali and relatives are closer to clades 123 than are M.artiellia and M.baetica. Should they be used as outgroup instead? Maybe, maybe not. I find that including this clade, or specifying it as the outgroup to clades 123, leads to less-resolved relationships within clades 123. To my eyes a more informative tree is generated **excluding these sequences** and rooting on M.artiellia and M.baetica. Thesed taxa seem to have more influence on short sequences in the ingroup, pulling them to 'unresolved' locations. In an ideal world all data would be included, but where we have short sequences, or very closely related sequences, phylogenetic relationships can be easily disturbed. You can decide for yourself, and maybe play with minimum sequence lengths in the config, but I usually retain all sequences for the genus level tree and exclude this group (as described above) for clades 123.
+**The Mali decision:** It is likely that the clade containing M.mali and relatives are closer to clades 123 than are M.artiellia and M.baetica. Should they be used as outgroup instead? Maybe, maybe not. I find that including this clade, or specifying it as the outgroup to clades 123, leads to less-resolved relationships within clades 123. To my eyes a more informative tree is generated **excluding these sequences** and rooting on M.artiellia and M.baetica. These taxa seem to have more influence on short sequences in the ingroup, pulling them to 'unresolved' locations. In an ideal world all data would be included, but where we have short sequences, or very closely related sequences, phylogenetic relationships can be easily disturbed. You can decide for yourself, and maybe play with minimum sequence lengths in the config, but I usually retain all sequences for the genus level tree and exclude this group when using the clades 123 reference.
 
 
 ## Alignment plots and tables
@@ -50,18 +50,18 @@ An example list can be found in `config/nonclades123.txt`. This needs to be care
 Alignment plots can be deactivated in the config file using `generate_seq_plots: False`
 
 
-## Minimum sequence length in alignment
+## Minimum sequence length in the alignment
 
 CIAlign options to length filter are also in config. This will reduce the number of taxa in the tree, but increase the quality of the phylogeny. 
 
-```
+```yaml
 cialign_len_filter: True # Filter short sequences from alignment
 cialign_minlen: 700 # minimum sequence length (bp)
 ```
 
 If there are sequences you want to keep despite the length put their names, one per line, in `retain_short_list: "config/retain_short_list.txt"`
 
-`config/retain_short.txt` must exist if you are removing short sequences from the alignment with CIAlign ie `cialign_len_filter: True` in config. If the file is empty, no sequences will avoid the filter. If the file does not exist, the workflow will likely crash when you have `cialign_len_filter: True`. An empty `retain_short.txt` is provided in the config directory.
+`config/retain_short.txt` must exist if you are removing short sequences from the alignment with CIAlign ie `cialign_len_filter: True` in config. If the file is empty, no sequences will avoid the filter. If the file does not exist, the workflow will likely crash when you have `cialign_len_filter: True`. An empty `retain_short.txt` is provided in the config directory, best not to delete it.
 
 
 ## Tree contruction and rooting
@@ -72,7 +72,7 @@ The IQtree substitution model can be specified here. The default is GTR+R3 which
 
 You should change the tree rooting to match your analysis using TRUE and FALSE. Make sure only one outgroup option is labelled TRUE
 
-If you are using the whole genus reference alignment, the tree will be rooted on Pratylenchus sequences as the outgroup. Use `outgroup_root: True`
+If you are using the whole genus reference alignment, the tree ought to be rooted on Pratylenchus sequences as the outgroup. Use `outgroup_root: True`
 
 If you are using the clades123 reference alignment, the tree will be rooted by using the outgroup clade containing M. artiellia and M. baetica. Use `outgroup_list: TRUE`
 

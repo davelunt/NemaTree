@@ -2,6 +2,18 @@
 
 I'm putting things here until they find a better place.
 
+
+## Minimum sequence length
+
+Even though it reduces the number of taxa included, my view is that the phylogeny is much more robust if sequences are required to be at least 700bp (config file).
+
+```yaml
+# CIAlign
+cialign_len_filter: True # Filter short sequences from alignment
+cialign_minlen: 700 # minimum sequence length (bp)
+```
+
+
 ## Excluded taxa due to taxonomic uncertainty
 
 
