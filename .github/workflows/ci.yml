@@ -13,9 +13,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Run Snakemake Integration Test
-        uses: snakemake/snakemake-github-action@v1.24.0
+      # Step 1: Install your environment with Mamba natively on the runner
+      - name: Setup Mamba Environment
+        uses: mamba-org/setup-micromamba@v2
         with:
-          directory: ".tests/integration"
-          snakefile: "workflow/Snakefile"
-          args: "--use-conda --show-failed-logs --cores 3 --conda-cleanup-pkgs cache --all-temp --default-resources conda_env=../../workflow/envs/environment.yaml"
+          environment-file: workflow/envs/environment.yaml
+          environment-name: nematree
+          cache-environment: true
+
+      # Step 2: Install Snakemake inside that native environment space
+      - name: Install Snakemake
+        shell: bash -l {0}
+        run: |
+          micromamba activate nematree
+          pip install snakemake
+
+      # Step 3: Run the pipeline natively from the repository root
+      - name: Run Snakemake Integration Test
+        shell: bash -l {0}
+        run: |
+          micromamba activate nematree
+          snakemake --directory .tests/integration --snakefile workflow/Snakefile --cores 3 --show-failed-logs --all-temp
