@@ -35,14 +35,17 @@ reference_alignment: "resources/reference/genus_ref158.fas"
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
 generate_seq_plots: False
 
-# CIAlign
+# ==================================
+# CIAlign alignment quality control
+# ==================================
+
 cialign_len_filter: True # Filter short sequences from alignment
 cialign_minlen: 700 # minimum sequence length (bp)
 
-# list of sequences to keep whatever their length
-# this file must exist (although it may be empty) when cialign_len_filter: True
-# an empty file has been provided in the config directory
-cialign_retain_short_list: "retain_short.txt"
+# True requires a list of sequences to keep whatever their length
+# False will make no special cases and filter by length specified above
+retain_short_list_seqs: False
+cialign_retain_short_list: "config/retain_short.txt"
 
 # =============
 # Phylogenetics

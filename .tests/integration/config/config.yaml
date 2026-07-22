@@ -42,7 +42,8 @@ cialign_minlen: 700 # minimum sequence length (bp)
 # list of sequences to keep whatever their length
 # this file must exist (although it may be empty) when cialign_len_filter: True
 # an empty file has been provided in the config directory
-cialign_retain_short_list: "config/retain_short.txt"
+retain_short_list_seqs: True
+cialign_retain_short_list: "retain_short.txt"
 
 # =============
 # Phylogenetics

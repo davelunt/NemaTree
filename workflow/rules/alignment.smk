@@ -37,15 +37,16 @@ rule remove_duplicate_names:
 
 
 # remove aligned sequences if nucleotide count below threshold
+# seqs to retain no matter the length can be set in config.yaml
 rule CIAlign_remove_short_seqs:
     input:
-        fasta = "results/mafft/{sample}_mafft_nodups.fas",
-        shortlist = config["cialign_retain_short_list"],
+        fasta="results/mafft/{sample}_mafft_nodups.fas"
     output:
-        "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta",
+        "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta"
     params:
-        minlen = config.get("cialign_minlen", 300),
-        stem = lambda wildcards: f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved",
+        minlen=config.get("cialign_minlen", 300),
+        stem=lambda wc: f"results/cialign/{wc.sample}_mafft_cialign_shortremoved",
+        retain=cialign_short_retain_arg()
     shell:
         """
         CIAlign \
@@ -53,7 +54,7 @@ rule CIAlign_remove_short_seqs:
             --outfile_stem {params.stem} \
             --remove_short \
             --remove_min_length {params.minlen} \
-            --remove_short_retain_list "{input.shortlist}"
+            {params.retain}
         """
 
 

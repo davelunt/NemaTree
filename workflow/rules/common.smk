@@ -26,3 +26,13 @@ def get_cialignment(wildcards):
         return f"results/cialign/{wildcards.sample}_mafft_cialign_shortremoved_cleaned.fasta"
     else:
         return f"results/mafft/{wildcards.sample}_mafft_nodups.fas" 
+
+
+def cialign_short_retain_arg():
+    """
+    Pass the file of sequences to retain, irrespective of length, if 
+    config retain_short_list_seqs: True
+    """
+    if config.get("retain_short_list_seqs", False):
+        return f'--remove_short_retain_list "{config["cialign_retain_short_list"]}"'
+    return ""
