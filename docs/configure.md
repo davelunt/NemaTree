@@ -38,7 +38,7 @@ If you have a new genus reference file but wish a version appropriate for just c
 
 `seqkit grep -v -n -f nonclades123.txt genus_refNNN.fas > clades123_genusNNN.fas`
 
-`remove_nonclades.txt` is a file with fasta record names (no ">") to be excluded from the genus alignment (`genus_refNNN.fas`) to create the clades123 alignment (`clades123_genusNNN.fas`). One record per line, no commas or other formatting.
+`nonclades123.txt` is a file with fasta record names (no ">") to be excluded from the genus alignment (`genus_refNNN.fas`) to create the clades123 alignment (`clades123_genusNNN.fas`). One record per line, no commas or other formatting.
 
 An example list can be found in `config/nonclades123.txt`. This needs to be carefully checked against your full genus tree to make sure it contains all the sequences you wish to exclude.
 
