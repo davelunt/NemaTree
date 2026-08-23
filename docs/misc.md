@@ -5,7 +5,7 @@ I'm putting things here until they find a better place.
 
 ## Minimum sequence length
 
-Even though it reduces the number of taxa included, my view is that the phylogeny is much more robust if sequences are required to be at least 700bp (config file).
+Even though it reduces the number of taxa included, my view is that the phylogeny is much more robust if SSU sequences are required to be at least 700bp (config file).
 
 ```yaml
 # CIAlign
@@ -26,24 +26,24 @@ Some publications describe this in clade 3, while others have suggested that thi
 
 ### M. christiae
 
-Meloidogyne christiae KR082316 is the single sequence from this taxon. It has a long branch in the 18S tree, making it subject to phylogenetic artefacts. Aisu et al (2026) have both SSU and LSU trees including M. christiae, though it falls in different taxonomic positions in each. This suggests that its taxonomic position is not reliable and many new full-length 18S sequences from well-characterised isolates (plus genomes) would resolve this more strongly.
+Meloidogyne christiae KR082316 is the single SSU sequence from this taxon. It has a long branch in the 18S tree, making it subject to phylogenetic artefacts. Aisu et al (2026) have both SSU and LSU trees including M. christiae, though it falls in different taxonomic positions in each. This suggests that its taxonomic position is not reliable and many new full-length 18S sequences from well-characterised isolates (plus genomes) would resolve this more strongly.
 
 Aisu J, Karssen G, De Oliveira DAS. Integrative taxonomy and mitogenome characterization of the root-knot nematode Meloidogyne silvestris. Sci Rep. 2026;16. doi:10.1038/s41598-026-54669-9
 
 
 ### M. duytsi
 
-There are two sequences of M. duytsi available from the international sequence databases (AF442197, KJ636385), the first falling very close to M.silvestris and the second elsewhere in the tree very close to M.dunensis. These are removed from the reference alignment as they do not add any clarity. You may of course add them yourself from these accession numbers. Again, many new full-length 18S sequences from well-characterised isolates (plus genomes) could resolve this.
+There are two SSU sequences of M. duytsi available from the international sequence databases (AF442197, KJ636385), the first falling very close to M.silvestris and the second elsewhere in the tree very close to M.dunensis. These are removed from the reference alignment as they do not add any clarity. You may of course add them yourself from these accession numbers. Again, many new full-length 18S sequences from well-characterised isolates (plus genomes) could resolve this.
 
 
-## Why not use 26S LSU? Or merge both?
+## Why use only LSU and SSU? Why not add ? or merge both?
 
-There is no reason at all, except that I had to start somewhere. This workflow could be modified to work with LSU sequences, it would only require a good reference alignment (and some record keeping to clarify what type of sequences were being analysed). I would like to do this when I have time. One issue is that for most isolates since we do not know which 18S goes with which 26S sequence we would be creating synthetic sequences if we merged them. I see this a lot in publications where they restrict themselves to one representative of each species (a valid phylogenetic approach) but experience tells me that reducing taxon sampling like this is often problemmatic.
+There is no reason at all, except that I had to start somewhere. This workflow could be modified to work with sequences of any locus, it would only require a good reference alignment (and some record keeping to clarify what type of sequences were being analysed). I have provided LSU and SSU reference alignments as they are probably the most commonly used. One issue with merging is that for most isolates since we do not know which 18S goes with which 26S sequence we would be creating synthetic sequences if we merged them. I see this a lot in publications where they restrict themselves to one representative of each species (a valid phylogenetic approach) but experience tells me that reducing taxon sampling like this is often problemmatic.
 
 
 ## Why not use genomes?
 
-If you know me at all you will know that I just shouted "Yes!!" very loudly. This is the gold standard, and would reveal much more than simple taxonomy. To me the best phylogeny of the Meloidogyne incognita group was figure 3 in Szitenberg et al 2017. This showed (against my expectations) that genome scale data could robustly resolve even the most closely related species with hybridization and polyploidy in their histories. It included many isolates of single species, but did not include a good sample of the genus.
+If you know me at all you will know that I just shouted "Yes!!" very loudly. This is the gold standard, and would reveal much more than simple taxonomy. To me the best phylogeny of the Meloidogyne tropical apomicts was figure 3 in Szitenberg et al 2017. This showed (against my expectations) that genome scale data could robustly resolve even the most closely related species with hybridization and polyploidy in their histories. It included many isolates of single species, but did not include a good sample of the genus.
 
 Pushing this forward will require a community effort to grow well-characterised reference isolates for the genomics of species. I am of course happy to collaborate with anyone who needs bioinformatics support in their genomics projects.
 

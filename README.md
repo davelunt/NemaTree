@@ -4,7 +4,7 @@
 
 Released under a permissive MIT license, you may pretty much do as you like. If you are able to cite this work it would be much appreciated:
 
-> Lunt, DH (2026). Reproducible phylogenetic analysis of Root-Knot Nematode rRNA sequences. [https://github.com/davelunt/NemaTree](https://github.com/davelunt/NemaTree)
+> Lunt, DH (2026). NemaTree: Reproducible phylogenetic analysis of Root-Knot Nematode rRNA sequences. [https://github.com/davelunt/NemaTree](https://github.com/davelunt/NemaTree)
 
 If you have issues, or would like additions, I may be able to help. If you improve this workflow, either contribute back to this repository or let me know, I may like to use that improvement myself.
 
@@ -27,8 +27,8 @@ The workflow will:
 
 1. Perform quality control on the sequences
 2. Align the sequences to the reference alignment
-4. Build a maximum likelihood tree
-5. Generate a tree image as an html file
+3. Build a maximum likelihood tree
+4. Generate a tree image (html, png, svg) file
 
 ## Set up the workflow
 
@@ -54,6 +54,7 @@ As a test, try setting the sequence file as `testadd.fas` then running it as des
 
 This file should contain:
 
+- a short name for your analysis (this will be in all your output filenames)
 - the path to your file containing your samples (REQUIRED)
 - the name of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
 

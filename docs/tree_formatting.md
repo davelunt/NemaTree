@@ -4,9 +4,9 @@
 
 Default output is html. Using the config you can also save in other file formats, eg .png or .svg.
 
-If you need to make modifications the best way to get complete control over formatting is to take the `results/iqtree/<sample_name>.treefile` produced by IQ-tree and to optimse it using toytree outside of the workflow.
+I have moved many image settings to the config file, investigate these. You will be able to change the colours, set the image size etc. I think you will have enough control to format a publication ready image.
 
-You will be able to change the colours, set the image size etc.
+If you need to make more modifications the best way to get complete control over formatting is to take the `results/iqtree/<sample_name>.treefile` produced by IQ-tree and to optimse it using toytree python package outside of the workflow.
 
 Many options can be copied from `workflow/scripts/toytree.py`, `.../toytreref.py` or you can use the toytree documentation at https://toytree.readthedocs.io
 
@@ -27,23 +27,31 @@ If you are using the genus reference alignment I strongly recommend using the de
   outgroup_name: "Pratylenchus"
 ```
 
-Midpoint rooting and minimum ancestral deviation rooting produce suboptimal trees.
+Midpoint rooting and minimum ancestral deviation rooting produce suboptimal trees for SSU.
 
 ### Clades 123 tree
 
-If you are building trees of clades 1,2 and 3 I would suggest using M.artiellia and M.baetica as outgroups.
+If you are building trees of clades 1,2 and 3 I would suggest using M.artiellia and M.baetica as outgroups. You will need to choose either LSU or SSU outgroups by uncommenting (remove #) the appropriate lines and commenting the others out.
 
 ```
   outgroup_list: True
   outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
-    - "M_artiellia_AF442192"
-    - "M_baetica_KP896296"
+  # SSU sequences
+    # - "M_artiellia_AF442192"
+    # - "M_artiellia_KC875391"
+    # - "M_baetica_KP896296"
+    # - "M_baetica_MH011982"
+  # LSU sequences
+    - "M_artiellia_LSU_AY150369"
+    - "M_artiellia_KY433426"
+    - "M_baetica_LSU_AY150367"
+    - "M_baetica_LSU_MH011971"
 ```
 
 Midpoint rooting and minimum ancestral deviation (MAD) rooting produce good trees also.
 
 ## Relationships within clade 1
 
-The relationships **within** clade 1 are very unstable. I would not be confident about inferring too much here with this SSU-rRNA dataset which has low diversity. We would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are allopolyploids, phylogenomics seems to be the best approach.
+The relationships **within** clade 1 are very unstable. I would not be confident about inferring too much here with either SSU or LSU rRNA dataset which have low diversity. We would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are allopolyploids, phylogenomics seems to be the best approach.
 
-Summary: this workflow is great at placing unknown RKN samples into a phylogenetic context, but the resolution of closely related species may need more (carefully selected) data.
+Summary: this workflow is great at placing unknown RKN samples into a phylogenetic context, but the resolution of closely related species may need much more (carefully selected) data.

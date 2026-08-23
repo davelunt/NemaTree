@@ -1,7 +1,12 @@
 # List of output files
 
 This is an overview of the files written by the workflow
-`sample` at the start of each name is text defined in config/config.yaml as the name given to your input fasta file
+`sample` at the start of each name is text defined in config/config.yaml as the **name** given to your input fasta file (mynewseqs:). 
+
+```
+samples:
+  mynewseqs: "resources/samples/myseqs.fas"
+```
 
 The final treefile you will want to look at is `reporting/toytree/sample_mafft_cialign_cleaned_iqtree.html`
 

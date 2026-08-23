@@ -16,7 +16,7 @@ Sometimes sequences are aligned but you can see that they are not really aligned
 
 ## Reporting
 
-Both AMAS and CIAlign produce reports on the alignment in `results/reporting/amas` and `results/reporting/cialign`. The AMAS report is a tabular `.tsv` file with infomration on the alignment. CIALIGN produces many plots and information on the alignment. Some of these are suppressed in the config file with `generate_seq_plots: False` as it can increase the time for the workflow to run (slightly) and may be unnecesary when investigating the analysis.
+Both AMAS and CIAlign produce reports on the alignment in `results/reporting/amas` and `results/reporting/cialign`. The AMAS report is a tabular `.tsv` file with information on the alignment. CIALIGN produces many plots and information on the alignment. Some of these are suppressed in the config file with `generate_seq_plots: False` as it can increase the time for the workflow to run (slightly) and may be unnecesary when investigating the analysis.
 
 ## Alignment processing sequence
 

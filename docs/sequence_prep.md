@@ -8,7 +8,7 @@ If you need to concatenate multiple fasta files into one, you can use the follow
 
 `cat *.fas* > mysamples.fas`
 
-This will concatenate `.fas` and `.fasta` files so long as you are in the same directory as the files. 
+This will concatenate `.fas` and `.fasta` files so long as you are in the same directory as the files.
 
 You must not have spaces in filenames that are going to be processed by a workflow. Use name_underscores or name-hyphens or camelCase instead.
 
@@ -25,9 +25,10 @@ Sequences with identical names will be dropped from the analysis after the align
 ## Good names
 
 It is a good idea to think ahead and have short informative unique names for your sequences. Very long names can cause the tree to become compressed.
+The reference alignment will for example use names like `M_javanica_LSU_MK385596`. Including the sequence accession number is an important component of reproducibility (ensures the provenance of the data is clear).
 
 ## minimum sequence lengths
 
-The shorter your sequence the less information it contains and the less accurate will be its incorporation into the tree. Some sequences on GenBank are ~350bp, and this is the minimum you should consider. Sequences that are >900bp are much more robust and will give much more information. If you only want to know "is this a tropical apomict in clade 1, or not" then even short sequences will work. If you want to know something more subtle, then you will need longer sequences.
+The shorter your sequence the less information it contains and the less accurate will be its incorporation into the tree. Some SSU sequences on GenBank are ~350bp, and this is the minimum you should consider. Sequences that are >900bp are much more robust and will give much more information. If you only want to know "is this a tropical apomict in clade 1, or not" then even short sequences will work. If you want to know something more subtle, then you will need longer sequences.
 
-The config file has the ability for you to **not** add your sequences if they are below a certain length (`enforce_minlength: True`), and to specify what that minimum length is (`min_seq_length: 500`). Sometimes this is useful in cases where you want to investigate the precision of the results. The default is not to use this, which is best in most cases.
+The config file has the ability for you to **not** add your sequences if they are below a certain length (`enforce_minlength: True`), and to specify what that minimum length is (`min_seq_length: 500`). Sometimes this is useful in cases where you want to investigate the precision of the results.
