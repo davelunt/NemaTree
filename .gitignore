@@ -11,3 +11,4 @@ logs/**
 pastebin.txt
 **/lint.txt
 .tests/unit/**
+gui*.py

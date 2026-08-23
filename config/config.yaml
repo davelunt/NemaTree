@@ -10,7 +10,7 @@ conda: "../workflow/envs/environment.yaml"  # leave this unedited
 # --------------------------------
 # specify a name: "filepath" pair
 samples:
-  testadd700: "resources/samples/testadd.fas"
+  LSUtest2: "resources/samples/LSUtest2.fasta"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False
@@ -24,11 +24,14 @@ min_seq_length: 500
 clades123: True 
 
 # Clades 1, 2 and 3 reference alignment (if required)
-reference_alignment_clades123: "resources/reference/clades123_genus158.fas"
+# reference_alignment_clades123: "resources/reference/SSU_clades123_genus158.fas"
+reference_alignment_clades123: "resources/reference/LSUref5clade123.fasta"
+
 
 # Genus reference alignment (if required)
 # path to genus reference alignment to which samples are added
-reference_alignment: "resources/reference/genus_ref158.fas"
+# reference_alignment: "resources/reference/SSU_genus_ref158.fas"
+reference_alignment: "resources/reference/LSUref5.fasta"
 # ---------------------------------
 
 # Generate sequence plots, supressing this will save some time
@@ -39,8 +42,8 @@ generate_seq_plots: False
 # CIAlign alignment quality control
 # ==================================
 
-cialign_len_filter: True # Filter short sequences from alignment
-cialign_minlen: 700 # minimum sequence length (bp)
+cialign_len_filter: False # Filter short sequences from alignment
+cialign_minlen: 400 # minimum sequence length (bp)
 
 # True requires a list of sequences to keep whatever their length
 # False will make no special cases and filter by length specified above
@@ -53,7 +56,9 @@ cialign_retain_short_list: "config/retain_short.txt"
 
 # IQtree substitution model
 # -------------------------
-subst_model: "GTR+R3" # Best-fit by BIC. GTR+I+G usually fine also.
+subst_model: "GTR+R3" 
+# SSU best-fit by BIC is GTR+R3 but GTR+I+G usually fine also.
+# LSU, Best-fit by BIC AIC is TIM3+F+G4 but GTR+I+G usually fine also.
 
 # Rooting the phylogenetic tree (in toytree)
 # ------------------------------------------
@@ -66,16 +71,28 @@ rooting:
   outgroup_name: "Pratylenchus"
   outgroup_list: True
   outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
-    - "M_artiellia_AF442192"
-    - "M_artiellia_KC875391"
-    - "M_baetica_KP896296"
-    - "M_baetica_MH011982"
+  # SSU sequences
+    # - "M_artiellia_AF442192"
+    # - "M_artiellia_KC875391"
+    # - "M_baetica_KP896296"
+    # - "M_baetica_MH011982"
+  # LSU sequences
+    - "M_artiellia_LSU_AY150369"
+    - "M_artiellia_KY433426"
+    - "M_baetica_LSU_AY150367"
+    - "M_baetica_LSU_MH011971"
   midpoint_root: False
   mad_root: False
 
 # Colouring and labelling of tip names
 # ------------------------------------
-#  add (triangle) icons to added sequence names
+
+# basic tree tip settings
+toytree_tipsize: 6
+toytree_tipcolor: "#52373A"
+toytree_tipmarker: "o"
+
+# add (triangle) icons to added sequence names
 add_treename_icons: True
 
 # Species name coloring TRUE/FALSE
@@ -89,7 +106,9 @@ species_colors:
   floridensis: "#f04f27"
   arenaria: "#ea312b"
   incognita: "#cb1818"
+  phaseoli: "#cb1818"
   morocciensis: "#f31212"
+  thailandica: "#f31212"
   konaensis: "#a629e0"
   arabicida: "#a527df"
   izalcoensis: "#a620e4"
@@ -99,6 +118,7 @@ species_colors:
   luci: "#bd5ded"
   haplanaria: "#be5deb"
   ethiopica: "#cd6df9"
+  inornata: "#cd6df9"
   enterolobii: "#aa3812"
   # clade 2
   hapla: "#2151d7"
@@ -115,7 +135,10 @@ species_colors:
   graminis: "#68a1f0"
   # clade 3
   graminicola: "#38af0d"
+  aegracyperi: "#38af0d"
   oryzae: "#46ba54"
+  trifoliophila: "#38af0d"
+  salasi: "#38af0d"
   kralli: "#1cc42d"
   exigua: "#2FC51B"
   naasi: "#28b11f"
@@ -126,6 +149,11 @@ species_colors:
 # ===================
 # Saving the treefile
 # ===================
+
+# toytree image sizes
+toytree_width: 800
+toytree_height: 7500
+toytree_node_sizes: 3
 
 # select graphic formats to save final treefile, default html
 tree_formats:

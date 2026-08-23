@@ -124,19 +124,23 @@ tip_colors = [
     )
     for name in original_names
 ]
-
+ 
 # Draw tree and get axes
 canvas, axes, mark1 = rtree.draw(
-    width=800,
-    height=1600,
-    node_sizes=3,
+    width = snakemake.config.get("toytree_width", 800),
+    height = snakemake.config.get("toytree_height", 1600),
+    node_sizes = snakemake.config.get("toytree_node_sizes", 3),
     tip_labels=tip_labels,
     tip_labels_colors=tip_colors,
 )
 
 # Annotate tips
-rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
+tipsize = snakemake.config.get("toytree_tipsize", 6)
+tipcolor = snakemake.config.get("toytree_tipcolor", "#52373A")
+tipmarker = snakemake.config.get("toytree_tipmarker", "o")
+rtree.annotate.add_tip_markers(axes=axes, size=tipsize, color=tipcolor, marker=tipmarker)
+# rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
 
-# Save to HTML
+# Save to figure(s)
 toytree.save(canvas, str(outfile))
 print(f"Saved tree plot to {outfile}")
