@@ -2,6 +2,8 @@
 
 **This reproducible workflow processes rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.**
 
+This will be useful for people with a small number (tens) of sequences who want to answer the question "where does this sample fall in the genus Meloidogyne?" and authors who want a good phylogenetic tree image for a publication.
+
 Released under a permissive MIT license, you may pretty much do as you like. If you are able to cite this work it would be much appreciated:
 
 > Lunt, DH (2026). NemaTree: Reproducible phylogenetic analysis of Root-Knot Nematode rRNA sequences. [https://github.com/davelunt/NemaTree](https://github.com/davelunt/NemaTree)
