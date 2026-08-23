@@ -48,17 +48,21 @@ Make sure you have provided (DNA not RNA) fasta sequences in a file in the `reso
 
 Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas* > resources/samples/myseqsname.fas` to combine all fasta files into one file.
 
-As a test, try setting the sequence file as `testadd.fas` then running it as described below.
+Extra [sequence_prep](docs/sequence_prep.md) help is provided. As a test, try setting the sequence file as `SSUtestadd.fas` or `LSUtestadd.fasta` and then running it as described below.
 
 ### Check `config/config.yaml`
 
 This file should contain:
 
-- a short name for your analysis (this will be in all your output filenames)
+- a short name for your analysis (REQUIRED, this will be in all your output filenames)
 - the path to your file containing your samples (REQUIRED)
 - the name of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
 
-Except for the sample file, all other config parameters have default values and can be left as is. You can also check `docs/tree_formatting.md` for more information on getting the best tree.
+Except for the sample file, all other config parameters have default values and can be left as is.
+
+More help is provided in the [configure](docs/configure.md) docs for setting up the config file.
+
+Help is provided in the [tree_formatting](docs/tree_formatting.md) doc for information on tree formatting and rooting.
 
 ### Dry run, then run the workflow
 
@@ -75,7 +79,7 @@ You should now have an annotated phylogenetic tree that you can open in any web 
 
 ### Common problems
 
-    - wrong capitalisation of the samples file name
+    - wrong capitalisation of the samples file name in config.yaml
     - spaces in filename, use_underscore_instead
     - failure to install the environment with conda/mamba
         - try `mamba env create -f envs/environment.yaml`
