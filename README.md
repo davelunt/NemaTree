@@ -101,3 +101,10 @@ The documentation in `docs/` contains some more extensive help and advice:
 - [alignments](docs/alignments.md): Information on how sequence alignments are processed
 - [tree_formatting](docs/tree_formatting.md): Information on tree formatting and rooting
 - [misc](docs/misc.md): Extra thoughts and info
+
+
+## Why did you make this?
+
+I've seen a lot of papers showing the distinctiveness of a new species, or regional samples, by comparison to only a very small number of other species isolates. I thought having publicly available well-curated reference alignments of Meloidogyne LSU and SSU would be very useful for this sort of research.
+
+I'm a big believer in reproducibilty in data analysis as (a) its the right way to do science and (b) its the easiest way to do science. So I wrote a reproducible workflow to do RKN phylogenetic analysis. Using this workflow has saved me an enormous amount of time while automating best practice approaches.

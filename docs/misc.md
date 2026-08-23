@@ -2,6 +2,12 @@
 
 I'm putting things here until they find a better place.
 
+## Why did you make this?
+
+I've seen a lot of papers showing the distinctiveness of a new species, or regional sample, by comparison to only a very small number of other species isolates. I thought having publicly available well-curated reference alignments of Meloidogyne LSU and SSU would be very useful for this sort of research.
+
+I'm a big believer in reproducibilty in data analysis as (a) its the right way to do science and (b) its the easiest way to do science. So I wrote a reproducible workflow to do Meloidogyne phylogenetic analysis. Using this workflow has saved me an enormous amount of time while automating best practice approaches.
+
 
 ## Minimum sequence length
 
@@ -12,6 +18,10 @@ Even though it reduces the number of taxa included, my view is that the phylogen
 cialign_len_filter: True # Filter short sequences from alignment
 cialign_minlen: 700 # minimum sequence length (bp)
 ```
+
+## My favourite species isn't separated phylogenetically
+
+This does NOT mean your favourite taxon isn't a real taxonomic group. Many closely related species just do not separate with rRNA as there isn't enough information in the sequences. mtDNA isn't much better either. For closely related species genomics is the best approach as it has an enormous amount of data and isn't as hard as you might think.
 
 
 ## Excluded taxa due to taxonomic uncertainty
@@ -47,5 +57,7 @@ If you know me at all you will know that I just shouted "Yes!!" very loudly. Thi
 
 Pushing this forward will require a community effort to grow well-characterised reference isolates for the genomics of species. I am of course happy to collaborate with anyone who needs bioinformatics support in their genomics projects.
 
-Szitenberg et al. Comparative Genomics of Apomictic Root-Knot Nematodes: Hybridization, Ploidy, and Dynamic Genome Change. Genome Biol. Evol. 2017. 2844–2861. doi:10.1093/gbe/evx201
 
+## References
+
+Szitenberg et al. Comparative Genomics of Apomictic Root-Knot Nematodes: Hybridization, Ploidy, and Dynamic Genome Change. Genome Biol. Evol. 2017. 2844–2861. doi:10.1093/gbe/evx201
