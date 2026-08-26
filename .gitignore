@@ -12,3 +12,5 @@ pastebin.txt
 **/lint.txt
 .tests/unit/**
 gui*.py
+nematree_gui*
+config_*

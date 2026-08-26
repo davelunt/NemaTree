@@ -52,6 +52,6 @@ Midpoint rooting and minimum ancestral deviation (MAD) rooting produce good tree
 
 ## Relationships within clade 1
 
-The relationships **within** clade 1 are very unstable. I would not be confident about inferring too much here with either SSU or LSU rRNA dataset which have low diversity. We would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are allopolyploids, phylogenomics seems to be the best approach.
+The relationships **within** clade 1 (tropical apomicts) are very unstable. I would not be confident about inferring too much here with either SSU or LSU rRNA dataset which have low diversity. We would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are allopolyploids, phylogenomics seems to be the best approach.
 
 Summary: this workflow is great at placing unknown RKN samples into a phylogenetic context, but the resolution of closely related species may need much more (carefully selected) data.

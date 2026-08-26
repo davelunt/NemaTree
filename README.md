@@ -48,8 +48,6 @@ Extra help is available in the [installation help doc](docs/installation.md)
 
 Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. No spaces in filenames. 
 
-Tip: At a terminal in the workflow directory, run: `cat resources/samples/*.fas* > resources/samples/myseqsname.fas` to combine all fasta files into one file.
-
 Extra [sequence_prep](docs/sequence_prep.md) help is provided. As a test, try setting the sequence file as `SSUtestadd.fas` or `LSUtestadd.fasta` and then running it as described below.
 
 ### Check `config/config.yaml`
@@ -76,12 +74,12 @@ If all is well, run the workflow with:
 
 `snakemake --cores 4 --latency-wait 300`
 
-You should now have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/_mafft_cialign_cleaned_iqtree.html`
+You should within a couple of minutes have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
 
 
 ### Common problems
 
-    - wrong capitalisation of the samples file name in config.yaml
+    - wrong capitalisation of the sample's file name in config.yaml
     - spaces in filename, use_underscore_instead
     - failure to install the environment with conda/mamba
         - try `mamba env create -f envs/environment.yaml`
@@ -105,6 +103,6 @@ The documentation in `docs/` contains some more extensive help and advice:
 
 ## Why did you make this?
 
-I've seen a lot of papers showing the distinctiveness of a new species, or regional samples, by comparison to only a very small number of other species isolates. I thought having publicly available well-curated reference alignments of Meloidogyne LSU and SSU would be very useful for this sort of research.
+I've seen a lot of papers showing the distinctiveness of a new root-knot nematode species, or regional samples, by comparison to only a very small number of other species isolates. I thought having publicly available well-curated reference alignments of Meloidogyne LSU and SSU would be very useful for this sort of research.
 
 I'm a big believer in reproducibilty in data analysis as (a) its the right way to do science and (b) its the easiest way to do science. So I wrote a reproducible workflow to do RKN phylogenetic analysis. Using this workflow has saved me an enormous amount of time while automating best practice approaches.
