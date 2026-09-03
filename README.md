@@ -4,6 +4,8 @@
 
 This will be useful for people with a small number (tens) of sequences who want to answer the question "where does this sample fall in the genus Meloidogyne?" and authors who want a good phylogenetic tree image for a publication.
 
+![Sample_1, groups within M.hapla ](docs/images/sample1.png "Sample_1 groups within M. hapla")
+
 Released under a permissive MIT license, you may pretty much do as you like. If you are able to cite this work it would be much appreciated:
 
 > Lunt, DH (2026). NemaTree: Reproducible phylogenetic analysis of Root-Knot Nematode rRNA sequences. [https://github.com/davelunt/NemaTree](https://github.com/davelunt/NemaTree)
@@ -14,7 +16,7 @@ If you have issues, or would like additions, I may be able to help. If you impro
 
 1. git clone the repo and create conda environment from `envs/environment.yaml`
 2. add sequences to `resources/samples/myseqsname.fas`
-3. add `resources/samples/myseqsname.fas` to `config/config.yaml`
+3. add your sequence file location to `config/config.yaml` and select the LSU or SSU reference database to use
 4. final tree: `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html`
 
 ## Workflow Overview
@@ -52,13 +54,13 @@ Extra [sequence_prep](docs/sequence_prep.md) help is provided. As a test, try se
 
 ### Check `config/config.yaml`
 
-This file should contain:
+This file is where you can configure the entire analysis and should contain:
 
 - a short name for your analysis (REQUIRED, this will be in all your output filenames)
 - the path to your file containing your samples (REQUIRED)
 - the name of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
 
-Except for the sample file, all other config parameters have default values and can be left as is.
+Except for the sample file, all other config parameters have default values and can be left as is. Check though that you have the correct LSU or SSU reference database selected.
 
 More help is provided in the [configure](docs/configure.md) docs for setting up the config file.
 
@@ -76,6 +78,7 @@ If all is well, run the workflow with:
 
 You should within a couple of minutes have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
 
+![Sample_2](docs/images/sample2.png) ![Sample_3](docs/images/sample3.png)
 
 ### Common problems
 
@@ -103,6 +106,6 @@ The documentation in `docs/` contains some more extensive help and advice:
 
 ## Why did you make this?
 
-I've seen a lot of papers showing the distinctiveness of a new root-knot nematode species, or regional samples, by comparison to only a very small number of other species isolates. I thought having publicly available well-curated reference alignments of Meloidogyne LSU and SSU would be very useful for this sort of research.
+I've seen a lot of papers showing the distinctiveness of a new root-knot nematode species, or regional samples, by comparison to only a very small number of other species isolates. I thought having publicly available well-curated reference alignments of Meloidogyne diversity, for LSU and SSU, would be very useful for this sort of research.
 
 I'm a big believer in reproducibilty in data analysis as (a) its the right way to do science and (b) its the easiest way to do science. So I wrote a reproducible workflow to do RKN phylogenetic analysis. Using this workflow has saved me an enormous amount of time while automating best practice approaches.
