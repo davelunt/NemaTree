@@ -4,7 +4,7 @@
 
 <table>
 <tr>
-<td valign="top" width="20%">
+<td valign="top" width="40%">
 
 <img src="docs/images/sample1.png"
      alt="sample_1 clusters within M. hapla"
