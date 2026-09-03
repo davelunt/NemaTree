@@ -78,7 +78,7 @@ If all is well, run the workflow with:
 
 `snakemake --cores 4 --latency-wait 300`
 
-You should within a couple of minutes have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
+You should within a couple of minutes have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`. Here is an [example tree](docs/images/example_mafft_cialign_cleaned_iqtree.png), and the images below are sections of the output tree.
 
 <img src="docs/images/sample2.png" alt="sample_2 clusters within M. enterolobii" width="200"/>
 
