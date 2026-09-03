@@ -15,7 +15,7 @@
 </td>
 <td valign="top">
 
-This will be useful for people with a small number (tens) of sequences who want to answer the question "wheret a good phylogenetic tree image for a publication.
+This will be useful for people with a small number (tens) of sequences who want to answer the question "where does this sample fall within the diversity of Meloidogyne?" or want to produce a good phylogenetic tree image for a publication.
 
 </td>
 </tr>
