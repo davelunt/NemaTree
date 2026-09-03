@@ -4,7 +4,9 @@
 
 This will be useful for people with a small number (tens) of sequences who want to answer the question "where does this sample fall in the genus Meloidogyne?" and authors who want a good phylogenetic tree image for a publication.
 
-![Sample_1, groups within M.hapla ](docs/images/sample1.png "Sample_1 groups within M. hapla")
+<img src="docs/images/sample1.png" alt="sample_1 clusters within M. hapla" width="200"/>
+
+*Sample_1 clusters within M. hapla*
 
 Released under a permissive MIT license, you may pretty much do as you like. If you are able to cite this work it would be much appreciated:
 
@@ -78,7 +80,13 @@ If all is well, run the workflow with:
 
 You should within a couple of minutes have an annotated phylogenetic tree that you can open in any web browser at `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
 
-![Sample_2](docs/images/sample2.png) ![Sample_3](docs/images/sample3.png)
+<img src="docs/images/sample2.png" alt="sample_2 clusters within M. enterolobii" width="200"/>
+
+*Sample_2 clusters within M. enterolobii*
+
+<img src="docs/images/sample3.png" alt="sample_3 clusters within M. mali" width="200"/>
+
+*Sample_3 clusters within M. mali*
 
 ### Common problems
 
