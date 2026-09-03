@@ -4,13 +4,13 @@
 
 <table>
 <tr>
-<td valign="top" width="40%">
+<td valign="top" width="30%">
 
 <img src="docs/images/sample1.png"
      alt="sample_1 clusters within M. hapla"
      width="100%"/>
 
-<sub><b>Figure 1.</b> Sample_1 clusters within <i>Meloidogyne hapla</i>.</sub>
+<sub><i>Sample_1 clusters within M. hapla</i>.</sub>
 
 </td>
 <td valign="top">
