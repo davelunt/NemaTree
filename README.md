@@ -2,16 +2,20 @@
 
 **This reproducible workflow processes rRNA sequences from Root-Knot Nematodes, including quality control, alignment, and reporting. The workflow makes use of an alignment of sequences from the diversity of Meloidogyne species.**
 
-
 <table>
 <tr>
-<td>
+<td valign="top" width="20%">
 
-<img src="docs/images/sample1.png" alt="sample_1 clusters within M. hapla" width="200"/>
-<td>
+<img src="docs/images/sample1.png"
+     alt="sample_1 clusters within M. hapla"
+     width="100%"/>
 
+<sub><b>Figure 1.</b> Sample_1 clusters within <i>Meloidogyne hapla</i>.</sub>
 
-This will be useful for people with a small number (tens) of sequences who want to answer the question "where does this sample fall in the genus Meloidogyne?" and authors who want a good phylogenetic tree image for a publication.
+</td>
+<td valign="top">
+
+This will be useful for people with a small number (tens) of sequences who want to answer the question "wheret a good phylogenetic tree image for a publication.
 
 </td>
 </tr>
