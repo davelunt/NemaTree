@@ -145,6 +145,17 @@ species_colors:
   minor: "#0f6c1b"
   chitwoodi: "#086f07"
   fallax: "#266f24"
+  # mali group
+  mali: "#F56F27"
+  paramali: "#E66825"
+  suginamensis: "#D65A18"
+  # artiellia group
+  artiellia: "#783306"
+  baetica: "#9C4309"
+  # ichinohei group
+  ichinohei: "#8018D6"
+  camelliae: "#8D48C7"
+  aberrans: "#68289E"
 
 # ===================
 # Saving the treefile
