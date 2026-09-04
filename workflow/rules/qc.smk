@@ -3,12 +3,13 @@
 # remove -.? from sequences. Report to log file
 rule clean_supplied_fasta:
     input:
-        # "resources/samples/{sample}.fas",
         raw = get_raw_input,
     output:
         seqs="results/samples/{sample}_validated.fas",
-        log="results/reporting/validated/{sample}_clean_fasta_log.txt",
+        newnames="results/reporting/validated/{sample}_clean_fasta_newnames.txt",
         names="results/reporting/validated/{sample}_all_fasta_headers.txt",
+    log:
+        "results/reporting/validated/{sample}_logfile.txt",
     message:
         "Validating and cleaning FASTA records for {wildcards.sample}"
     script:

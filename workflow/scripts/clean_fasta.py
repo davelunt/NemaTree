@@ -1,21 +1,27 @@
+from contextlib import redirect_stdout, redirect_stderr
+import re
+import traceback
 from Bio import SeqIO
 from Bio.Seq import Seq
-import re
 
+# Snakemake inputs
 input_file = snakemake.input.raw
 output_file = snakemake.output.seqs
-log_altered = snakemake.output.log
-log_all = snakemake.output.names
+newnames_file = snakemake.output.newnames
+original_names_file = snakemake.output.names
+log = snakemake.log[0]
 
 def sanitize_fasta_headers_and_sequences(
-    input_file: str, output_file: str, log_altered: str, log_all: str
+    input_file: str,
+    output_file: str,
+    newnames_file: str,
+    original_names_file: str,
 ) -> None:
-    """Sanitize FASTA headers (replace ()[];: and whitespace with _) and
-    sequences (strip gap/ambiguous symbols -?). Writes a TSV of altered
-    headers, but only if any headers were changed (optional record file).
+    """Sanitize FASTA headers (replace ()[];,: and whitespace with _) and
+    sequences (strip -.?). Writes a .tsv file of any altered headers.
 
     Fails loudly if the file is unreadable, contains no records, or if any
-    header/sequence would be empty after sanitization.
+    header/sequence is or would be empty after sanitization.
     """
 
     # Read and parse the FASTA file, failing loudly if unreadable
@@ -32,23 +38,23 @@ def sanitize_fasta_headers_and_sequences(
 
     altered_headers = 0
     altered_sequences = 0
-    altered_rows = []  # buffered TSV rows; file written only if non-empty
+    altered_rows = []  # file written only if non-empty
 
     with open(output_file, "w") as out_handle, \
-         open(log_all, "w") as all_handle:
+         open(original_names_file, "w") as all_handle:
 
         for index, record in enumerate(records, start=1):
             # Log all original headers
             all_handle.write(f"{record.description}\n")
 
-            # Sanitize header: replace ()[];: and whitespace with _
+            # Sanitize header: replace ()[];,: and whitespace with _
             original_description = record.description
-            cleaned_description = re.sub(r"[\[\]():;\s]", "_", original_description)
+            cleaned_description = re.sub(r"[\[\]():,;\s]", "_", original_description)
             cleaned_description = re.sub(r"_+", "_", cleaned_description)
             cleaned_description = cleaned_description.strip("_")
 
-            # Single check: fail loudly if header is empty either originally
-            # or became empty after sanitization (e.g., '>(x)' or bare '>')
+            # Fail loudly if header is empty either originally
+            # or became empty after sanitization
             if not cleaned_description:
                 if not original_description:
                     raise ValueError(
@@ -70,7 +76,7 @@ def sanitize_fasta_headers_and_sequences(
                     f"{original_description}\t{record.description}"
                 )
 
-            # Sanitize sequence: remove gap/ambiguous symbols
+            # Remove -.? symbols from sequence
             original_seq = str(record.seq)
             cleaned_seq = re.sub(r"[-.?]", "", original_seq)
 
@@ -83,16 +89,19 @@ def sanitize_fasta_headers_and_sequences(
                     f"Fix the input file instead."
                 )
 
+            # count if the sequence has been changed
             if cleaned_seq != original_seq:
                 altered_sequences += 1
-                record.seq = Seq(cleaned_seq)
 
+            # standardise sequence to UPPER case
+            record.seq = Seq(cleaned_seq.upper())
+
+            # write the records as fasta to a file
             SeqIO.write(record, out_handle, "fasta")
 
-    # Write the alteration TSV only if any headers were actually changed;
-    # this file is optional record keeping, so it may legitimately not exist.
+    # Write the alteration TSV only if any headers were actually changed
     if altered_rows:
-        with open(log_altered, "w") as altered_handle:
+        with open(newnames_file, "w") as altered_handle:
             altered_handle.write("Original_Header\tAltered_Header\n")
             altered_handle.write("\n".join(altered_rows) + "\n")
 
@@ -101,10 +110,22 @@ def sanitize_fasta_headers_and_sequences(
     print(f"Number of altered FASTA headers: {altered_headers}")
     print(f"Number of altered FASTA sequences: {altered_sequences}")
     if altered_rows:
-        print(f"Altered record headers written to TSV: {log_altered}")
+        print(f"Altered record headers written to TSV: {newnames_file}")
     else:
         print("No altered headers; alteration TSV not written")
-    print(f"All sequence names written to: {log_all}")
+    print(f"All sequence names written to: {original_names_file}")
     print(f"All validated FASTA records written to: {output_file}")
 
-sanitize_fasta_headers_and_sequences(input_file, output_file, log_altered, log_all)
+# Redirect stdout/stderr to the Snakemake rule's log file
+try:
+    with open(log, "w") as log_handle, \
+         redirect_stdout(log_handle), \
+         redirect_stderr(log_handle):
+        sanitize_fasta_headers_and_sequences(
+            input_file, output_file, newnames_file, original_names_file
+        )
+except Exception:
+    # Ensure a failed job leaves a traceback in the Snakemake log file
+    with open(log, "a") as log_handle:
+        traceback.print_exc(file=log_handle)
+    raise
