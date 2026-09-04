@@ -24,13 +24,13 @@ min_seq_length: 500
 clades123: False 
 
 # Clades 1, 2 and 3 reference alignment (if required)
-reference_alignment_clades123: "resources/reference/SSU_clades123_genus158.fas"
+reference_alignment_clades123: "resources/reference/SSU_clades123_genus156.fas"
 # reference_alignment_clades123: "resources/reference/LSUref5clade123.fasta"
 
 
 # Genus reference alignment (if required)
 # path to genus reference alignment to which samples are added
-reference_alignment: "resources/reference/SSU_genus_ref158.fas"
+reference_alignment: "resources/reference/SSU_genus_ref156.fas"
 # reference_alignment: "resources/reference/LSUref5.fasta"
 # ---------------------------------
 
@@ -148,7 +148,7 @@ species_colors:
   # mali group
   mali: "#F56F27"
   paramali: "#E66825"
-  suginamensis: "#D65A18"
+  suginamiensis: "#D65A18"
   # artiellia group
   artiellia: "#783306"
   baetica: "#9C4309"

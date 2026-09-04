@@ -13,7 +13,7 @@ rule clean_supplied_fasta:
     message:
         "Validating and cleaning FASTA records for {wildcards.sample}"
     script:
-        "../scripts/clean_fasta_txt.py"
+        "../scripts/clean_fasta.py"
 
 
 # Conditional rule (only runs if enforce_minlength is True)

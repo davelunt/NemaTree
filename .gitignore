@@ -14,3 +14,4 @@ pastebin.txt
 gui*.py
 nematree_gui*
 config_*
+misc/**
