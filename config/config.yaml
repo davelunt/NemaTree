@@ -2,46 +2,53 @@
 #               NemaTree: CONFIGFILE
 # ==================================================
 # this file should be edited by the user to configure the analysis
-# ==================================================
+
 conda: "../workflow/envs/environment.yaml"  # leave this unedited
 
-# -------------------------------
+# ==================================
 # Sequences to add (REQUIRED)
-# --------------------------------
+# ==================================
 # specify a name: "filepath" pair
 samples:
   SSUunknowns: "resources/samples/unknown.fasta"
 
 # option to set a minimum sequence length for sequences you are adding
-enforce_minlength: False
+enforce_minlength: False # options are True or False
 min_seq_length: 500
 
-# -------------------------------
-# Reference alignment
-# --------------------------------
-# TRUE if ref alignment of only RKN clades 1,2 and 3 are 
-# to be used rather than all spp. in the genus. FALSE = genus
-clades123: False 
+# ==================================
+# Reference alignment (CHOOSE)
+# ==================================
 
-# Clades 1, 2 and 3 reference alignment (if required)
-reference_alignment_clades123: "resources/reference/SSU_clades123_genus156.fas"
-# reference_alignment_clades123: "resources/reference/LSUref5clade123.fasta"
+# (1) Choose locus to analyse: "SSU" or "LSU"
+locus: "SSU"
+
+# (2) Choose scope of the reference library: "genus" or "clades123"
+scope: "genus"
+
+# Reference alignments for each locus/scope combination
+# only edit if you have changed these
+reference_alignments:
+  SSU:
+    genus: "resources/reference/SSU_genus_ref156.fas"
+    clades123: "resources/reference/SSU_clades123_genus156.fas"
+  LSU:
+    genus: "resources/reference/LSU_genus_ref5.fasta"
+    clades123: "resources/reference/LSU_clades123_ref5.fasta"
 
 
-# Genus reference alignment (if required)
-# path to genus reference alignment to which samples are added
-reference_alignment: "resources/reference/SSU_genus_ref156.fas"
-# reference_alignment: "resources/reference/LSUref5.fasta"
+# ==================================
+# Alignment quality control
+# ==================================
+
+# Sequence plots
 # ---------------------------------
-
 # Generate sequence plots, supressing this will save some time
 # alnseqlength_histogram, length_histogram, mafft_cialign_output
 generate_seq_plots: False
 
-# ==================================
-# CIAlign alignment quality control
-# ==================================
-
+# CIAlign
+# ---------------------------------
 cialign_len_filter: False # Filter short sequences from alignment
 cialign_minlen: 400 # minimum sequence length (bp)
 
@@ -69,6 +76,7 @@ subst_model: "GTR+R3"
 rooting:
   outgroup_root: True
   outgroup_name: "Pratylenchus"
+
   outgroup_list: False
   outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
   # SSU sequences
@@ -81,12 +89,13 @@ rooting:
     - "M_artiellia_KY433426"
     - "M_baetica_LSU_AY150367"
     - "M_baetica_LSU_MH011971"
+
   midpoint_root: False
+
   mad_root: False
 
 # Colouring and labelling of tip names
 # ------------------------------------
-
 # basic tree tip settings
 toytree_tipsize: 6
 toytree_tipcolor: "#52373A"

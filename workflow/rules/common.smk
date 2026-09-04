@@ -18,6 +18,24 @@ def get_added_seqs(wildcards):
         return f"results/samples/{wildcards.sample}_validated.fas"
 
 
+# get correct reference alignment from config
+
+VALID_LOCI = {"SSU", "LSU"}
+VALID_SCOPES = {"genus", "clades123"}
+
+def get_reference(config):
+    """Resolve the reference alignment path from locus and scope choices."""
+    locus = config["locus"]
+    scope = config["scope"]
+
+    if locus not in VALID_LOCI:
+        raise ValueError(f"config 'locus' must be one of {sorted(VALID_LOCI)}, got '{locus}'")
+    if scope not in VALID_SCOPES:
+        raise ValueError(f"config 'scope' must be one of {sorted(VALID_SCOPES)}, got '{scope}'")
+
+    return config["reference_alignments"][locus][scope]
+
+
 def get_cialignment(wildcards):
     """
     Pass the current alignment, which can vary based on config

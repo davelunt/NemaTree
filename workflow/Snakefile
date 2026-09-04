@@ -7,14 +7,16 @@ configfile: "config/config.yaml"
 
 include: "rules/common.smk"
 
+REF_ALIGNMENT = get_reference(config)
+
 # samples to add to reference alignment are defined in config file
 # SAMPLES is defined in common.smk and can be used below (and globally)
 
 # specify reference alignment in config
-if config["clades123"]:
-    REFERENCE = config["reference_alignment_clades123"]
-else:
-    REFERENCE = config["reference_alignment"]
+# if config["clades123"]:
+#     REFERENCE = config["reference_alignment_clades123"]
+# else:
+#     REFERENCE = config["reference_alignment"]
 
 # output formats for trees, default is html (also png, pdf, svg)
 TREEFORMATS = config.get("tree_formats", ["html"])

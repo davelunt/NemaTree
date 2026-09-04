@@ -1,24 +1,28 @@
 # Rules relating to alignments
 # ------------------------------
+# functions get_added_seqs and get_cialignment etc
+# are defined in rules/common.smk
 
 # add sample seqs to reference alignment
 rule mafft_add_seqs:
     input:
-        newseqs = get_added_seqs, 
-        ref = REFERENCE,
+        newseqs = get_added_seqs,
+        ref = REF_ALIGNMENT,
+        # ref = REFERENCE,
     output:
         newalignment = "results/mafft/{sample}_mafft.fas"
     shell:
         "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
 
-
+ 
 # check that sequences were added to the reference alignment and exit if not
 rule check_seqs_added:
     input:
         seqs_to_add=get_added_seqs,
         combined_alignment="results/mafft/{sample}_mafft.fas",
     params:
-        reflibrary = REFERENCE,
+        # reflibrary = REFERENCE,
+        reflibrary = REF_ALIGNMENT,
     output:
         log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
     script:
