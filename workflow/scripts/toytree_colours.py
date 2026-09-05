@@ -1,7 +1,7 @@
 # Visualize a phylogenetic tree with toytree, marking new sequences
 # -----------------------------------------------------------------
 
-import os
+from pathlib import Path
 import toytree
 
 # Snakemake
@@ -65,7 +65,7 @@ elif cfg["method"] == "mad":
 
 # Load tip names of newly-added sequences
 tips_to_mark = set()
-if newtips_list and os.path.exists(newtips_list):
+if newtips_list and Path(newtips_list).exists():
     with open(newtips_list) as f:
         tips_to_mark = {line.strip() for line in f if line.strip()}
 else:
@@ -110,6 +110,7 @@ def get_label_color(name):
             "black",
         )
     return "black"
+
 
 # Tip label colours and font size
 label_colors = [get_label_color(name) for name in original_names]
