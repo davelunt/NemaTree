@@ -65,7 +65,6 @@ def cialign_short_retain_arg():
 # ---------------------------
 VALID_ROOTING_METHODS = {"outgroup", "outgroup_list", "midpoint", "mad"}
 
-
 def get_rooting(config):
     """Validate the rooting config and resolve it to a clean dict:
     {"method": <str>} plus the parameter that method needs."""
@@ -102,3 +101,21 @@ def get_rooting(config):
 
     # midpoint and mad need no parameters
     return {"method": method}
+
+
+# get sequence substitution model from config
+# -------------------------------------------
+def get_substitution_model(config):
+    """Resolve the IQ-TREE substitution model for the chosen locus."""
+    locus = config["locus"]
+    models = config.get("subst_models", {})
+
+    if locus not in VALID_LOCI:
+        raise ValueError(f"config 'locus' must be one of {sorted(VALID_LOCI)}, got '{locus}'")
+    if locus not in models:
+        raise ValueError(
+            f"config 'subst_models' has no entry for locus '{locus}'. "
+            f"Available: {sorted(models)}"
+        )
+
+    return models[locus]

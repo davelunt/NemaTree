@@ -12,8 +12,8 @@ include: "rules/common.smk"
 # The locus, reference alignment, and rooting method are defined in config
 
 REF_ALIGNMENT = get_reference(config)
+SUBST_MODEL = get_substitution_model(config)
 
-# ROOTING = get_rooting(config)
 config["rooting"] = get_rooting(config)
 
 # output formats for trees, default is html (also png, pdf, svg)

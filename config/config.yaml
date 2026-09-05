@@ -10,7 +10,7 @@ conda: "../workflow/envs/environment.yaml"  # leave this unedited
 # ==================================
 # specify a name: "filepath" pair
 samples:
-  LSUtestadd2: "resources/samples/LSUtestadd.fasta"
+  SSUtestadd: "resources/samples/SSUtestadd.fasta"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False # options are True or False
@@ -21,7 +21,7 @@ min_seq_length: 500
 # ==================================
 
 # (1) Choose locus to analyse: "SSU" or "LSU"
-locus: "LSU"
+locus: "SSU"
 
 # (2) Choose scope of the reference library: "genus" or "clades123"
 scope: "genus"
@@ -61,25 +61,30 @@ cialign_retain_short_list: "config/retain_short.txt"
 # Phylogenetics
 # =============
 
-# IQtree substitution model
-# -------------------------
-subst_model: "GTR+R3" 
+# IQtree substitution models
+# --------------------------
+subst_models: 
+  SSU: "GTR+R3"
+  LSU: "TIM3+F+G4"
 # SSU best-fit by BIC is GTR+R3 but GTR+I+G usually fine also.
 # LSU, Best-fit by BIC AIC is TIM3+F+G4 but GTR+I+G usually fine also.
 
 
 # Rooting the phylogenetic tree (in toytree)
 # ------------------------------------------
-# CHOICE NEEDED HERE
-# --------------------
-# Method: choose one of "outgroup", "outgroup_list", "midpoint", "mad"
-
-# Recommendations:
-#   genus scope     -> method: "outgroup",      outgroup_name: "Pratylenchus"
-#   clades123 scope -> method: "outgroup_list" (list chosen automatically per locus)
-
+# =====================
+# CHOICE REQUIRED HERE
+# =====================
+# Rooting method: choose one of "outgroup", "outgroup_list", "midpoint", "mad"
 rooting:
   method: "outgroup"
+
+# Recommendations:
+# ----------------
+# | Scope       | Method        | Taxa                                 |
+# | ----------- | ------------- | ------------------------------------ |
+# | genus       | outgroup      | outgroup_name: "Pratylenchus"        |
+# | clades123   | outgroup_list | list chosen automatically per locus  |
 
   # Used when method == "outgroup"
   outgroup_name: "Pratylenchus"
@@ -107,7 +112,14 @@ toytree_tipcolor: "#52373A"
 toytree_tipmarker: "o"
 
 # add (triangle) icons to added sequence names
-add_treename_icons: True
+# add_treename_icons: True
+
+# Formatting for newly added sequences in tree plots
+format_added_seqs: True   # highlight added tips with a symbol + colour
+
+added_sequence_style:
+  marker: "▲ "      # prefix shown before newly added tip names
+  color: "red"      # colour used for newly added tip names
 
 # Species name coloring TRUE/FALSE
 # FALSE is all black names with red for added seqs
@@ -180,9 +192,9 @@ toytree_width: 800
 toytree_height: 1800
 toytree_node_sizes: 3
 
-# select graphic formats to save final treefile, default html
+# select graphic formats to save final treefile
 tree_formats:
   - "html"
-  - "png"
+  # - "png"
   # - "pdf"
   # - "svg"

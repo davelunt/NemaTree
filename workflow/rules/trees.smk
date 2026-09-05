@@ -11,7 +11,8 @@ rule iqtree:
     output:
         treefile="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile",
     params:
-        model=config["subst_model"],
+        # model=config["subst_model"],
+        model=SUBST_MODEL,
         prefix="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree",
     shell:
         """
