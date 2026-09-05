@@ -111,8 +111,8 @@ toytree_tipsize: 6
 toytree_tipcolor: "#52373A"
 toytree_tipmarker: "o"
 
-# add (triangle) icons to added sequence names
-# add_treename_icons: True
+# font size for tip labels, 12 is standard.
+font_size: 12
 
 # Formatting for newly added sequences in tree plots
 format_added_seqs: True   # highlight added tips with a symbol + colour

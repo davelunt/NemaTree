@@ -98,10 +98,10 @@ color_by_species = snakemake.config.get("color_by_species", False)
 species_colors = snakemake.config.get("species_colors", {})
 
 
-# Generate tip colours
+# Generate tip label colours
 def get_tip_color(name):
-    """Colour for one tip: red (or configured colour) for newly added
-    tips, else species colour, or black."""
+    """Colour for tip label: red (or configured colour) for newly added
+    tips, else species colour, else black."""
     if name in tips_to_mark and format_added_seqs:
         return added_color
     if color_by_species:
@@ -113,6 +113,7 @@ def get_tip_color(name):
 
 
 tip_colors = [get_tip_color(name) for name in original_names]
+font_size = snakemake.config.get("font_size", 12)
 
 # Draw tree and get axes
 canvas, axes, mark1 = rtree.draw(
@@ -121,9 +122,11 @@ canvas, axes, mark1 = rtree.draw(
     node_sizes=snakemake.config.get("toytree_node_sizes", 3),
     tip_labels=tip_labels,
     tip_labels_colors=tip_colors,
+    tip_labels_style={"font-size": font_size},
+    # tip_labels_style={"font-size": 6}
 )
 
-# Annotate tips
+# Annotate tree tips
 tipsize = snakemake.config.get("toytree_tipsize", 6)
 tipcolor = snakemake.config.get("toytree_tipcolor", "#52373A")
 tipmarker = snakemake.config.get("toytree_tipmarker", "o")

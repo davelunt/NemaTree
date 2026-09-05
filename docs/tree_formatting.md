@@ -2,13 +2,21 @@
 
 ## I like the tree and want to save it as an image for a publication
 
-Default output is html. Using the config you can also save in other file formats, eg .png or .svg.
+Default output is html. Using the config you can also save in other file formats, eg .png, .pdf or .svg.
 
 I have moved many image settings to the config file, investigate these. You will be able to change the colours, set the image size etc. I think you will have enough control to format a publication ready image.
 
 If you need to make more modifications the best way to get complete control over formatting is to take the `results/iqtree/<sample_name>.treefile` produced by IQ-tree and to optimse it using toytree python package outside of the workflow.
 
-Many options can be copied from `workflow/scripts/toytree.py`, `.../toytreref.py` or you can use the toytree documentation at https://toytree.readthedocs.io
+Many options can be copied from `workflow/scripts/toytree_colours.py`, or you can use the toytree documentation at https://toytree.readthedocs.io
+
+### Image size
+
+You may need to increase the image height in the config file if you think the names are too squashed together.
+
+`toytree_height: 1800`
+
+You can change this and then delete the image to force snakemake to redo just the plotting. Or try `snakemake --cores 3 --force toytree_plot` to rerun just the plotting rule with the new config toytree_height.
 
 
 ## Tree rooting
