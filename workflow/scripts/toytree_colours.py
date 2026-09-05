@@ -17,7 +17,7 @@ with open(newick) as f:
 cfg = snakemake.config.get("rooting", {})
 method = cfg.get("method")
 
-# Apply rooting, with midpoint fallback only for data-dependent failures
+# Apply rooting, with midpoint fallback
 if cfg["method"] == "outgroup":
     pattern_label = f"~{cfg['outgroup_name']}"
     try:
@@ -63,7 +63,7 @@ elif cfg["method"] == "mad":
         rtree = tree1.mod.root_on_midpoint()
 
 
-# Load tip names of newly-added sequences and handle missing files
+# Load tip names of newly-added sequences
 tips_to_mark = set()
 if newtips_list and os.path.exists(newtips_list):
     with open(newtips_list) as f:
@@ -99,7 +99,7 @@ species_colors = snakemake.config.get("species_colors", {})
 
 
 # Generate tip label colours
-def get_tip_color(name):
+def get_label_color(name):
     """Colour for tip label: red (or configured colour) for newly added
     tips, else species colour, else black."""
     if name in tips_to_mark and format_added_seqs:
@@ -111,9 +111,9 @@ def get_tip_color(name):
         )
     return "black"
 
-
-tip_colors = [get_tip_color(name) for name in original_names]
-font_size = snakemake.config.get("font_size", 12)
+# Tip label colours and font size
+label_colors = [get_label_color(name) for name in original_names]
+label_font_size = snakemake.config.get("font_size", 12)
 
 # Draw tree and get axes
 canvas, axes, mark1 = rtree.draw(
@@ -121,9 +121,8 @@ canvas, axes, mark1 = rtree.draw(
     height=snakemake.config.get("toytree_height", 1600),
     node_sizes=snakemake.config.get("toytree_node_sizes", 3),
     tip_labels=tip_labels,
-    tip_labels_colors=tip_colors,
-    tip_labels_style={"font-size": font_size},
-    # tip_labels_style={"font-size": 6}
+    tip_labels_colors=label_colors,
+    tip_labels_style={"font-size": label_font_size},
 )
 
 # Annotate tree tips
