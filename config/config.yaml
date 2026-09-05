@@ -10,7 +10,7 @@ conda: "../workflow/envs/environment.yaml"  # leave this unedited
 # ==================================
 # specify a name: "filepath" pair
 samples:
-  SSUunknowns: "resources/samples/unknown.fasta"
+  LSUtestadd2: "resources/samples/LSUtestadd.fasta"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False # options are True or False
@@ -21,7 +21,7 @@ min_seq_length: 500
 # ==================================
 
 # (1) Choose locus to analyse: "SSU" or "LSU"
-locus: "SSU"
+locus: "LSU"
 
 # (2) Choose scope of the reference library: "genus" or "clades123"
 scope: "genus"
@@ -67,32 +67,37 @@ subst_model: "GTR+R3"
 # SSU best-fit by BIC is GTR+R3 but GTR+I+G usually fine also.
 # LSU, Best-fit by BIC AIC is TIM3+F+G4 but GTR+I+G usually fine also.
 
+
 # Rooting the phylogenetic tree (in toytree)
 # ------------------------------------------
-# only one of these below should be True
-# recommendation: 
-  # whole genus use: outgroup_name: "Pratylenchus"
-  # clades 123 use: outgroup_list_names: M. aretiellia and M. baetica (see below)
+# CHOICE NEEDED HERE
+# --------------------
+# Method: choose one of "outgroup", "outgroup_list", "midpoint", "mad"
+
+# Recommendations:
+#   genus scope     -> method: "outgroup",      outgroup_name: "Pratylenchus"
+#   clades123 scope -> method: "outgroup_list" (list chosen automatically per locus)
+
 rooting:
-  outgroup_root: True
+  method: "outgroup"
+
+  # Used when method == "outgroup"
   outgroup_name: "Pratylenchus"
 
-  outgroup_list: False
-  outgroup_list_names: # root on ancestral node of these taxa, exact names should be used
-  # SSU sequences
-    # - "M_artiellia_AF442192"
-    # - "M_artiellia_KC875391"
-    # - "M_baetica_KP896296"
-    # - "M_baetica_MH011982"
-  # LSU sequences
-    - "M_artiellia_LSU_AY150369"
-    - "M_artiellia_KY433426"
-    - "M_baetica_LSU_AY150367"
-    - "M_baetica_LSU_MH011971"
+  # Root on the ancestral node of these taxa (exact names).
+  # The list matching the chosen SSU/LSU locus is picked automatically.
+  outgroup_lists:
+    SSU:
+      - "M_artiellia_AF442192"
+      - "M_artiellia_KC875391"
+      - "M_baetica_KP896296"
+      - "M_baetica_MH011982"
+    LSU:
+      - "M_artiellia_LSU_AY150369"
+      - "M_artiellia_KY433426"
+      - "M_baetica_LSU_AY150367"
+      - "M_baetica_LSU_MH011971"
 
-  midpoint_root: False
-
-  mad_root: False
 
 # Colouring and labelling of tip names
 # ------------------------------------

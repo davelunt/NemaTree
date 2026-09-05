@@ -15,7 +15,9 @@ Remember to change both the name (myseqs), and the filepath (resources/samples/m
 
 If you are working with both 18S/SSU and 26S/LSU sequences I highly recommend you incorporate this into the name (eg SSUexpt1) as mixing LSU and SSU seqs in the samples and reference will lead to hard-to-diagnose errors.
 
-Although technically you can list multiple files here under samples, you should ask yourself if that is really what you want to do. Files listed here will place sequences onto one tree per sample, not all into one tree. This workflow is not designed for processing many sequences (hundreds) it is designed differently. Evolutionary Placement Algorithm (EPA) might be a better approach.
+The `resources/samples` directory contains some test files you can use to get going.
+
+Although technically you can list multiple files here under samples, you should ask yourself if that is really what you want to do. Files listed here will place sequences onto one tree per sample file, not all into one tree. This workflow is not designed for processing many sequences (hundreds) it is designed differently. Evolutionary Placement Algorithm (EPA) might be a better approach for hundreds of sequences.
 
 Also see [sequence-prep.md](sequence-prep.md)
 
@@ -24,14 +26,21 @@ Also see [sequence-prep.md](sequence-prep.md)
 
 There are reference sequence alignment files supplied in resources/reference for both LSU and SSU.
 
-- `SSU_genus_ref158.fas` contains (N=158) sequences from species across the entire genus, and Pratylenchus outgroups.
-- `SSU_clades123_ref158.fas` contains a subset of the genus data (~N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group) sensu Holterman et al (2009), de Ley et al (2002). Two M. artiellia and two M. baetica are included as outgroups.
+- `SSU_genus_ref156.fas` contains (N=156) sequences from species across the entire genus, and Pratylenchus outgroups.
+- `SSU_clades123_ref156.fas` contains a subset of the genus data (~N=122) consisting of only clade 1 (tropical apomicts), clade 2 (M. hapla group) and clade 3 (M. chitwoodi group) sensu Holterman et al (2009), de Ley et al (2002). Two M. artiellia and two M. baetica are included as outgroups.
 - `LSU_genus_ref5.fasta` is the genus reference alignment for LSU sequences with Pratylenchus outgroups.
 - `LSU_clades123_ref5.fasta` is the reference library for clades 123, with M. artiellia and M. baetica included as outgroups
 
+The config file asks you to choose two things:
+(1) Choose locus to analyse: "SSU" or "LSU"
+locus: "SSU"
 
-Choose whether you want to add sequences to the whole genus data (config: `clades123: FALSE`) or just clades 123 data (`clades123: TRUE`). Its probably best to start with the whole genus reference, and use clades123 reference when you know (roughly) what you are dealing with.
+(2) Choose scope of the reference library: "genus" or "clades123"
+scope: "genus"
 
+Choose whether you want to add sequences to the whole genus data or just clades 123 data. Its probably best to start with the whole genus reference, and use clades123 reference when you know (roughly) what you are dealing with.
+
+Given these two choices the workflow should select the correct reference library.
 
 ### Modifying reference alignments
 
@@ -78,15 +87,28 @@ See also [tree-formatting.md](tree-formatting.md)
 
 The IQtree substitution model can be specified here. The default is GTR+R3 which was determined to be best fit for SSU reference alignment by BIC. For LSU the best fit model was TIM3+F+G4. On slightly different data the model may vary slightly, but usually makes little difference. Using GTR+I+G is a good option for most datasets.
 
-You should change the tree rooting to match your analysis using TRUE and FALSE. Make sure only one outgroup option is labelled TRUE
+### My Rooting Recommendations:
 
-If you are using the whole genus reference alignment, the tree ought to be rooted on Pratylenchus sequences as the outgroup. Use `outgroup_root: True`
+You will need to choose the rooting method:
 
-If you are using the clades123 reference alignment, the tree will be rooted by using the outgroup clade containing M. artiellia and M. baetica. Use `outgroup_list: TRUE`. The names of these outgroup taxa are supplied, make sure you have uncommented only the ones for your gene (LSU or SSU).
+Choose one of "outgroup", "outgroup_list", "midpoint", "mad". If rooting fails it will try to midpoint root the tree.
 
-IMPORTANT: Only one rooting option can be true, so if you set `outgroup_list: TRUE` then you must set `outgroup_root: False`
+I suggest:
 
-Changing these options should not require the entire workflow to be rerun. Delete the `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html` file and rerun the workflow to generate a new tree image with the new root from the previous IQ-tree treefile.
+| Scope      | Method | Taxa |
+| ----------- | ----------- | --------------------------- |
+| genus      | outgroup       | outgroup_name: "Pratylenchus" |
+| clades123   | outgroup_list        | list chosen automatically per locus |
+
+The `outgroup` and `outgroup_list` are specified in the config file.
+
+`outgroup` looks for the specified text in tip names ('Pratylenchus') rather than needing an exact tip name.
+
+`outgroup_list` does need a list of exact tip names.
+
+Changing these rooting options should not require the entire workflow to be rerun. Delete the `results/reporting/toytree/myseqsname_mafft_cialign_iqtree.html` file and rerun the workflow to generate a new tree image with the new root using the previous IQ-tree treefile.
+
+Or you could try `snakemake --cores 3 --forcerun toytree_plot` to just rerun the plotting.
 
 
 ## References

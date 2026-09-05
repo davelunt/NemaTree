@@ -58,6 +58,11 @@ If you know me at all you will know that I just shouted "Yes!!" very loudly. Thi
 Pushing this forward will require a community effort to grow well-characterised reference isolates for the genomics of species. I am of course happy to collaborate with anyone who needs bioinformatics support in their genomics projects.
 
 
+## Use of AI
+
+AI/LLMs did not write this workflow, I did. I used LLMs to assist me at some key points. I would often put Snakemake error messages into the LLM, as it pinpointed my errors instantly, whereas I would take longer to track down exactly what I had done wrong. Most python scripts were written by me (maybe all of them?) but I would ask LLMs to critique the code, and I would consider their improvements. Google Gemini was terrible, and I could not trust it with python code. I had to redesign the way config.yaml and some scripts interacted (determining the reference alignment, later determining the **active** alignment, selecting the rooting methods), and LLMs advised and wrote some lines of .yaml and python to my design and instructions. The best assistant I found by far was Proton's Lumo 2.0 Lite. What do I think of LLMs? Aside from the environmental costs, and the dubious billionaires involved, I am comfortable making use of them as tools for my work in a specific pattern. It works for me because I know exactly how to write Snakemake workflows, am able to spot most errors in python code, and have built checks and failsafes into the workflow. If you don't like LLMs, its not untrue to say this was written by me (with only a little assistance).
+
+
 ## References
 
 Szitenberg et al. Comparative Genomics of Apomictic Root-Knot Nematodes: Hybridization, Ploidy, and Dynamic Genome Change. Genome Biol. Evol. 2017. 2844–2861. doi:10.1093/gbe/evx201

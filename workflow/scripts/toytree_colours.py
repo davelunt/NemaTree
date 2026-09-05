@@ -13,75 +13,127 @@ outfile = snakemake.output
 with open(newick) as f:
     tree1 = toytree.tree(f.read())
 
-# Tree rooting config
+
+# Tree rooting — settings are pre-validated by get_rooting() at DAG-build
+# time (common.smk), so no defensive checks needed here.
 cfg = snakemake.config.get("rooting", {})
-outgroup_root = cfg.get("outgroup_root", False)
-midpoint_root = cfg.get("midpoint_root", False)
-mad_root = cfg.get("mad_root", False)
-outgroup_name = cfg.get("outgroup_name", None)
-outgroup_list = cfg.get("outgroup_list", False)
-listnames = cfg.get("outgroup_list_names", [])
+method = cfg.get("method")
 
-# Enforce exactly one rooting method is True
-flags_true = sum(
-    [bool(outgroup_root), bool(outgroup_list), bool(midpoint_root), bool(mad_root)]
-)
-if flags_true != 1:
-    raise ValueError(
-        "Config error: Exactly one of rooting.outgroup_root, rooting.outgroup_list, "
-        "rooting.midpoint_root, or rooting.mad_root must be True."
-    )
-
-# Apply rooting method with midpoint fallback
-if outgroup_root:
-    if not outgroup_name or not isinstance(outgroup_name, str):
-        raise ValueError(
-            "Config error: rooting.outgroup_root=True requires rooting.outgroup_name (string)."
-        )
-    pattern_label = f"~{outgroup_name}"
+# Apply rooting, with midpoint fallback only for data-dependent failures
+if cfg["method"] == "outgroup":
+    pattern_label = f"~{cfg['outgroup_name']}"
     try:
         rtree = tree1.root(pattern_label)
         print(f"Rooted on outgroup pattern: {pattern_label}")
     except Exception as e:
         print(
-            f"Warning: Outgroup pattern '{pattern_label}' failed ({e}). Falling back to midpoint root."
+            f"Warning: Outgroup pattern '{pattern_label}' failed ({e}). "
+            f"Falling back to midpoint root."
         )
         rtree = tree1.mod.root_on_midpoint()
 
-elif outgroup_list:
-    if not isinstance(listnames, list) or not listnames:
-        raise ValueError(
-            "Config error: rooting.outgroup_list=True requires rooting.outgroup_list_names "
-            "(a non-empty list of tip labels or patterns)."
-        )
+elif cfg["method"] == "outgroup_list":
+    listnames = cfg["outgroup_list_names"]  # auto-resolved per locus
 
     labels = set(tree1.get_tip_labels())
     missing = [n for n in listnames if (not n.startswith("~") and n not in labels)]
     if missing:
         print(
-            f"Warning: These outgroup names are not present exactly in the tree (patterns ignored): {missing}"
+            f"Warning: These outgroup names are not present exactly in the tree "
+            f"(patterns ignored): {missing}"
         )
-
     try:
         rtree = tree1.root(*listnames)
         print(f"Rooted on outgroup(s): {listnames}")
     except Exception as e:
         print(
-            f"Warning: Outgroup rooting with {listnames} failed ({e}). Falling back to midpoint."
+            f"Warning: Outgroup rooting with {listnames} failed ({e}). "
+            f"Falling back to midpoint."
         )
         rtree = tree1.mod.root_on_midpoint()
 
-elif midpoint_root:
+elif cfg["method"] == "midpoint":
     rtree = tree1.mod.root_on_midpoint()
     print("Rooted on midpoint.")
 
-elif mad_root:
+elif cfg["method"] == "mad":
     try:
         rtree = tree1.mod.root_on_minimal_ancestor_deviation()
         print("Rooted using MAD.")
     except Exception as e:
         print(f"Warning: MAD rooting failed ({e}). Falling back to midpoint root.")
         rtree = tree1.mod.root_on_midpoint()
+
+
+# # Tree rooting config
+# cfg = snakemake.config.get("rooting", {})
+# outgroup_root = cfg.get("outgroup_root", False)
+# midpoint_root = cfg.get("midpoint_root", False)
+# mad_root = cfg.get("mad_root", False)
+# outgroup_name = cfg.get("outgroup_name", None)
+# outgroup_list = cfg.get("outgroup_list", False)
+# listnames = cfg.get("outgroup_list_names", [])
+
+# # Enforce exactly one rooting method is True
+# flags_true = sum(
+#     [bool(outgroup_root), bool(outgroup_list), bool(midpoint_root), bool(mad_root)]
+# )
+# if flags_true != 1:
+#     raise ValueError(
+#         "Config error: Exactly one of rooting.outgroup_root, rooting.outgroup_list, "
+#         "rooting.midpoint_root, or rooting.mad_root must be True."
+#     )
+
+# # Apply rooting method with midpoint fallback
+# if outgroup_root:
+#     if not outgroup_name or not isinstance(outgroup_name, str):
+#         raise ValueError(
+#             "Config error: rooting.outgroup_root=True requires rooting.outgroup_name (string)."
+#         )
+#     pattern_label = f"~{outgroup_name}"
+#     try:
+#         rtree = tree1.root(pattern_label)
+#         print(f"Rooted on outgroup pattern: {pattern_label}")
+#     except Exception as e:
+#         print(
+#             f"Warning: Outgroup pattern '{pattern_label}' failed ({e}). Falling back to midpoint root."
+#         )
+#         rtree = tree1.mod.root_on_midpoint()
+
+# elif outgroup_list:
+#     if not isinstance(listnames, list) or not listnames:
+#         raise ValueError(
+#             "Config error: rooting.outgroup_list=True requires rooting.outgroup_list_names "
+#             "(a non-empty list of tip labels or patterns)."
+#         )
+
+#     labels = set(tree1.get_tip_labels())
+#     missing = [n for n in listnames if (not n.startswith("~") and n not in labels)]
+#     if missing:
+#         print(
+#             f"Warning: These outgroup names are not present exactly in the tree (patterns ignored): {missing}"
+#         )
+
+#     try:
+#         rtree = tree1.root(*listnames)
+#         print(f"Rooted on outgroup(s): {listnames}")
+#     except Exception as e:
+#         print(
+#             f"Warning: Outgroup rooting with {listnames} failed ({e}). Falling back to midpoint."
+#         )
+#         rtree = tree1.mod.root_on_midpoint()
+
+# elif midpoint_root:
+#     rtree = tree1.mod.root_on_midpoint()
+#     print("Rooted on midpoint.")
+
+# elif mad_root:
+#     try:
+#         rtree = tree1.mod.root_on_minimal_ancestor_deviation()
+#         print("Rooted using MAD.")
+#     except Exception as e:
+#         print(f"Warning: MAD rooting failed ({e}). Falling back to midpoint root.")
+#         rtree = tree1.mod.root_on_midpoint()
 
 # Load tip names of newly-added sequences and handle missing files
 tips_to_mark = set()
@@ -124,12 +176,12 @@ tip_colors = [
     )
     for name in original_names
 ]
- 
+
 # Draw tree and get axes
 canvas, axes, mark1 = rtree.draw(
-    width = snakemake.config.get("toytree_width", 800),
-    height = snakemake.config.get("toytree_height", 1600),
-    node_sizes = snakemake.config.get("toytree_node_sizes", 3),
+    width=snakemake.config.get("toytree_width", 800),
+    height=snakemake.config.get("toytree_height", 1600),
+    node_sizes=snakemake.config.get("toytree_node_sizes", 3),
     tip_labels=tip_labels,
     tip_labels_colors=tip_colors,
 )
@@ -138,7 +190,9 @@ canvas, axes, mark1 = rtree.draw(
 tipsize = snakemake.config.get("toytree_tipsize", 6)
 tipcolor = snakemake.config.get("toytree_tipcolor", "#52373A")
 tipmarker = snakemake.config.get("toytree_tipmarker", "o")
-rtree.annotate.add_tip_markers(axes=axes, size=tipsize, color=tipcolor, marker=tipmarker)
+rtree.annotate.add_tip_markers(
+    axes=axes, size=tipsize, color=tipcolor, marker=tipmarker
+)
 # rtree.annotate.add_tip_markers(axes=axes, size=6, color="#52373A", marker="o")
 
 # Save to figure(s)
