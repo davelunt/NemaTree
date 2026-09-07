@@ -38,9 +38,13 @@ If you have issues, or would like additions, I may be able to help. If you impro
 
 ![DAG rule-graph of snakemake workflow](docs/images/rule-graph.png)
 
-The user should provide DNA fasta sequences in a file in the `resources/samples/` directory. See [sequence help doc](docs/sequence_prep.md)
+## config file
 
-The workflow can be configured using the `config.yaml` file, where you can specify parameters such as the minimum sequence length and the reference alignment file.
+The workflow should be configured using the `config/config.yaml` file.
+
+The user needs to provide DNA fasta sequences in a single file in the `resources/samples/` directory, and specify this file (and give it a short name) in the config file. See [sequence help doc](docs/sequence_prep.md)
+
+You will also need to identify which reference libraary to use (SSU or LSU) and whether you want to analyse all sequences in the genus, or only those in clades 1, 2, and 3.
 
 The workflow will:
 
@@ -65,17 +69,18 @@ Extra help is available in the [installation help doc](docs/installation.md)
 
 Make sure you have provided (DNA not RNA) fasta sequences in a file in the `resources/samples/` directory. Using an informative short filename will help you keep track of your samples as it will be used throughout the workflow. No spaces in filenames. 
 
-Extra [sequence_prep](docs/sequence_prep.md) help is provided. As a test, try setting the sequence file as `SSUtestadd.fas` or `LSUtestadd.fasta` and then running it as described below.
+Extra [sequence_prep](docs/sequence_prep.md) help is provided. As a test, try setting the sequence file as `SSUtestadd.fasta` or `LSUtestadd.fasta` and then running it as described below.
 
 ### Check `config/config.yaml`
 
 This file is where you can configure the entire analysis and should contain:
 
-- a short name for your analysis (REQUIRED, this will be in all your output filenames)
-- the path to your file containing your samples (REQUIRED)
-- the name of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123 (OPTIONAL)
+- a short name for your analysis, this will be in all your output filenames
+- the path to your file containing your samples
+- Locus, whether this is LSU or SSU
+- the name of the reference alignment file to which your sequences will be aligned. Choose between the whole genus or just clades123
 
-Except for the sample file, all other config parameters have default values and can be left as is. Check though that you have the correct LSU or SSU reference database selected.
+Many config parameters have default values and can be left as is.
 
 More help is provided in the [configure](docs/configure.md) docs for setting up the config file.
 
