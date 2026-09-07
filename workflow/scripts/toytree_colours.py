@@ -116,8 +116,9 @@ def get_label_color(name):
 label_colors = [get_label_color(name) for name in original_names]
 label_font_size = snakemake.config.get("font_size", 12)
 
+
 # Draw tree and get axes
-canvas, axes, mark1 = rtree.draw(
+draw_kwargs = dict(
     width=snakemake.config.get("toytree_width", 800),
     height=snakemake.config.get("toytree_height", 1600),
     node_sizes=snakemake.config.get("toytree_node_sizes", 3),
@@ -125,6 +126,11 @@ canvas, axes, mark1 = rtree.draw(
     tip_labels_colors=label_colors,
     tip_labels_style={"font-size": label_font_size},
 )
+
+if snakemake.config.get("phylogenetic_support_values", False):
+    draw_kwargs["node_labels"] = "name"
+
+canvas, axes, mark1 = rtree.draw(**draw_kwargs)
 
 # Annotate tree tips
 tipsize = snakemake.config.get("toytree_tipsize", 6)

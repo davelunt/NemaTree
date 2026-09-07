@@ -11,15 +11,16 @@ rule iqtree:
     output:
         treefile="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile",
     params:
-        # model=config["subst_model"],
         model=SUBST_MODEL,
         prefix="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree",
+        support=SUPPORT_FLAG_STRING,
     shell:
         """
         iqtree -s {input} \
                -pre {params.prefix} \
                -m {params.model} \
                --seqtype DNA \
+               {params.support} \
                -redo \
                --quiet \
                -T AUTO

@@ -51,9 +51,27 @@ If you are building trees of clades 1,2 and 3 I would suggest using M.artiellia 
 
 Midpoint rooting and minimum ancestral deviation (MAD) rooting produce good trees also.
 
+## Bootstrap and other support values
+
+These can be changed in the config file. Personally I don't believe these support values often tell us very much in an experiment adding new samples, and I prefer to leave them off the final tree.
+
+There is a switch to turn off support values in config and `phylogenetic_support_values: False` will prevent them from being calculated and plotted.
+
+`aLRT` is SH-like approximate likelihood ratio test. `ultrafast_bootstrap` is the ultrafast bootstrap approximation (UFBoot). Both are described in the IQtree documentation.
+
+```
+support_value_types:
+    aLRT: 1000
+    ultrafast_bootstrap: 1000
+    ```
+
+On the tree nodes they are plotted as aLRT/UFboot
+
+To exclude one you could just comment out the line above. 1000 replicates, specified for both, is fairly standard but you can change the number if you wish.
+
 
 ## Relationships within clade 1
 
-The relationships **within** clade 1 (tropical apomicts) are very unstable. I would not be confident about inferring too much here with either SSU or LSU rRNA dataset which have low diversity. We would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are allopolyploids, phylogenomics seems to be the best approach.
+The relationships **within** clade 1 (tropical apomicts) are very unstable. I would not be confident about inferring too much here with either SSU or LSU rRNA dataset which have low diversity. Importantly, we would not (biologically) expect any single locus to accurately reflect the relationships for taxa that are from an allopolyploid radiation, phylogenomics seems to be the best approach.
 
 Summary: this workflow is great at placing unknown RKN samples into a phylogenetic context, but the resolution of closely related species may need much more (carefully selected) data.

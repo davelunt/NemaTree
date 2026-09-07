@@ -69,6 +69,15 @@ subst_models:
 # SSU best-fit by BIC is GTR+R3 but GTR+I+G usually fine also.
 # LSU, Best-fit by BIC AIC is TIM3+F+G4 but GTR+I+G usually fine also.
 
+# IQtree support values
+# ----------------------------
+# Master switch: compute support values at all?
+phylogenetic_support_values: True
+# Types of support to compute, with replicate counts
+support_value_types:
+    aLRT: 1000
+    ultrafast_bootstrap: 1000
+
 
 # Rooting the phylogenetic tree (in toytree)
 # ------------------------------------------

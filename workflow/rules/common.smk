@@ -119,3 +119,41 @@ def get_substitution_model(config):
         )
 
     return models[locus]
+
+
+# IQtree phylogenetic support value settings
+# ------------------------------------------
+# Map config support-value keys to IQ-TREE command-line flags
+SUPPORT_FLAGS = {
+    "ultrafast_bootstrap": "-B",   # ultrafast bootstrap replicates
+    "aLRT": "-alrt",               # SH-aLRT replicates
+}
+
+def get_support_flags(config):
+    """Return the concatenated IQ-TREE support-value flags,
+    or '' if phylogenetic_support_values is False."""
+    if not config.get("phylogenetic_support_values", False):
+        return ""
+
+    types = config.get("support_value_types", {})
+    if not types:
+        raise ValueError(
+            "config 'phylogenetic_support_values' is True but "
+            "'support_value_types' is empty or missing."
+        )
+
+    flags = []
+    for key, replicates in types.items():
+        if key not in SUPPORT_FLAGS:
+            raise ValueError(
+                f"Unknown support_value_type '{key}'. "
+                f"Valid types: {sorted(SUPPORT_FLAGS)}"
+            )
+        if not isinstance(replicates, int) or replicates <= 0:
+            raise ValueError(
+                f"Replicate count for '{key}' must be a positive integer, "
+                f"got {replicates!r}"
+            )
+        flags.append(f"{SUPPORT_FLAGS[key]} {replicates}")
+
+    return " ".join(flags)

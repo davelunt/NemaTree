@@ -15,6 +15,10 @@ include: "rules/common.smk"
 REF_ALIGNMENT = get_reference(config)
 SUBST_MODEL = get_substitution_model(config)
 
+# IQtree support value settings
+# BOOTSTRAP_FLAG = get_bootstrap_flag(config)
+SUPPORT_FLAG_STRING = get_support_flags(config)
+
 config["rooting"] = get_rooting(config)
 
 # output formats for trees, default is html (also png, pdf, svg)
