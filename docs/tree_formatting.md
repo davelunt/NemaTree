@@ -63,9 +63,9 @@ There is a switch to turn off support values in config and `phylogenetic_support
 support_value_types:
     aLRT: 1000
     ultrafast_bootstrap: 1000
-    ```
+```
 
-On the tree nodes they are plotted as aLRT/UFboot
+On the tree nodes they are plotted in the order aLRT/UFboot
 
 To exclude one you could just comment out the line above. 1000 replicates, specified for both, is fairly standard but you can change the number if you wish.
 
