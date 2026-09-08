@@ -1,8 +1,8 @@
 # List of output files
 
 This is an overview of the files written by the workflow
-`sample` at the start of each name is text defined in config/config.yaml as the **name** given to your input fasta file (mynewseqs:). 
-
+`sample` at the start of each name is text defined in config/config.yaml as the **name** given to your input fasta file (mynewseqs:).
+ 
 ```
 samples:
   mynewseqs: "resources/samples/myseqs.fas"
@@ -16,7 +16,7 @@ Some output is created or not depending on your config settings
 
 rule `CIAlign_aln_statsvisuals` uses "results/reporting/cialign/{sample}_mafft_cialign_output.png" as output, but in reality CIAlign saves many more files (see below). This may not be best practice and a `directory()` as output could be better. It does however generate outputs correctly.
 
-
+```
 results/
     cialign/
         sample_mafft_cialign_cleaned.fasta # alignment file after processing
@@ -76,4 +76,4 @@ results/
             sample_clean_fasta_log.txt
     samples/
         sample_validated.fas
-    
+```
