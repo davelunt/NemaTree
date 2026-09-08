@@ -2,6 +2,7 @@
 #  ------------
 from pathlib import Path
 
+
 # SEQKIT, report on validated samples fasta file
 rule seq_stats_initial:
     input:
