@@ -1,0 +1,62 @@
+# ============================================
+# TEST CONFIGURATION - integration test sandbox
+# Small values, tiny files, fast CI runs
+# ============================================
+
+# Sample(s) to run through the pipeline
+samples:
+  SSUunknown: "resources/samples/unknown.fasta"
+
+# -------------------------------
+# Reference alignment (CHOOSE)
+# -------------------------------
+locus: "SSU"
+scope: "genus"
+
+reference_alignments:
+  SSU:
+    genus: "resources/reference/SSU_genus_test.fas"
+    clades123: "resources/reference/SSU_clades123_test.fas"
+  LSU:
+    genus: "resources/reference/LSU_genus_test.fas"
+    clades123: "resources/reference/LSU_clades123_test.fas"
+
+# -------------------------------
+# Rooting the phylogenetic tree
+# -------------------------------
+rooting:
+  method: "outgroup"
+  outgroup_name: "Pratylenchus"
+  outgroup_lists:
+    SSU:
+      - "M_artiellia_test"
+    LSU:
+      - "M_artiellia_LSU_test"
+
+# IQtree substitution model per locus
+# -----------------------------------
+subst_models:
+  SSU: "GTR+R3"
+  LSU: "TIM3+F+G4"
+
+# IQtree support values
+# ---------------------
+phylogenetic_support_values: True
+support_value_types:
+  ultrafast_bootstrap: 100    # reduced from 1000 for CI speed
+  aLRT: 100
+
+# Newly added sequence formatting in tree plots
+format_added_seqs: True
+added_sequence_style:
+  marker: "▲ "
+  color: "red"
+
+color_by_species: True
+species_colors:
+  M_artiellia: "#1f77b4"
+
+# toytree plot sizing (kept small for fast rendering)
+toytree_width: 800
+toytree_height: 800
+font_size: 10

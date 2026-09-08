@@ -11,9 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      # Step 1: Install your environment with Mamba natively on the runner
       - name: Setup Mamba Environment
         uses: mamba-org/setup-micromamba@v2
         with:
@@ -21,16 +20,14 @@ jobs:
           environment-name: nematree
           cache-environment: true
 
-      # Step 2: Install Snakemake inside that native environment space
       - name: Install Snakemake
         shell: bash -l {0}
         run: |
           micromamba activate nematree
           pip install snakemake
 
-      # Step 3: Run the pipeline natively from the repository root
       - name: Run Snakemake Integration Test
         shell: bash -l {0}
         run: |
           micromamba activate nematree
-          snakemake --directory .tests/integration --snakefile workflow/Snakefile --cores 1 --show-failed-logs --all-temp
+          snakemake --directory .tests/integration --snakefile workflow/Snakefile --cores 3 --show-failed-logs --all-temp
