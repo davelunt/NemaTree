@@ -11,8 +11,9 @@ rule mafft_add_seqs:
         ref=REF_ALIGNMENT,
     output:
         newalignment="results/mafft/{sample}_mafft.fas",
+    threads: 4
     shell:
-        "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
+        "mafft --thread {threads} --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
 
 
 # check that sequences were added to the reference alignment and exit if not
@@ -39,8 +40,8 @@ rule remove_duplicate_names:
         "seqkit rmdup -n {input} > {output.aln} -D {output.duplist}"
 
 
-# remove aligned sequences if nucleotide count below threshold
-# seqs to retain no matter the length can be set in config.yaml
+# remove aligned sequences if length below threshold
+# seqs to retain, no matter the length, can be set in config.yaml
 rule CIAlign_remove_short_seqs:
     input:
         fasta="results/mafft/{sample}_mafft_nodups.fas",
@@ -61,20 +62,6 @@ rule CIAlign_remove_short_seqs:
         """
 
 
-# rule CIAlign_remove_divergent_trim:
-#     input:
-#         alignment=get_cialignment,  # either shortseqs removed or not depending on config
-#     output:
-#         cleaned="results/cialign/{sample}_mafft_cialign_cleaned.fasta",
-#         log="results/cialign/{sample}_mafft_cialign_log.txt",
-#         removed="results/cialign/{sample}_mafft_cialign_removed.txt",
-#     params:
-#         stub=lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
-#     shell:
-#         """
-#         CIAlign --infile {input.alignment} --outfile_stem {params.stub} --remove_divergent --crop_ends
-#         """
-
 rule CIAlign_remove_divergent_trim:
     input:
         alignment=get_cialignment,
@@ -86,6 +73,8 @@ rule CIAlign_remove_divergent_trim:
         stub="results/cialign/{sample}_mafft_cialign",
     shell:
         """
-        CIAlign --infile {input.alignment} --outfile_stem {params.stub} \
-                --remove_divergent --crop_ends
+        CIAlign --infile {input.alignment} \
+        --outfile_stem {params.stub} \
+        --remove_divergent \
+        --crop_ends
         """

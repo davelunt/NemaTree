@@ -1,8 +1,14 @@
+import time
+_T0 = time.perf_counter()
+print(f"[timer] script entered at {_T0}", flush=True)
+
 from contextlib import redirect_stdout, redirect_stderr
 import re
 import traceback
 from Bio import SeqIO
 from Bio.Seq import Seq
+
+print(f"[timer] imports done: {time.perf_counter() - _T0:.2f}s", flush=True)
 
 # Snakemake inputs
 input_file = snakemake.input.raw
@@ -114,6 +120,7 @@ def sanitize_fasta_headers_and_sequences(
     print(f"All sequence names written to: {original_names_file}")
     print(f"All validated FASTA records written to: {output_file}")
 
+print(f"[timer] total: {time.perf_counter() - _T0:.2f}s", flush=True)
 
 # Redirect stdout/stderr to the Snakemake rule's log file
 try:
