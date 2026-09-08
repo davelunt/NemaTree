@@ -156,7 +156,7 @@ def get_support_flags(config):
         if not isinstance(replicates, int) or replicates <= 0:
             raise ValueError(
                 f"Replicate count for '{key}' must be a positive integer, "
-                f"got {replicates!r}"
+                f"got {replicates}"
             )
         flags.append(f"{SUPPORT_FLAGS[key]} {replicates}")
 
