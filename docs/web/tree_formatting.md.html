@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tree_formatting</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="tree-formatting">Tree Formatting</h1>
+<h2
+id="i-like-the-tree-and-want-to-save-it-as-an-image-for-a-publication">I
+like the tree and want to save it as an image for a publication</h2>
+<p>Default output is html. Using the config you can also save in other
+file formats, eg .png, .pdf or .svg.</p>
+<p>I have moved many image settings to the config file, investigate
+these. You will be able to change the colours, set the image size etc. I
+think you will have enough control to format a publication ready
+image.</p>
+<p>If you need to make more modifications the best way to get complete
+control over formatting is to take the
+<code>results/iqtree/&lt;sample_name&gt;.treefile</code> produced by
+IQ-tree and to optimse it using toytree python package outside of the
+workflow.</p>
+<p>Many options can be copied from
+<code>workflow/scripts/toytree_colours.py</code>, or you can use the
+toytree documentation at https://toytree.readthedocs.io</p>
+<h3 id="image-size">Image size</h3>
+<p>You may need to increase the image height in the config file if you
+think the names are too squashed together.</p>
+<p><code>toytree_height: 1800</code></p>
+<p>You can change this and then delete the image to force snakemake to
+redo just the plotting. Or try
+<code>snakemake --cores 3 --force toytree_plot</code> to rerun just the
+plotting rule with the new config toytree_height.</p>
+<h2 id="tree-rooting">Tree rooting</h2>
+<p>You will need to choose the rooting method in config.yaml (and also
+the locus SSU/LSU)</p>
+<p>Choose one of “outgroup”, “outgroup_list”, “midpoint”, “mad”.</p>
+<p>I suggest:</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 19%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Method</th>
+<th>Taxa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>genus</td>
+<td>outgroup</td>
+<td>outgroup_name: “Pratylenchus”</td>
+</tr>
+<tr>
+<td>clades123</td>
+<td>outgroup_list</td>
+<td>list chosen automatically per locus</td>
+</tr>
+</tbody>
+</table>
+<p>The config file gives you control of rooting your tree. If your
+chosen rooting methods fails it will try to midpoint root the tree. If
+you wish to try a different rooting method just delete the treefile and
+rerun snakemake (it won’t redo all the steps, just recreate the tree
+diagram).</p>
+<p>There is also rooting information in <a
+href="configure.md">configure.md</a></p>
+<h3 id="genus-tree">Genus tree</h3>
+<p>If you are using the genus reference alignment I strongly recommend
+using the default rooting on Pratylenchus as outgroup.</p>
+<p>Midpoint rooting and minimum ancestral deviation rooting produce
+suboptimal trees for SSU.</p>
+<h3 id="clades-123-tree">Clades 123 tree</h3>
+<p>If you are building trees of clades 1,2 and 3 I would suggest using
+M.artiellia and M.baetica as outgroups. Outgroup list iof the exact tip
+names of these taxa are provided for SSU and LSU. The rooting will know
+which locus you have chosene in the config, and choose the appropriate
+oputgroup_list for that locus.</p>
+<p>Midpoint rooting and minimum ancestral deviation (MAD) rooting
+produce good trees also.</p>
+<h2 id="bootstrap-and-other-support-values">Bootstrap and other support
+values</h2>
+<p>These can be changed in the config file. Personally I don’t believe
+these support values often tell us very much in an experiment adding new
+samples, and I prefer to leave them off the final tree.</p>
+<p>There is a switch to turn off support values in config and
+<code>phylogenetic_support_values: False</code> will prevent them from
+being calculated and plotted.</p>
+<p><code>aLRT</code> is SH-like approximate likelihood ratio test.
+<code>ultrafast_bootstrap</code> is the ultrafast bootstrap
+approximation (UFBoot). Both are described in the IQtree
+documentation.</p>
+<pre><code>support_value_types:
+    aLRT: 1000
+    ultrafast_bootstrap: 1000</code></pre>
+<p>On the tree nodes they are plotted in the order aLRT/UFboot</p>
+<p>To exclude one you could just comment out the line above. 1000
+replicates, specified for both, is fairly standard but you can change
+the number if you wish.</p>
+<h2 id="relationships-within-clade-1">Relationships within clade 1</h2>
+<p>The relationships <strong>within</strong> clade 1 (tropical apomicts)
+are very unstable. I would not be confident about inferring too much
+here with either SSU or LSU rRNA dataset which have low diversity.
+Importantly, we would not (biologically) expect any single locus to
+accurately reflect the relationships for taxa that are from an
+allopolyploid radiation, phylogenomics seems to be the best
+approach.</p>
+<p>Summary: this workflow is great at placing unknown RKN samples into a
+phylogenetic context, but the resolution of closely related species may
+need much more (carefully selected) data.</p>
+</body>
+</html>

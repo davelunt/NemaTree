@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sequence_prep</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="preparing-sequences-to-add">preparing sequences to add</h1>
+<p>The workflow has quality control steps for the sequences to be added,
+but it is also important to prepare correctly.</p>
+<p>Sequences should ideally to be in a single DNA fasta file in
+<code>resources/samples</code>. You will need to add the location of
+this file to <code>config/config.yaml</code></p>
+<p>If you need to concatenate multiple fasta files into one, you can use
+the following command:</p>
+<p><code>cat *.fas* &gt; mysamples.fas</code></p>
+<p>This will concatenate <code>.fas</code> and <code>.fasta</code> files
+so long as you are in the same directory as the files.</p>
+<p>You must not have spaces in filenames that are going to be processed
+by a workflow. Use name_underscores or name-hyphens or camelCase
+instead.</p>
+<h2 id="whitespace-and-poison-characters">whitespace and ‘poison
+characters’</h2>
+<p>The quality control will remove spaces in the fasta header and
+replace with underscores. Some other characters eg [:;()] are also
+replaced with underscores as they can interfere with some downstream
+tools as their meaning clashes with newick file syntax.</p>
+<h2 id="unique-names">Unique names</h2>
+<p>Sequences with identical names will be dropped from the analysis
+after the alignment. You can however use this command to add a unique
+number to the end of the header line. Make sure the conda environment is
+activated (to have Seqkit installed). This changes seqA to SeqA_001:</p>
+<p><code>seqkit replace -p $ -r "_{nr:03d}" mysamples.fas &gt; mysamples_unique.fas</code></p>
+<h2 id="good-names">Good names</h2>
+<p>It is a good idea to think ahead and have short informative unique
+names for your sequences. Very long names can cause the tree to become
+compressed. The reference alignment will for example use names like
+<code>M_javanica_LSU_MK385596</code>. Including the sequence accession
+number is an important component of reproducibility (ensures the
+provenance of the data is clear).</p>
+<h2 id="minimum-sequence-lengths">minimum sequence lengths</h2>
+<p>The shorter your sequence the less information it contains and the
+less accurate will be its incorporation into the tree. Some SSU
+sequences on GenBank are ~350bp, and this is the minimum you should
+consider. Sequences that are &gt;900bp are much more robust and will
+give much more information. If you only want to know “is this a tropical
+apomict in clade 1, or not” then even short sequences will work. If you
+want to know something more subtle, then you will need longer
+sequences.</p>
+<p>The config file has the ability for you to <strong>not</strong> add
+your sequences if they are below a certain length
+(<code>enforce_minlength: True</code>), and to specify what that minimum
+length is (<code>min_seq_length: 500</code>). Sometimes this is useful
+in cases where you want to investigate the precision of the results.</p>
+</body>
+</html>

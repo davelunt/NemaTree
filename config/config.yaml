@@ -10,21 +10,21 @@ conda: "../workflow/envs/environment.yaml"  # leave this unedited
 # ==================================
 # specify a name: "filepath" pair
 samples:
-  SSUtestadd: "resources/samples/SSUtestadd.fasta"
+  SSUunknown: "resources/samples/unknown.fasta"
 
 # option to set a minimum sequence length for sequences you are adding
 enforce_minlength: False # options are True or False
 min_seq_length: 500
 
 # ==================================
-# Reference alignment (CHOOSE)
+# Reference alignment 
 # ==================================
 
 # (1) Choose locus to analyse: "SSU" or "LSU"
 locus: "SSU"
 
 # (2) Choose scope of the reference library: "genus" or "clades123"
-scope: "genus"
+scope: "clades123"
 
 # Reference alignments for each locus/scope combination
 # only edit if you have changed these
@@ -71,8 +71,8 @@ subst_models:
 
 # IQtree support values
 # ----------------------------
-# Master switch: compute support values at all?
-phylogenetic_support_values: True
+# Master switch: compute/plot support values?
+phylogenetic_support_values: False
 # Types of support to compute, with replicate counts
 support_value_types:
     aLRT: 1000
@@ -86,7 +86,7 @@ support_value_types:
 # =====================
 # Rooting method: choose one of "outgroup", "outgroup_list", "midpoint", "mad"
 rooting:
-  method: "outgroup"
+  method: "outgroup_list"
 
 # Recommendations:
 # ----------------
@@ -98,7 +98,7 @@ rooting:
   # Used when method == "outgroup"
   outgroup_name: "Pratylenchus"
 
-  # Root on the ancestral node of these taxa (exact names).
+  # Root on the ancestral node of these taxa (use exact names).
   # The list matching the chosen SSU/LSU locus is picked automatically.
   outgroup_lists:
     SSU:
@@ -197,7 +197,7 @@ species_colors:
 # ===================
 
 # toytree image sizes
-toytree_width: 800
+toytree_width: 1200
 toytree_height: 1800
 toytree_node_sizes: 3
 

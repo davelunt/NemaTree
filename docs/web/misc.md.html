@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>misc</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="misc-notes">Misc Notes</h1>
+<p>I’m putting things here until they find a better place.</p>
+<h2 id="why-did-you-make-this">Why did you make this?</h2>
+<p>I’ve seen a lot of papers showing the distinctiveness of a new
+species, or regional sample, by comparison to only a very small number
+of other species isolates. I thought having publicly available
+well-curated reference alignments of Meloidogyne LSU and SSU would be
+very useful for this sort of research.</p>
+<p>I’m a big believer in reproducibilty in data analysis as (a) its the
+right way to do science and (b) its the easiest way to do science. So I
+wrote a reproducible workflow to do Meloidogyne phylogenetic analysis.
+Using this workflow has saved me an enormous amount of time while
+automating best practice approaches.</p>
+<h2 id="minimum-sequence-length">Minimum sequence length</h2>
+<p>Even though it reduces the number of taxa included, my view is that
+the phylogeny is much more robust if SSU sequences are required to be at
+least 700bp (config file).</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CIAlign</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cialign_len_filter</span><span class="kw">:</span><span class="at"> </span><span class="ch">True</span><span class="co"> # Filter short sequences from alignment</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cialign_minlen</span><span class="kw">:</span><span class="at"> </span><span class="dv">700</span><span class="co"> # minimum sequence length (bp)</span></span></code></pre></div>
+<h2 id="my-favourite-species-isnt-separated-phylogenetically">My
+favourite species isn’t separated phylogenetically</h2>
+<p>This does NOT mean your favourite taxon isn’t a real taxonomic group.
+Many closely related species just do not separate with rRNA as there
+isn’t enough information in the sequences. mtDNA isn’t much better
+either. For closely related species genomics is the best approach as it
+has an enormous amount of data and isn’t as hard as you might think.</p>
+<h2 id="excluded-taxa-due-to-taxonomic-uncertainty">Excluded taxa due to
+taxonomic uncertainty</h2>
+<h3 id="m.-oryzae">M. oryzae</h3>
+<p>Some publications describe this in clade 3, while others have
+suggested that this species has been misidentified and falls into clade
+1. This is discussed by Álvarez-Ortega et al (2019). ITS1 sequences
+place it in clade 1, while 18S sequences cannot distinguish it from
+M.graminicola in clade 3. Due to this confusion I do not include this
+species in the reference alignment. Many new full-length 18S sequences
+from well-characterised isolates (plus genomes) would resolve this more
+strongly.</p>
+<p>Álvarez-Ortega S, Brito JA, Subbotin SA. Multigene phylogeny of
+root-knot nematodes and molecular characterization of Meloidogyne
+nataliei Golden, Rose &amp; Bird, 1981 (Nematoda: Tylenchida). Sci
+Rep. 2019;9: 11788. doi:10.1038/s41598-019-48195-0</p>
+<h3 id="m.-christiae">M. christiae</h3>
+<p>Meloidogyne christiae KR082316 is the single SSU sequence from this
+taxon. It has a long branch in the 18S tree, making it subject to
+phylogenetic artefacts. Aisu et al (2026) have both SSU and LSU trees
+including M. christiae, though it falls in different taxonomic positions
+in each. This suggests that its taxonomic position is not reliable and
+many new full-length 18S sequences from well-characterised isolates
+(plus genomes) would resolve this more strongly.</p>
+<p>Aisu J, Karssen G, De Oliveira DAS. Integrative taxonomy and
+mitogenome characterization of the root-knot nematode Meloidogyne
+silvestris. Sci Rep. 2026;16. doi:10.1038/s41598-026-54669-9</p>
+<h3 id="m.-duytsi">M. duytsi</h3>
+<p>There are two SSU sequences of M. duytsi available from the
+international sequence databases (AF442197, KJ636385), the first falling
+very close to M.silvestris and the second elsewhere in the tree very
+close to M.dunensis. These are removed from the reference alignment as
+they do not add any clarity. You may of course add them yourself from
+these accession numbers. Again, many new full-length 18S sequences from
+well-characterised isolates (plus genomes) could resolve this.</p>
+<h2 id="why-use-only-lsu-and-ssu-why-not-add-or-merge-both">Why use only
+LSU and SSU? Why not add ? or merge both?</h2>
+<p>There is no reason at all, except that I had to start somewhere. This
+workflow could be modified to work with sequences of any locus, it would
+only require a good reference alignment (and some record keeping to
+clarify what type of sequences were being analysed). I have provided LSU
+and SSU reference alignments as they are probably the most commonly
+used. One issue with merging is that for most isolates since we do not
+know which 18S goes with which 26S sequence we would be creating
+synthetic sequences if we merged them. I see this a lot in publications
+where they restrict themselves to one representative of each species (a
+valid phylogenetic approach) but experience tells me that reducing taxon
+sampling like this is often problemmatic.</p>
+<h2 id="why-not-use-genomes">Why not use genomes?</h2>
+<p>If you know me at all you will know that I just shouted “Yes!!” very
+loudly. This is the gold standard, and would reveal much more than
+simple taxonomy. To me the best phylogeny of the Meloidogyne tropical
+apomicts was figure 3 in Szitenberg et al 2017. This showed (against my
+expectations) that genome scale data could robustly resolve even the
+most closely related species with hybridization and polyploidy in their
+histories. It included many isolates of single species, but did not
+include a good sample of the genus.</p>
+<p>Pushing this forward will require a community effort to grow
+well-characterised reference isolates for the genomics of species. I am
+of course happy to collaborate with anyone who needs bioinformatics
+support in their genomics projects.</p>
+<h2 id="use-of-ai">Use of AI</h2>
+<p>AI/LLMs did not write this workflow, I did. I used LLMs to assist me
+at some key points. I would often put Snakemake error messages into the
+LLM, as it pinpointed my errors instantly, whereas I would take longer
+to track down exactly what I had done wrong. Most python scripts were
+written by me (maybe all of them?) but I would ask LLMs to critique the
+code, and I would consider their improvements. Google Gemini was
+terrible, and I could not trust it with python code. I had to redesign
+the way config.yaml and some scripts interacted (determining the
+reference alignment, later determining the <strong>active</strong>
+alignment, selecting the rooting methods), and LLMs advised and wrote
+some lines of .yaml and python to my design and instructions. The best
+assistant I found by far was Proton’s Lumo 2.0 Lite. What do I think of
+LLMs? Aside from the environmental costs, and the dubious billionaires
+involved, I am comfortable making use of them as tools for my work in a
+specific pattern. It works for me because I know exactly how to write
+Snakemake workflows, am able to spot most errors in python code, and
+have built checks and failsafes into the workflow. If you don’t like
+LLMs, its not untrue to say this was written by me (with only a little
+assistance).</p>
+<h2 id="references">References</h2>
+<p>Szitenberg et al. Comparative Genomics of Apomictic Root-Knot
+Nematodes: Hybridization, Ploidy, and Dynamic Genome Change. Genome
+Biol. Evol. 2017. 2844–2861. doi:10.1093/gbe/evx201</p>
+</body>
+</html>
