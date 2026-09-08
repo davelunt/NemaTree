@@ -1,62 +1,209 @@
-# ============================================
-# TEST CONFIGURATION - integration test sandbox
-# Small values, tiny files, fast CI runs
-# ============================================
+# ==================================================
+#               NemaTree: CONFIGFILE
+# ==================================================
+# this file should be edited by the user to configure the analysis
 
-# Sample(s) to run through the pipeline
+conda: "../workflow/envs/environment.yaml"  # leave this unedited
+
+# ==================================
+# Sequences to add (REQUIRED)
+# ==================================
+# specify a name: "filepath" pair
 samples:
   SSUunknown: "resources/samples/unknown.fasta"
 
-# -------------------------------
-# Reference alignment (CHOOSE)
-# -------------------------------
+# option to set a minimum sequence length for sequences you are adding
+enforce_minlength: False # options are True or False
+min_seq_length: 500
+
+# ==================================
+# Reference alignment 
+# ==================================
+
+# (1) Choose locus to analyse: "SSU" or "LSU"
 locus: "SSU"
+
+# (2) Choose scope of the reference library: "genus" or "clades123"
 scope: "genus"
 
+# Reference alignments for each locus/scope combination
+# only edit if you have changed these
 reference_alignments:
   SSU:
     genus: "resources/reference/SSU_genus_test.fas"
     clades123: "resources/reference/SSU_clades123_test.fas"
   LSU:
-    genus: "resources/reference/LSU_genus_test.fas"
-    clades123: "resources/reference/LSU_clades123_test.fas"
+    genus: "resources/reference/LSU_genus_ref5.fasta"
+    clades123: "resources/reference/LSU_clades123_ref5.fasta"
 
-# -------------------------------
-# Rooting the phylogenetic tree
-# -------------------------------
-rooting:
-  method: "outgroup"
-  outgroup_name: "Pratylenchus"
-  outgroup_lists:
-    SSU:
-      - "M_artiellia_test"
-    LSU:
-      - "M_artiellia_LSU_test"
 
-# IQtree substitution model per locus
-# -----------------------------------
-subst_models:
+# ==================================
+# Alignment quality control
+# ==================================
+
+# Sequence plots
+# ---------------------------------
+# Generate sequence plots, supressing this will save some time
+# alnseqlength_histogram, length_histogram, mafft_cialign_output
+generate_seq_plots: False
+
+# CIAlign
+# ---------------------------------
+cialign_len_filter: False # Filter short sequences from alignment
+cialign_minlen: 400 # minimum sequence length (bp)
+
+# True requires a list of sequences to keep whatever their length
+# False will make no special cases and filter by length specified above
+retain_short_list_seqs: False
+cialign_retain_short_list: "config/retain_short.txt"
+
+# =============
+# Phylogenetics
+# =============
+
+# IQtree substitution models
+# --------------------------
+subst_models: 
   SSU: "GTR+R3"
   LSU: "TIM3+F+G4"
+# SSU best-fit by BIC is GTR+R3 but GTR+I+G usually fine also.
+# LSU, Best-fit by BIC AIC is TIM3+F+G4 but GTR+I+G usually fine also.
 
 # IQtree support values
-# ---------------------
-phylogenetic_support_values: True
+# ----------------------------
+# Master switch: compute/plot support values?
+phylogenetic_support_values: False
+# Types of support to compute, with replicate counts
 support_value_types:
-  ultrafast_bootstrap: 100    # reduced from 1000 for CI speed
-  aLRT: 100
+    aLRT: 1000
+    ultrafast_bootstrap: 100
 
-# Newly added sequence formatting in tree plots
-format_added_seqs: True
+
+# Rooting the phylogenetic tree (in toytree)
+# ------------------------------------------
+# =====================
+# CHOICE REQUIRED HERE
+# =====================
+# Rooting method: choose one of "outgroup", "outgroup_list", "midpoint", "mad"
+rooting:
+  method: "outgroup"
+
+# Recommendations:
+# ----------------
+# | Scope       | Method        | Taxa                                 |
+# | ----------- | ------------- | ------------------------------------ |
+# | genus       | outgroup      | outgroup_name: "Pratylenchus"        |
+# | clades123   | outgroup_list | list chosen automatically per locus  |
+
+  # Used when method == "outgroup"
+  outgroup_name: "Pratylenchus"
+
+  # Root on the ancestral node of these taxa (use exact names).
+  # The list matching the chosen SSU/LSU locus is picked automatically.
+  outgroup_lists:
+    SSU:
+      - "M_artiellia_AF442192"
+      - "M_artiellia_KC875391"
+      - "M_baetica_KP896296"
+      - "M_baetica_MH011982"
+    LSU:
+      - "M_artiellia_LSU_AY150369"
+      - "M_artiellia_KY433426"
+      - "M_baetica_LSU_AY150367"
+      - "M_baetica_LSU_MH011971"
+
+
+# Colouring and labelling of tip names
+# ------------------------------------
+# basic tree tip settings
+toytree_tipsize: 6
+toytree_tipcolor: "#52373A"
+toytree_tipmarker: "o"
+
+# font size for tip labels, 12 is standard.
+font_size: 12
+
+# Formatting for newly added sequences in tree plots
+format_added_seqs: True   # highlight added tips with a symbol + colour
+
 added_sequence_style:
-  marker: "▲ "
-  color: "red"
+  marker: "▲ "      # prefix shown before newly added tip names
+  color: "red"      # colour used for newly added tip names
 
-color_by_species: True
+# Species name coloring TRUE/FALSE
+# FALSE is all black names with red for added seqs
+color_by_species: TRUE
+
+# Mapping of species names to colours
 species_colors:
-  M_artiellia: "#1f77b4"
+  # clade 1
+  javanica: "#f32727"
+  floridensis: "#f04f27"
+  arenaria: "#ea312b"
+  incognita: "#cb1818"
+  phaseoli: "#cb1818"
+  morocciensis: "#f31212"
+  thailandica: "#f31212"
+  konaensis: "#a629e0"
+  arabicida: "#a527df"
+  izalcoensis: "#a620e4"
+  lopezi: "#9914ec"
+  paranaensis: "#861bbc"
+  hispanica: "#d06df1"
+  luci: "#bd5ded"
+  haplanaria: "#be5deb"
+  ethiopica: "#cd6df9"
+  inornata: "#cd6df9"
+  enterolobii: "#aa3812"
+  # clade 2
+  hapla: "#2151d7"
+  partityla: "#4168e7"
+  microtyla: "#738efa"
+  spartelensis: "#4b7bca"
+  dunensis: "#4669b4"
+  ardenensis: "#3851f4"
+  duytsi: "#5A5859"
+  silvestris: "#7a9dce"
+  maritima: "#568fd8"
+  spartinae: "#5389d4"
+  marylandi: "#518cde"
+  graminis: "#68a1f0"
+  # clade 3
+  graminicola: "#38af0d"
+  aegracyperi: "#38af0d"
+  oryzae: "#46ba54"
+  trifoliophila: "#38af0d"
+  salasi: "#38af0d"
+  kralli: "#1cc42d"
+  exigua: "#2FC51B"
+  naasi: "#28b11f"
+  minor: "#0f6c1b"
+  chitwoodi: "#086f07"
+  fallax: "#266f24"
+  # mali group
+  mali: "#F56F27"
+  paramali: "#E66825"
+  suginamiensis: "#D65A18"
+  # artiellia group
+  artiellia: "#783306"
+  baetica: "#9C4309"
+  # ichinohei group
+  ichinohei: "#8018D6"
+  camelliae: "#8D48C7"
+  aberrans: "#68289E"
 
-# toytree plot sizing (kept small for fast rendering)
-toytree_width: 800
-toytree_height: 800
-font_size: 10
+# ===================
+# Saving the treefile
+# ===================
+
+# toytree image sizes
+toytree_width: 1200
+toytree_height: 1800
+toytree_node_sizes: 3
+
+# select graphic formats to save final treefile
+tree_formats:
+  - "html"
+  # - "png"
+  # - "pdf"
+  # - "svg"

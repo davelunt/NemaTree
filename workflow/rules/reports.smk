@@ -1,6 +1,6 @@
 #  Reports
 #  ------------
-
+from pathlib import Path
 
 # SEQKIT, report on validated samples fasta file
 rule seq_stats_initial:
@@ -41,11 +41,13 @@ rule plot_alnseq_len:
 # AMAS, alignment report
 rule AMAS_alignment_stats:
     input:
-        "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+        aln="results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
         "results/reporting/amas/{sample}_mafft_cialign_amas.tsv",
+    params:
+        script=Path(workflow.basedir) / "scripts" / "AMAS.py",
     shell:
-        "python workflow/scripts/AMAS.py summary -i {input} -f fasta -d dna -o {output}"
+        "python {params.script} summary -i {input.aln} -f fasta -d dna -o {output}"
 
 
 # CIAlign, alignment reporting and visualisations

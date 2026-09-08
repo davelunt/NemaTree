@@ -1,0 +1,386 @@
+IQ-TREE 3.1.3 built Jul 26 2026
+
+Input file name: results/cialign/SSUunknown_mafft_cialign_cleaned.fasta
+Type of analysis: tree reconstruction
+Random seed number: 930463
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Piyumal Demotte, Hector Banos,
+Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman,
+Matthew W. Hahn, Mario dos Reis, Le Sy Vinh, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2026)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Molecular Biology and Evolution, msag117.
+https://doi.org/10.1093/molbev/msag117
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 159 sequences with 1900 nucleotide sites
+Number of constant sites: 1278 (= 67.2632% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 1278 (= 67.2632% of all sites)
+Number of parsimony informative sites: 467
+Number of distinct site patterns: 790
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: GTR+F+R3
+
+Rate parameter R:
+
+  A-C: 1.2843
+  A-G: 3.0911
+  A-T: 1.9342
+  C-G: 0.7222
+  C-T: 5.5939
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2612
+  pi(C) = 0.2132
+  pi(G) = 0.265
+  pi(T) = 0.2607
+
+Rate matrix Q:
+
+  A   -0.9531    0.1634    0.4888    0.3009
+  C    0.2002    -1.185    0.1142    0.8703
+  G    0.4818   0.09187   -0.7292    0.1556
+  T    0.3015    0.7116    0.1581    -1.171
+
+Model of rate heterogeneity: FreeRate with 3 categories
+Site proportion and rates:  (0.775,0.1556) (0.1556,2.55) (0.06942,6.953)
+
+ Category  Relative_rate  Proportion
+  1         0.1556         0.775
+  2         2.55           0.1556
+  3         6.953          0.06942
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -11488.6889 (s.e. 337.5999)
+Unconstrained log-likelihood (without tree): -10286.3560
+Number of free parameters (#branches + #model parameters): 287
+Akaike information criterion (AIC) score: 23551.3777
+Corrected Akaike information criterion (AICc) score: 23653.9286
+Bayesian information criterion (BIC) score: 25144.1156
+
+Total tree length (sum of branch lengths): 1.3432
+Sum of internal branch lengths: 0.8725 (64.9602% of tree length)
+
+WARNING: 51 near-zero internal branches (<0.0005) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'M_artiellia_AF442192' is drawn at root
+
++**M_artiellia_AF442192
+|
++**M_artiellia_KC875391
+|
+|                                  +**M_mali_KJ636400
+|                               +--|
+|                               |  +**M_mali_KC875395
+|                            +--|
+|                            |  |  +**M_mali_EU669949
+|                            |  +--|
+|                            |     +**M_mali_KF895400
+|                         +--|
+|                         |  |     +--M_paramali_MW342770
+|                         |  |  +**|
+|                         |  |  |  |  +**M_paramali_MW342772
+|                         |  |  |  +--|
+|                         |  |  |     +--M_paramali_MW342771
+|                         |  +--|
+|                         |     +--M_paramali_MW342769
+|                 +-------|
+|                 |       |     +--M_suginamiensis_MN101831
+|                 |       |  +--|
+|                 |       |  |  +--M_sp_KT883922
+|                 |       +--|
+|                 |          +--M_suginamiensis_MN101830
+|              +--|
+|              |  |                                               +**M_cf_chitwoodi_AY757842
+|              |  |                                            +**|
+|              |  |                                            |  |  +**M_chitwoodi_AY757838
+|              |  |                                            |  +--|
+|              |  |                                            |     |  +**M_chitwoodi_AF442195
+|              |  |                                            |     +**|
+|              |  |                                            |        |  +**M_fallax_ON496982
+|              |  |                                            |        +**|
+|              |  |                                            |           |  +**M_chitwoodi_ON496983
+|              |  |                                            |           +**|
+|              |  |                                            |              +**Sample_3
+|              |  |                                         +**|
+|              |  |                                         |  +**M_chitwoodi_AY757839
+|              |  |                                      +--|
+|              |  |                                      |  |                       +**M_minor_EU669937
+|              |  |                                      |  |                    +--|
+|              |  |                                      |  |                    |  +--M_minor_AY593899
+|              |  |                                      |  |                 +**|
+|              |  |                                      |  |                 |  +--M_chitwoodi_AY593885
+|              |  |                                      |  |              +**|
+|              |  |                                      |  |              |  +--M_chitwoodi_AY593888
+|              |  |                                      |  |           +**|
+|              |  |                                      |  |           |  +--M_fallax_AY593895
+|              |  |                                      |  |        +**|
+|              |  |                                      |  |        |  +--M_fallax_EU669936
+|              |  |                                      |  |     +**|
+|              |  |                                      |  |     |  +**M_fallax_EU669935
+|              |  |                                      |  |  +**|
+|              |  |                                      |  |  |  +--M_chitwoodi_AY593886
+|              |  |                                      |  +**|
+|              |  |                                      |     +--M_chitwoodi_AY593884
+|              |  |                                  +---|
+|              |  |                                  |   |           +**M_cf_graminicola_AY757844
+|              |  |                                  |   |        +**|
+|              |  |                                  |   |        |  |  +**M_graminicola_KF201168
+|              |  |                                  |   |        |  +**|
+|              |  |                                  |   |        |     |  +**M_graminicola_MG273440
+|              |  |                                  |   |        |     +**|
+|              |  |                                  |   |        |        +**M_graminicola_MG273439
+|              |  |                                  |   |     +--|
+|              |  |                                  |   |     |  +**M_cf_graminicola_AY919163
+|              |  |                                  |   |  +--|
+|              |  |                                  |   |  |  |        +--M_naasi_AY593900
+|              |  |                                  |   |  |  |     +**|
+|              |  |                                  |   |  |  |     |  +--M_naasi_AY593901
+|              |  |                                  |   |  |  |  +--|
+|              |  |                                  |   |  |  |  |  +--M_naasi_AY593902
+|              |  |                                  |   |  |  +--|
+|              |  |                                  |   |  |     +--M_kralli_KJ636370
+|              |  |                                  |   +--|
+|              |  |                                  |      |     +**M_exigua_KF993650
+|              |  |                                  |      |  +**|
+|              |  |                                  |      |  |  +**M_exigua_HQ709101
+|              |  |                                  |      +--|
+|              |  |                                  |         +--M_exigua_AF442200
+|              |  |                               +--|
+|              |  |                               |  |           +**M_enterolobii_AY446967
+|              |  |                               |  |        +**|
+|              |  |                               |  |        |  |  +--M_enterolobii_OK076893
+|              |  |                               |  |        |  +--|
+|              |  |                               |  |        |     +**M_enterolobii_MW209039
+|              |  |                               |  |     +--|
+|              |  |                               |  |     |  +**M_enterolobii_OR889634
+|              |  |                               |  |  +**|
+|              |  |                               |  |  |  |  +**M_enterolobii_AY446968
+|              |  |                               |  |  |  +--|
+|              |  |                               |  |  |     |  +**M_enterolobii_ON496981
+|              |  |                               |  |  |     +**|
+|              |  |                               |  |  |        +**Sample_2
+|              |  |                               |  +--|
+|              |  |                               |     |              +**M_cf_arenaria_AY757832
+|              |  |                               |     |           +**|
+|              |  |                               |     |           |  |              +**M_cf_incognita_AY757869
+|              |  |                               |     |           |  |           +--|
+|              |  |                               |     |           |  |           |  +--M_incognita_AY284621
+|              |  |                               |     |           |  |        +**|
+|              |  |                               |     |           |  |        |  |     +**M_incognita_AY942624
+|              |  |                               |     |           |  |        |  |  +**|
+|              |  |                               |     |           |  |        |  |  |  |  +**M_arenaria_AY942623
+|              |  |                               |     |           |  |        |  |  |  +**|
+|              |  |                               |     |           |  |        |  |  |     +--M_morocciensis_AY942632
+|              |  |                               |     |           |  |        |  +**|
+|              |  |                               |     |           |  |        |     +**M_floridensis_AY942621
+|              |  |                               |     |           |  |     +**|
+|              |  |                               |     |           |  |     |  |  +**M_arenaria_AF535867
+|              |  |                               |     |           |  |     |  +--|
+|              |  |                               |     |           |  |     |     +**M_arenaria_U42342
+|              |  |                               |     |           |  |  +**|
+|              |  |                               |     |           |  |  |  |     +--M_javanica_EU669938
+|              |  |                               |     |           |  |  |  |  +**|
+|              |  |                               |     |           |  |  |  |  |  |  +--M_arenaria_AY268118
+|              |  |                               |     |           |  |  |  |  |  +--|
+|              |  |                               |     |           |  |  |  |  |     +**M_javanica_AY268121
+|              |  |                               |     |           |  |  |  +--|
+|              |  |                               |     |           |  |  |     +**M_javanica_AY942626
+|              |  |                               |     |           |  +**|
+|              |  |                               |     |           |     +--M_incognita_AY268120
+|              |  |                               |     |        +--|
+|              |  |                               |     |        |  +**M_javanica_AY757871
+|              |  |                               |     |     +--|
+|              |  |                               |     |     |  +--M_incognita_EU669939
+|              |  |                               |     |  +--|
+|              |  |                               |     |  |  |        +**M_arabicida_AY942625
+|              |  |                               |     |  |  |     +**|
+|              |  |                               |     |  |  |     |  |     +**M_paranaensis_AY942622
+|              |  |                               |     |  |  |     |  |  +--|
+|              |  |                               |     |  |  |     |  |  |  |  +--M_arabicida_HE667738
+|              |  |                               |     |  |  |     |  |  |  +**|
+|              |  |                               |     |  |  |     |  |  |     |        +**M_izalcoensis_HE667743
+|              |  |                               |     |  |  |     |  |  |     |     +**|
+|              |  |                               |     |  |  |     |  |  |     |     |  +**M_arabicida_KF993648
+|              |  |                               |     |  |  |     |  |  |     |  +**|
+|              |  |                               |     |  |  |     |  |  |     |  |  +**M_arabicida_KF993647
+|              |  |                               |     |  |  |     |  |  |     +--|
+|              |  |                               |     |  |  |     |  |  |        +--M_lopezi_KF993645
+|              |  |                               |     |  |  |     |  +--|
+|              |  |                               |     |  |  |     |     +**M_konaensis_HE667744
+|              |  |                               |     |  |  |  +**|
+|              |  |                               |     |  |  |  |  +**M_paranaensis_OQ750410
+|              |  |                               |     |  |  +**|
+|              |  |                               |     |  |     +**M_paranaensis_OQ750411
+|              |  |                               |     +--|
+|              |  |                               |        |                 +**M_haplanaria_AY757867
+|              |  |                               |        |              +--|
+|              |  |                               |        |              |  +**M_haplanaria_AY919178
+|              |  |                               |        |           +**|
+|              |  |                               |        |           |  |  +--M_luci_LN626936
+|              |  |                               |        |           |  +--|
+|              |  |                               |        |           |     +--M_luci_LN626937
+|              |  |                               |        |        +--|
+|              |  |                               |        |        |  |        +--M_hispanica_EU443609
+|              |  |                               |        |        |  |     +**|
+|              |  |                               |        |        |  |     |  +--M_ethiopica_AY942630
+|              |  |                               |        |        |  |  +**|
+|              |  |                               |        |        |  |  |  +--M_hispanica_HE667741
+|              |  |                               |        |        |  +--|
+|              |  |                               |        |        |     +--M_ethiopica_LN626932
+|              |  |                               |        |     +--|
+|              |  |                               |        |     |  |     +--M_ethiopica_KC551945
+|              |  |                               |        |     |  |  +--|
+|              |  |                               |        |     |  |  |  +--M_luci_LN713296
+|              |  |                               |        |     |  +--|
+|              |  |                               |        |     |     |  +**M_ethiopica_LN626930
+|              |  |                               |        |     |     +--|
+|              |  |                               |        |     |        +--M_ethiopica_LN626928
+|              |  |                               |        |  +--|
+|              |  |                               |        |  |  +--M_luci_LN626947
+|              |  |                               |        +--|
+|              |  |                               |           +--M_luci_LN713298
+|              |  |                            +--|
+|              |  |                            |  +--M_silvestris_EU570215
+|              |  |                         +--|
+|              |  |                         |  |  +**M_silvestris_OR826799
+|              |  |                         |  +--|
+|              |  |                         |     +--M_silvestris_OR826800
+|              |  |                      +--|
+|              |  |                      |  |                  +**M_graminis_AY919165
+|              |  |                      |  |               +**|
+|              |  |                      |  |               |  |  +**M_graminis_AY919166
+|              |  |                      |  |               |  +--|
+|              |  |                      |  |               |     |  +--M_graminis_JN241838
+|              |  |                      |  |               |     +**|
+|              |  |                      |  |               |        |  +**M_marylandi_KP901049
+|              |  |                      |  |               |        +**|
+|              |  |                      |  |               |           +**M_marylandi_KP901043
+|              |  |                      |  |            +**|
+|              |  |                      |  |            |  +**M_marylandi_KP901041
+|              |  |                      |  |         +**|
+|              |  |                      |  |         |  +**M_marylandi_JN241856
+|              |  |                      |  |      +**|
+|              |  |                      |  |      |  +**M_cf_graminis_AY757847
+|              |  |                      |  |  +---|
+|              |  |                      |  |  |   |  +**M_cf_graminis_AY919167
+|              |  |                      |  |  |   +--|
+|              |  |                      |  |  |      +**M_cf_graminis_AY919168
+|              |  |                      |  +--|
+|              |  |                      |     +------M_spartinae_EF189177
+|              |  |                   +--|
+|              |  |                   |  |      +**M_maritima_AF442199
+|              |  |                   |  |   +**|
+|              |  |                   |  |   |  +**M_maritima_EU669944
+|              |  |                   |  +---|
+|              |  |                   |      +--M_maritima_EU669945
+|              |  |                +--|
+|              |  |                |  |  +--M_ardenensis_AY593894
+|              |  |                |  +--|
+|              |  |                |     +**M_ardenensis_EU669946
+|              |  +----------------|
+|              |                   |                 +**M_hapla_AY757858
+|              |                   |              +--|
+|              |                   |              |  |  +**M_hapla_AF442194
+|              |                   |              |  +**|
+|              |                   |              |     |     +**M_hapla_AY942628
+|              |                   |              |     |  +**|
+|              |                   |              |     |  |  +**Sample_1
+|              |                   |              |     +**|
+|              |                   |              |        |  +--M_hapla_EU669942
+|              |                   |              |        +**|
+|              |                   |              |           +--M_hapla_EU669941
+|              |                   |           +--|
+|              |                   |           |  +--M_hapla_AY268119
+|              |                   |        +--|
+|              |                   |        |  |     +**M_partityla_AY757874
+|              |                   |        |  |  +**|
+|              |                   |        |  |  |  +**M_partityla_AY919183
+|              |                   |        |  +--|
+|              |                   |        |     +--M_partityla_KT825143
+|              |                   |     +--|
+|              |                   |     |  +--M_microtyla_AF442198
+|              |                   |  +--|
+|              |                   |  |  |  +**M_dunensis_EF612713
+|              |                   |  |  +--|
+|              |                   |  |     +--M_sp_MK301103
+|              |                   +--|
+|              |                      +--M_spartelensis_KP896295
+|           +--|
+|           |  |          +------------M_coffeicola_HE667739
+|           |  |       +--|
+|           |  |       |  |               +-----------------Pratylenchus_penetrans_KJ934156
+|           |  |       |  +---------------|
+|           |  |       |                  +------------Pratylenchus_vulnus_KC875389
+|           |  |    +--|
+|           |  |    |  |                            +**M_africana_KY433422
+|           |  |    |  +----------------------------|
+|           |  |    |                               |  +--M_sp_EU669952
+|           |  |    |                               +--|
+|           |  |    |                                  |  +--M_sp_EU669951
+|           |  |    |                                  +--|
+|           |  |    |                                     +--M_sp_EU669950
+|           |  +----|
+|           |       |                 +**M_aberrans_MF278755
+|           |       |              +--|
+|           |       |              |  +**M_aberrans_MF278750
+|           |       |      +-------|
+|           |       |      |       +**M_aberrans_KX776409
+|           |       |   +--|
+|           |       |   |  |                 +**M_ichinohei_KJ636350
+|           |       |   |  |              +--|
+|           |       |   |  |              |  +**M_ichinohei_KC875386
+|           |       |   |  +--------------|
+|           |       |   |                 +**M_ichinohei_EU669954
+|           |       +---|
+|           |           +---------------M_camelliae_JX912884
+|        +--|
+|        |  |               +--M_oleae_MH011979
+|        |  +---------------|
+|        |                  +--M_oleae_MH011980
++--------|
+         |    +--M_baetica_KP896296
+         +----|
+              +--M_baetica_MH011982
+
+Tree in newick format:
+
+(M_artiellia_AF442192:0.0000033994,M_artiellia_KC875391:0.0000025820,((((((((M_mali_KJ636400:0.0000011769,M_mali_KC875395:0.0000011769):0.0037124406,(M_mali_EU669949:0.0000030861,M_mali_KF895400:0.0000028173):0.0056374367):0.0140775767,((M_paramali_MW342770:0.0035545330,(M_paramali_MW342772:0.0004623883,M_paramali_MW342771:0.0137462029):0.0037282076):0.0003452455,M_paramali_MW342769:0.0012513914):0.0093602862):0.0101925590,((M_suginamiensis_MN101831:0.0006777039,M_sp_KT883922:0.0075800647):0.0046615842,M_suginamiensis_MN101830:0.0029433555):0.0117545246):0.0330353525,(((((((((((M_cf_chitwoodi_AY757842:0.0000011769,(M_chitwoodi_AY757838:0.0000011769,(M_chitwoodi_AF442195:0.0000011769,(M_fallax_ON496982:0.0000011769,(M_chitwoodi_ON496983:0.0000011769,Sample_3:0.0000011769):0.0000011769):0.0000011769):0.0000011769):0.0010222921):0.0000012213,M_chitwoodi_AY757839:0.0000011769):0.0001434246,((((((((M_minor_EU669937:0.0000011769,M_minor_AY593899:0.0012261863):0.0027120276,M_chitwoodi_AY593885:0.0018474574):0.0000011769,M_chitwoodi_AY593888:0.0018422062):0.0000011769,M_fallax_AY593895:0.0012267109):0.0000011769,M_fallax_EU669936:0.0006124699):0.0000011769,M_fallax_EU669935:0.0000011769):0.0000011769,M_chitwoodi_AY593886:0.0012237237):0.0000011769,M_chitwoodi_AY593884:0.0012301290):0.0000011769):0.0027211625,((((M_cf_graminicola_AY757844:0.0000011769,(M_graminicola_KF201168:0.0000011769,(M_graminicola_MG273440:0.0000011769,M_graminicola_MG273439:0.0000011769):0.0000011769):0.0000011769):0.0000011769,M_cf_graminicola_AY919163:0.0000011769):0.0006148909,(((M_naasi_AY593900:0.0018440950,M_naasi_AY593901:0.0012276107):0.0000011769,M_naasi_AY593902:0.0024794192):0.0006111219,M_kralli_KJ636370:0.0031035976):0.0012300539):0.0006570807,((M_exigua_KF993650:0.0000011769,M_exigua_HQ709101:0.0000011769):0.0000030776,M_exigua_AF442200:0.0072609508):0.0046218389):0.0038399376):0.0191880830,((((M_enterolobii_AY446967:0.0000011769,(M_enterolobii_OK076893:0.0048743671,M_enterolobii_MW209039:0.0000011769):0.0007086292):0.0000962055,M_enterolobii_OR889634:0.0000027075):0.0012573208,(M_enterolobii_AY446968:0.0000011769,(M_enterolobii_ON496981:0.0000011769,Sample_2:0.0000011769):0.0000017263):0.0011760126):0.0000025438,(((((M_cf_arenaria_AY757832:0.0000011769,(((((M_cf_incognita_AY757869:0.0000026618,M_incognita_AY284621:0.0025166507):0.0012587744,((M_incognita_AY942624:0.0000011769,(M_arenaria_AY942623:0.0000011769,M_morocciensis_AY942632:0.0012773736):0.0000011769):0.0000023873,M_floridensis_AY942621:0.0000011769):0.0000015329):0.0000025440,(M_arenaria_AF535867:0.0000011769,M_arenaria_U42342:0.0000011769):0.0006247617):0.0000024962,((M_javanica_EU669938:0.0018830027,(M_arenaria_AY268118:0.0012640093,M_javanica_AY268121:0.0000024915):0.0012522212):0.0000030918,M_javanica_AY942626:0.0000033497):0.0012475664):0.0000024673,M_incognita_AY268120:0.0006314075):0.0000024163):0.0000028174,M_javanica_AY757871:0.0000011769):0.0019354918,M_incognita_EU669939:0.0043854283):0.0031816892,(((M_arabicida_AY942625:0.0000011769,((M_paranaensis_AY942622:0.0000011769,(M_arabicida_HE667738:0.0006486089,(((M_izalcoensis_HE667743:0.0000025851,M_arabicida_KF993648:0.0000011769):0.0000027918,M_arabicida_KF993647:0.0000011769):0.0000011769,M_lopezi_KF993645:0.0006743516):0.0012959353):0.0000025297):0.0008550789,M_konaensis_HE667744:0.0000011769):0.0014878638):0.0000011769,M_paranaensis_OQ750410:0.0000011769):0.0000031622,M_paranaensis_OQ750411:0.0000011769):0.0002060461):0.0039221877,((((((M_haplanaria_AY757867:0.0000011769,M_haplanaria_AY919178:0.0000011769):0.0027160538,(M_luci_LN626936:0.0012556917,M_luci_LN626937:0.0006251707):0.0050646012):0.0000034448,(((M_hispanica_EU443609:0.0022929848,M_ethiopica_AY942630:0.0011172151):0.0001571234,M_hispanica_HE667741:0.0012991066):0.0000025741,M_ethiopica_LN626932:0.0006252915):0.0006257162):0.0006164395,((M_ethiopica_KC551945:0.0014131142,M_luci_LN713296:0.0036225986):0.0014216677,(M_ethiopica_LN626930:0.0000011769,M_ethiopica_LN626928:0.0012513113):0.0025264056):0.0007827099):0.0007643616,M_luci_LN626947:0.0006464481):0.0017294861,M_luci_LN713298:0.0075544357):0.0012099582):0.0037633544):0.0049978853):0.0031924771,M_silvestris_EU570215:0.0058374483):0.0014925720,(M_silvestris_OR826799:0.0000024132,M_silvestris_OR826800:0.0024903788):0.0060904898):0.0018211384,((((((M_graminis_AY919165:0.0000011769,(M_graminis_AY919166:0.0000011769,(M_graminis_JN241838:0.0058981383,(M_marylandi_KP901049:0.0000011769,M_marylandi_KP901043:0.0000011769):0.0000011769):0.0000013664):0.0010810856):0.0001492649,M_marylandi_KP901041:0.0000011769):0.0000034017,M_marylandi_JN241856:0.0000011769):0.0000033371,M_cf_graminis_AY757847:0.0000011769):0.0000024264,(M_cf_graminis_AY919167:0.0000011769,M_cf_graminis_AY919168:0.0000011769):0.0027900653):0.0187113009,M_spartinae_EF189177:0.0294534723):0.0094245716):0.0005448339,((M_maritima_AF442199:0.0000011769,M_maritima_EU669944:0.0000011769):0.0004464758,M_maritima_EU669945:0.0033374571):0.0172971560):0.0034150308,(M_ardenensis_AY593894:0.0035929914,M_ardenensis_EU669946:0.0002809999):0.0071983523):0.0017294146,((((((M_hapla_AY757858:0.0000011769,(M_hapla_AF442194:0.0000011769,((M_hapla_AY942628:0.0000011769,Sample_1:0.0000011769):0.0000011769,(M_hapla_EU669942:0.0018888872,M_hapla_EU669941:0.0012555171):0.0000011769):0.0000011769):0.0000021445):0.0030663499,M_hapla_AY268119:0.0007046096):0.0049862246,((M_partityla_AY757874:0.0000011769,M_partityla_AY919183:0.0000011769):0.0000030876,M_partityla_KT825143:0.0057741653):0.0088067436):0.0078745944,M_microtyla_AF442198:0.0050039338):0.0024386292,(M_dunensis_EF612713:0.0000029324,M_sp_MK301103:0.0050884317):0.0132550467):0.0015793747,M_spartelensis_KP896295:0.0144955927):0.0015113360):0.0729010527):0.0139403891,(((M_coffeicola_HE667739:0.0542712900,(Pratylenchus_penetrans_KJ934156:0.0764553905,Pratylenchus_vulnus_KC875389:0.0564790881):0.0692632885):0.0106218701,(M_africana_KY433422:0.0005119968,(M_sp_EU669952:0.0005885819,(M_sp_EU669951:0.0017717261,M_sp_EU669950:0.0011811513):0.0005875734):0.0038335618):0.1195028235):0.0083348273,((((M_aberrans_MF278755:0.0000011769,M_aberrans_MF278750:0.0000033956):0.0006229218,M_aberrans_KX776409:0.0000025518):0.0340675411,((M_ichinohei_KJ636350:0.0000011769,M_ichinohei_KC875386:0.0000011769):0.0020392299,M_ichinohei_EU669954:0.0000024556):0.0618493392):0.0083160288,M_camelliae_JX912884:0.0681475496):0.0190671153):0.0209321981):0.0082318933,(M_oleae_MH011979:0.0013272499,M_oleae_MH011980:0.0006327247):0.0663372822):0.0147447926,(M_baetica_KP896296:0.0063934956,M_baetica_MH011982:0.0010548688):0.0219725714):0.0370591404);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.treefile -m "GTR{1.2843,3.09107,1.93415,0.722185,5.59395}+F{0.26116,0.213153,0.264979,0.260707}+R3{0.774996,0.155592,0.155583,2.55014,0.0694209,6.95263}" --length 1900
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s results/cialign/SSUunknown_mafft_cialign_cleaned.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s results/cialign/SSUunknown_mafft_cialign_cleaned.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Tue Sep  8 11:07:49 2026
+Total CPU time used: 322.654 seconds (0h:5m:22s)
+Total wall-clock time used: 92.0469 seconds (0h:1m:32s)
+

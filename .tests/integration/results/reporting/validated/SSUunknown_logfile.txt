@@ -1,0 +1,7 @@
+FASTA file cleaning and validation of resources/samples/unknown.fasta
+--------------------------------------------------------
+Number of altered FASTA headers: 0
+Number of altered FASTA sequences: 0
+No altered headers; alteration TSV not written
+All sequence names written to: results/reporting/validated/SSUunknown_all_fasta_headers.txt
+All validated FASTA records written to: results/samples/SSUunknown_validated.fas

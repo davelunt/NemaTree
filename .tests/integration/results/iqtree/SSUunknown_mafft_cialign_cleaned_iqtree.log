@@ -1,0 +1,401 @@
+IQ-TREE version 3.1.3 for MacOS Intel 64-bit built Jul 26 2026
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    M-LRCJDFL4PD (SSE4.2, 8 GB RAM)
+Command: iqtree -s results/cialign/SSUunknown_mafft_cialign_cleaned.fasta -pre results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree -m GTR+R3 --seqtype DNA -redo --quiet -T AUTO
+Seed:    930463 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Tue Sep  8 11:06:16 2026
+Kernel:  SSE2 - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file results/cialign/SSUunknown_mafft_cialign_cleaned.fasta ... Fasta format detected
+Reading fasta file: done in 0.00492811 secs using 80.31% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.00392199 secs using 74.61% CPU
+Alignment has 159 sequences with 1900 columns, 790 distinct patterns
+467 parsimony-informative, 155 singleton sites, 1278 constant sites
+                                 Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000225067 secs using 87.09% CPU
+   1  M_artiellia_AF442192              15.95%    passed     44.94%
+   2  M_artiellia_KC875391              10.05%    passed     42.40%
+   3  M_mali_KJ636400                   10.37%    passed     44.95%
+   4  M_mali_KC875395                   10.37%    passed     44.95%
+   5  M_mali_EU669949                   10.53%    passed     31.75%
+   6  M_mali_KF895400                   59.63%    passed     28.07%
+   7  M_paramali_MW342770                9.37%    passed     57.46%
+   8  M_paramali_MW342772                9.16%    passed     60.37%
+   9  M_paramali_MW342769                8.58%    passed     62.05%
+  10  M_paramali_MW342771               10.05%    passed     48.06%
+  11  M_suginamiensis_MN101831          10.53%    passed     40.72%
+  12  M_sp_KT883922                     10.42%    passed     52.65%
+  13  M_suginamiensis_MN101830           8.53%    passed     40.01%
+  14  M_cf_chitwoodi_AY757842           66.58%    passed     95.23%
+  15  M_chitwoodi_AY757838              66.53%    passed     94.32%
+  16  M_chitwoodi_AY757839              66.53%    passed     94.32%
+  17  M_chitwoodi_AY919157              66.53%    passed     94.32%
+  18  M_chitwoodi_DQ080579              66.53%    passed     94.32%
+  19  M_chitwoodi_AY757837              66.53%    passed     94.32%
+  20  M_cf_fallax_AY757843              66.53%    passed     94.32%
+  21  M_chitwoodi_AF442195              16.95%    passed     91.46%
+  22  M_fallax_ON496982                  5.63%    passed     56.52%
+  23  M_chitwoodi_ON496983               5.58%    passed     55.08%
+  24  Sample_3                           5.58%    passed     55.08%
+  25  M_minor_EU669937                  10.95%    passed     72.03%
+  26  M_minor_AY593899                  10.89%    passed     76.06%
+  27  M_fallax_AY593895                 11.00%    passed     75.70%
+  28  M_fallax_EU669936                 11.00%    passed     73.26%
+  29  M_chitwoodi_AY593886              10.95%    passed     68.77%
+  30  M_chitwoodi_AY593884              11.05%    passed     71.75%
+  31  M_chitwoodi_AY593885              10.95%    passed     76.70%
+  32  M_fallax_EU669935                 11.11%    passed     72.92%
+  33  M_chitwoodi_AY593888              10.79%    passed     73.53%
+  34  M_cf_graminicola_AY757844         66.37%    passed     99.23%
+  35  M_cf_graminicola_AY919163         66.37%    passed     99.23%
+  36  M_cf_graminicola_AY919164         66.37%    passed     99.23%
+  37  M_graminicola_KF201168            16.53%    passed     80.77%
+  38  M_naasi_AY593900                  10.89%    passed     70.07%
+  39  M_naasi_AY593901                  10.89%    passed     70.45%
+  40  M_graminicola_MG273440            10.89%    passed     64.68%
+  41  M_graminicola_MG273439            10.89%    passed     64.68%
+  42  M_graminicola_MG273438            10.89%    passed     64.68%
+  43  M_kralli_KJ636370                 10.95%    passed     62.43%
+  44  M_naasi_AY593902                  10.95%    passed     74.68%
+  45  M_exigua_KF993650                 17.11%    passed     96.84%
+  46  M_exigua_HQ709101                 54.32%    passed     97.95%
+  47  M_hapla_AY757858                  66.53%    passed     77.79%
+  48  M_hapla_AF442194                  16.95%    passed     92.30%
+  49  M_hapla_AY942628                  12.63%    passed     91.01%
+  50  Sample_1                          12.63%    passed     91.01%
+  51  M_hapla_EU669942                  11.47%    passed     93.92%
+  52  M_hapla_EU669941                  11.32%    passed     94.39%
+  53  M_partityla_AY757874              66.58%    passed     77.68%
+  54  M_partityla_AY919183              66.58%    passed     77.68%
+  55  M_partityla_KT825143              69.00%    passed     72.40%
+  56  M_microtyla_AF442198              17.05%    passed     97.79%
+  57  M_hapla_AY268119                  11.63%    passed     98.98%
+  58  M_enterolobii_AY446967            66.47%    passed     90.47%
+  59  M_enterolobii_AY446968            66.47%    passed     90.47%
+  60  M_enterolobii_AY446965            66.47%    passed     90.47%
+  61  M_enterolobii_AY919182            66.47%    passed     90.47%
+  62  M_enterolobii_AY757873            66.47%    passed     90.47%
+  63  M_enterolobii_AY446966            66.47%    passed     90.47%
+  64  M_cf_arenaria_AY757832            66.47%    passed     92.06%
+  65  M_javanica_AY757871               66.47%    passed     92.06%
+  66  M_cf_incognita_AY757868           66.47%    passed     92.06%
+  67  M_cf_incognita_AY919179           66.47%    passed     92.06%
+  68  M_cf_arenaria_AY757834            66.47%    passed     92.06%
+  69  M_javanica_AY757872               66.47%    passed     92.06%
+  70  M_javanica_AY919181               66.47%    passed     92.06%
+  71  M_javanica_AY919180               66.47%    passed     92.06%
+  72  M_arenaria_DQ080578               66.47%    passed     92.06%
+  73  M_cf_incognita_AY757869           66.47%    passed     93.85%
+  74  M_haplanaria_AY757867             66.47%    passed     93.85%
+  75  M_haplanaria_AY919178             66.47%    passed     93.85%
+  76  M_graminis_AY919165               66.47%    passed     80.04%
+  77  M_graminis_AY919166               66.47%    passed     80.04%
+  78  M_graminis_AY757845               66.47%    passed     80.04%
+  79  M_graminis_AY757846               66.47%    passed     80.04%
+  80  M_cf_graminis_AY919167            66.53%    passed     74.97%
+  81  M_cf_graminis_AY919168            66.53%    passed     74.97%
+  82  M_cf_graminis_AY757847            66.53%    passed     80.45%
+  83  M_hispanica_EU443609              59.00%    passed     93.06%
+  84  M_arenaria_AF535867               17.05%    passed     96.53%
+  85  M_arabicida_AY942625              14.26%    passed     92.30%
+  86  M_paranaensis_AY942622            13.63%    passed     86.01%
+  87  M_paranaensis_OQ750411            55.74%    passed     85.58%
+  88  M_paranaensis_OQ750410            55.63%    passed     85.39%
+  89  M_incognita_AY942624              12.84%    passed     79.53%
+  90  M_floridensis_AY942621            12.89%    passed     80.73%
+  91  M_arenaria_AY942623               15.11%    passed     94.70%
+  92  M_arenaria_U42342                 11.32%    passed     79.63%
+  93  M_javanica_EU669938               11.32%    passed     88.75%
+  94  M_incognita_AY284621              11.37%    passed     81.52%
+  95  M_javanica_AY942626               13.47%    passed     86.63%
+  96  M_morocciensis_AY942632           13.16%    passed     81.19%
+  97  M_arenaria_AY268118               11.79%    passed     93.64%
+  98  M_incognita_AY268120              11.84%    passed     91.88%
+  99  M_javanica_AY268121               11.26%    passed     89.44%
+ 100  M_incognita_EU669939              11.32%    passed     86.74%
+ 101  M_ethiopica_AY942630              13.26%    passed     92.41%
+ 102  M_luci_LN626947                   11.53%    passed     88.56%
+ 103  M_ethiopica_LN626932              11.53%    passed     92.95%
+ 104  M_luci_LN626936                   11.58%    passed     87.69%
+ 105  M_luci_LN626937                   11.58%    passed     90.17%
+ 106  M_hispanica_HE667741              13.89%    passed     98.38%
+ 107  M_arabicida_HE667738              13.84%    passed     93.69%
+ 108  M_izalcoensis_HE667743            13.89%    passed     90.84%
+ 109  M_lopezi_KF993645                 17.26%    passed     97.64%
+ 110  M_arabicida_KF993647              17.26%    passed     97.43%
+ 111  M_arabicida_KF993648              17.26%    passed     97.43%
+ 112  M_izalcoensis_KF993649            17.26%    passed     97.43%
+ 113  M_konaensis_HE667744              13.95%    passed     91.50%
+ 114  M_ethiopica_KC551945              15.68%    passed     99.91%
+ 115  M_luci_LN713296                   11.53%    passed     86.44%
+ 116  M_ethiopica_LN626930              11.53%    passed     90.64%
+ 117  M_ethiopica_LN626928              11.58%    passed     94.85%
+ 118  M_enterolobii_OK076893            11.47%    passed     86.67%
+ 119  M_enterolobii_MW209039            37.32%    passed     71.75%
+ 120  M_enterolobii_OR889634            13.00%    passed     98.86%
+ 121  M_enterolobii_ON496981             5.89%    passed     88.92%
+ 122  Sample_2                           5.89%    passed     88.92%
+ 123  M_luci_LN713298                   11.42%    passed     84.74%
+ 124  M_silvestris_EU570215             59.37%    passed     82.18%
+ 125  M_silvestris_OR826799             11.00%    passed     85.57%
+ 126  M_silvestris_OR826800             11.00%    passed     86.07%
+ 127  M_ardenensis_AY593894             11.16%    passed     98.11%
+ 128  M_ardenensis_EU669946             11.21%    passed     96.97%
+ 129  M_maritima_AF442199               16.79%    passed     95.11%
+ 130  M_maritima_EU669944               11.11%    passed     85.31%
+ 131  M_maritima_EU669945               11.11%    passed     82.69%
+ 132  M_dunensis_EF612713               56.32%    passed     84.91%
+ 133  M_sp_MK301103                     11.26%    passed     99.03%
+ 134  M_graminis_JN241838               19.58%    passed     80.51%
+ 135  M_marylandi_JN241856              21.00%    passed     69.23%
+ 136  M_marylandi_KP901041              11.32%    passed     65.92%
+ 137  M_marylandi_KP901049              11.32%    passed     64.19%
+ 138  M_marylandi_KP901043              11.32%    passed     64.19%
+ 139  M_spartinae_EF189177              12.42%    passed     69.31%
+ 140  M_exigua_AF442200                 16.79%    passed     95.09%
+ 141  M_spartelensis_KP896295           56.26%    passed     83.63%
+ 142  M_baetica_KP896296                53.21%    passed     25.94%
+ 143  M_baetica_MH011982                13.32%    passed     18.95%
+ 144  M_oleae_MH011979                  13.68%    passed      8.06%
+ 145  M_oleae_MH011980                   9.26%    passed     10.61%
+ 146  M_coffeicola_HE667739             12.79%    passed     12.55%
+ 147  M_aberrans_MF278755               10.79%    passed     36.88%
+ 148  M_aberrans_MF278750               10.79%    passed     36.88%
+ 149  M_aberrans_KX776409               10.79%    passed     39.66%
+ 150  M_ichinohei_KJ636350              17.05%    passed     57.43%
+ 151  M_ichinohei_KC875386              17.05%    passed     57.43%
+ 152  M_ichinohei_EU669954              10.95%    passed     87.97%
+ 153  M_camelliae_JX912884              51.84%    passed     22.40%
+ 154  M_africana_KY433422               12.47%    passed      8.61%
+ 155  M_sp_EU669952                      9.00%    passed      5.30%
+ 156  M_sp_EU669951                      9.00%    failed      4.23%
+ 157  M_sp_EU669950                      9.00%    failed      4.49%
+ 158  Pratylenchus_penetrans_KJ934156   10.16%    passed     83.97%
+ 159  Pratylenchus_vulnus_KC875389      15.53%    passed     41.83%
+WARNING: 49 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                             28.42%  2 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: M_mali_KC875395 is identical to M_mali_KJ636400 but kept for subsequent analysis
+NOTE: M_chitwoodi_AY757839 is identical to M_chitwoodi_AY757838 but kept for subsequent analysis
+NOTE: Sample_3 is identical to M_chitwoodi_ON496983 but kept for subsequent analysis
+NOTE: M_cf_graminicola_AY919163 is identical to M_cf_graminicola_AY757844 but kept for subsequent analysis
+NOTE: M_graminicola_MG273439 is identical to M_graminicola_MG273440 but kept for subsequent analysis
+NOTE: Sample_1 is identical to M_hapla_AY942628 but kept for subsequent analysis
+NOTE: M_partityla_AY919183 is identical to M_partityla_AY757874 but kept for subsequent analysis
+NOTE: M_enterolobii_AY446968 is identical to M_enterolobii_AY446967 but kept for subsequent analysis
+NOTE: M_javanica_AY757871 is identical to M_cf_arenaria_AY757832 but kept for subsequent analysis
+NOTE: M_haplanaria_AY919178 is identical to M_haplanaria_AY757867 but kept for subsequent analysis
+NOTE: M_graminis_AY919166 is identical to M_graminis_AY919165 but kept for subsequent analysis
+NOTE: M_cf_graminis_AY919168 is identical to M_cf_graminis_AY919167 but kept for subsequent analysis
+NOTE: M_arabicida_KF993648 is identical to M_arabicida_KF993647 but kept for subsequent analysis
+NOTE: Sample_2 is identical to M_enterolobii_ON496981 but kept for subsequent analysis
+NOTE: M_marylandi_KP901043 is identical to M_marylandi_KP901049 but kept for subsequent analysis
+NOTE: M_aberrans_MF278750 is identical to M_aberrans_MF278755 but kept for subsequent analysis
+NOTE: M_ichinohei_KC875386 is identical to M_ichinohei_KJ636350 but kept for subsequent analysis
+Checking for duplicate sequences: done in 0.00050211 secs using 68.71% CPU
+Identifying sites to remove: done in 0.00182605 secs using 92.11% CPU
+NOTE: 20 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: M_chitwoodi_AY919157 (identical to M_chitwoodi_AY757838) is ignored but added at the end
+NOTE: M_chitwoodi_DQ080579 (identical to M_chitwoodi_AY757838) is ignored but added at the end
+NOTE: M_chitwoodi_AY757837 (identical to M_chitwoodi_AY757838) is ignored but added at the end
+NOTE: M_cf_fallax_AY757843 (identical to M_chitwoodi_AY757838) is ignored but added at the end
+NOTE: M_cf_graminicola_AY919164 (identical to M_cf_graminicola_AY757844) is ignored but added at the end
+NOTE: M_graminicola_MG273438 (identical to M_graminicola_MG273440) is ignored but added at the end
+NOTE: M_enterolobii_AY446965 (identical to M_enterolobii_AY446967) is ignored but added at the end
+NOTE: M_enterolobii_AY919182 (identical to M_enterolobii_AY446967) is ignored but added at the end
+NOTE: M_enterolobii_AY757873 (identical to M_enterolobii_AY446967) is ignored but added at the end
+NOTE: M_enterolobii_AY446966 (identical to M_enterolobii_AY446967) is ignored but added at the end
+NOTE: M_cf_incognita_AY757868 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_cf_incognita_AY919179 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_cf_arenaria_AY757834 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_javanica_AY757872 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_javanica_AY919181 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_javanica_AY919180 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_arenaria_DQ080578 (identical to M_cf_arenaria_AY757832) is ignored but added at the end
+NOTE: M_graminis_AY757845 (identical to M_graminis_AY919165) is ignored but added at the end
+NOTE: M_graminis_AY757846 (identical to M_graminis_AY919165) is ignored but added at the end
+NOTE: M_izalcoensis_KF993649 (identical to M_arabicida_KF993647) is ignored but added at the end
+Alignment was printed to results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.uniqueseq.phy
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.010 seconds
+
+NOTE: 10 MB RAM (0 GB) is required!
+Measuring multi-threading efficiency up to 8 CPU cores
+Increase to 10 rounds for branch lengths
+66 trees examined
+Threads: 1 / Time: 8.094 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -29814
+Threads: 2 / Time: 5.695 sec / Speedup: 1.421 / Efficiency: 71% / LogL: -29814
+Threads: 3 / Time: 4.243 sec / Speedup: 1.908 / Efficiency: 64% / LogL: -29814
+Threads: 4 / Time: 3.820 sec / Speedup: 2.119 / Efficiency: 53% / LogL: -29814
+Threads: 5 / Time: 6.217 sec / Speedup: 1.302 / Efficiency: 26% / LogL: -29814
+Determining AUTO threadcount: done in 28.0708 secs using 267.2% CPU
+BEST NUMBER OF THREADS: 4
+
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -12343.074
+2. Current log-likelihood: -11570.584
+3. Current log-likelihood: -11557.897
+4. Current log-likelihood: -11556.666
+5. Current log-likelihood: -11556.041
+6. Current log-likelihood: -11555.712
+7. Current log-likelihood: -11555.563
+Optimal log-likelihood: -11555.437
+Rate parameters:  A-C: 1.24761  A-G: 3.07293  A-T: 1.83992  C-G: 0.74826  C-T: 5.01250  G-T: 1.00000
+Base frequencies:  A: 0.261  C: 0.213  G: 0.265  T: 0.261
+Site proportion and rates:  (0.511,0.184) (0.308,0.261) (0.181,4.551)
+Parameters optimization took 7 rounds (0.591 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.014436 secs using 383.6% CPU
+Computing ML distances took 0.017577 sec (of wall-clock time) 0.059944 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.000121117 secs using 327.8% CPU
+Constructing RapidNJ tree: done in 0.00186396 secs using 351.5% CPU
+Computing RapidNJ tree took 0.002467 sec (of wall-clock time) 0.008770 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -11744.593
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.813 second
+Computing log-likelihood of 98 initial trees ... 0.748 seconds
+Current best score: -11528.586
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -11510.052
+Iteration 10 / LogL: -11519.661 / Time: 0h:0m:32s
+Iteration 20 / LogL: -11540.811 / Time: 0h:0m:34s
+Finish initializing candidate tree set (20)
+Current best tree score: -11510.052 / CPU time: 5.171
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -11510.069 / Time: 0h:0m:36s (0h:1m:30s left)
+Iteration 40 / LogL: -11512.634 / Time: 0h:0m:39s (0h:1m:1s left)
+Iteration 50 / LogL: -11510.076 / Time: 0h:0m:42s (0h:0m:44s left)
+Iteration 60 / LogL: -11510.269 / Time: 0h:0m:45s (0h:0m:31s left)
+Iteration 70 / LogL: -11510.075 / Time: 0h:0m:47s (0h:0m:21s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 78: -11509.659
+Iteration 80 / LogL: -11517.510 / Time: 0h:0m:50s (0h:1m:2s left)
+BETTER TREE FOUND at iteration 85: -11509.657
+Iteration 90 / LogL: -11512.570 / Time: 0h:0m:52s (0h:0m:56s left)
+Iteration 100 / LogL: -11509.680 / Time: 0h:0m:55s (0h:0m:47s left)
+Iteration 110 / LogL: -11509.672 / Time: 0h:0m:58s (0h:0m:40s left)
+Iteration 120 / LogL: -11509.670 / Time: 0h:1m:0s (0h:0m:33s left)
+BETTER TREE FOUND at iteration 127: -11509.655
+Iteration 130 / LogL: -11509.656 / Time: 0h:1m:3s (0h:0m:47s left)
+Iteration 140 / LogL: -11509.678 / Time: 0h:1m:5s (0h:0m:41s left)
+Iteration 150 / LogL: -11509.664 / Time: 0h:1m:8s (0h:0m:35s left)
+Iteration 160 / LogL: -11509.659 / Time: 0h:1m:10s (0h:0m:29s left)
+Iteration 170 / LogL: -11509.669 / Time: 0h:1m:13s (0h:0m:24s left)
+Iteration 180 / LogL: -11516.280 / Time: 0h:1m:16s (0h:0m:20s left)
+Iteration 190 / LogL: -11509.676 / Time: 0h:1m:19s (0h:0m:15s left)
+Iteration 200 / LogL: -11509.667 / Time: 0h:1m:21s (0h:0m:11s left)
+Iteration 210 / LogL: -11516.686 / Time: 0h:1m:23s (0h:0m:6s left)
+Iteration 220 / LogL: -11517.111 / Time: 0h:1m:25s (0h:0m:2s left)
+TREE SEARCH COMPLETED AFTER 228 ITERATIONS / Time: 0h:1m:27s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -11509.655
+2. Current log-likelihood: -11509.629
+3. Current log-likelihood: -11509.599
+4. Current log-likelihood: -11509.559
+5. Current log-likelihood: -11509.518
+6. Current log-likelihood: -11509.474
+7. Current log-likelihood: -11509.426
+8. Current log-likelihood: -11509.369
+9. Current log-likelihood: -11509.309
+10. Current log-likelihood: -11509.244
+11. Current log-likelihood: -11509.174
+12. Current log-likelihood: -11509.099
+13. Current log-likelihood: -11509.019
+14. Current log-likelihood: -11508.931
+15. Current log-likelihood: -11508.836
+16. Current log-likelihood: -11508.733
+17. Current log-likelihood: -11508.622
+18. Current log-likelihood: -11508.502
+19. Current log-likelihood: -11508.373
+20. Current log-likelihood: -11508.234
+21. Current log-likelihood: -11508.083
+22. Current log-likelihood: -11507.921
+23. Current log-likelihood: -11507.744
+24. Current log-likelihood: -11507.555
+25. Current log-likelihood: -11507.350
+26. Current log-likelihood: -11507.130
+27. Current log-likelihood: -11506.891
+28. Current log-likelihood: -11506.658
+29. Current log-likelihood: -11506.506
+30. Current log-likelihood: -11506.332
+31. Current log-likelihood: -11506.147
+32. Current log-likelihood: -11505.945
+33. Current log-likelihood: -11505.725
+34. Current log-likelihood: -11505.470
+35. Current log-likelihood: -11505.192
+36. Current log-likelihood: -11504.886
+37. Current log-likelihood: -11504.533
+38. Current log-likelihood: -11504.139
+39. Current log-likelihood: -11503.686
+40. Current log-likelihood: -11503.173
+41. Current log-likelihood: -11502.580
+42. Current log-likelihood: -11501.909
+43. Current log-likelihood: -11501.158
+44. Current log-likelihood: -11500.312
+45. Current log-likelihood: -11499.399
+46. Current log-likelihood: -11498.421
+47. Current log-likelihood: -11497.421
+48. Current log-likelihood: -11496.441
+49. Current log-likelihood: -11495.505
+50. Current log-likelihood: -11494.600
+51. Current log-likelihood: -11493.778
+52. Current log-likelihood: -11493.027
+53. Current log-likelihood: -11492.355
+54. Current log-likelihood: -11491.753
+55. Current log-likelihood: -11491.221
+56. Current log-likelihood: -11490.760
+57. Current log-likelihood: -11490.363
+58. Current log-likelihood: -11490.030
+59. Current log-likelihood: -11489.749
+60. Current log-likelihood: -11489.516
+61. Current log-likelihood: -11489.328
+62. Current log-likelihood: -11489.179
+63. Current log-likelihood: -11489.059
+64. Current log-likelihood: -11488.972
+65. Current log-likelihood: -11488.902
+66. Current log-likelihood: -11488.847
+67. Current log-likelihood: -11488.805
+68. Current log-likelihood: -11488.771
+69. Current log-likelihood: -11488.745
+70. Current log-likelihood: -11488.726
+71. Current log-likelihood: -11488.711
+72. Current log-likelihood: -11488.699
+Optimal log-likelihood: -11488.689
+Rate parameters:  A-C: 1.28430  A-G: 3.09107  A-T: 1.93415  C-G: 0.72219  C-T: 5.59395  G-T: 1.00000
+Base frequencies:  A: 0.261  C: 0.213  G: 0.265  T: 0.261
+Site proportion and rates:  (0.775,0.156) (0.156,2.550) (0.069,6.953)
+Parameters optimization took 72 rounds (4.327 sec)
+BEST SCORE FOUND : -11488.689
+Total tree length: 1.343
+
+Total number of iterations: 228
+CPU time used for tree search: 226.779 sec (0h:3m:46s)
+Wall-clock time used for tree search: 58.589 sec (0h:0m:58s)
+Total CPU time used: 322.654 sec (0h:5m:22s)
+Total wall-clock time used: 92.031 sec (0h:1m:32s)
+
+Analysis results written to: 
+  IQ-TREE report:                results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.iqtree
+  Maximum-likelihood tree:       results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.treefile
+  Likelihood distances:          results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.mldist
+  Screen log file:               results/iqtree/SSUunknown_mafft_cialign_cleaned_iqtree.log
+
+Date and Time: Tue Sep  8 11:07:49 2026

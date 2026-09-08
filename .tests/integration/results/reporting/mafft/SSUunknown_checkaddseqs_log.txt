@@ -1,0 +1,4 @@
+Number of records in results/samples/SSUunknown_validated.fas: 3
+Number of records in resources/reference/SSU_genus_test.fas: 156
+Number of records in results/mafft/SSUunknown_mafft.fas: 159
+Check passed: Target sequence counts match expected totals.
