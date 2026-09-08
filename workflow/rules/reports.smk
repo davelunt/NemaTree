@@ -52,11 +52,11 @@ rule AMAS_alignment_stats:
 # if config generate_seq_plots: TRUE
 rule CIAlign_aln_statsvisuals:
     input:
-        fasta = "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+        fasta="results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
-        img = "results/reporting/cialign/{sample}_mafft_cialign_output.png",
+        img="results/reporting/cialign/{sample}_mafft_cialign_output.png",
     params:
-        stub = lambda wildcards, output: output.img.replace("_output.png", ""),
+        stub=lambda wildcards, output: output.img.replace("_output.png", ""),
     shell:
         """
         CIAlign --infile {input.fasta} --outfile_stem {params.stub} --visualise --plot_stats_input

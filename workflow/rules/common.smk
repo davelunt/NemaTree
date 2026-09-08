@@ -65,6 +65,7 @@ def cialign_short_retain_arg():
 # ---------------------------
 VALID_ROOTING_METHODS = {"outgroup", "outgroup_list", "midpoint", "mad"}
 
+
 def get_rooting(config):
     """Validate the rooting config and resolve it to a clean dict:
     {"method": <str>} plus the parameter that method needs."""
@@ -111,7 +112,9 @@ def get_substitution_model(config):
     models = config.get("subst_models", {})
 
     if locus not in VALID_LOCI:
-        raise ValueError(f"config 'locus' must be one of {sorted(VALID_LOCI)}, got '{locus}'")
+        raise ValueError(
+            f"config 'locus' must be one of {sorted(VALID_LOCI)}, got '{locus}'"
+        )
     if locus not in models:
         raise ValueError(
             f"config 'subst_models' has no entry for locus '{locus}'. "
@@ -125,9 +128,10 @@ def get_substitution_model(config):
 # ------------------------------------------
 # Map config support-value keys to IQ-TREE command-line flags
 SUPPORT_FLAGS = {
-    "ultrafast_bootstrap": "-B",   # ultrafast bootstrap replicates
-    "aLRT": "-alrt",               # SH-aLRT replicates
+    "ultrafast_bootstrap": "-B",  # ultrafast bootstrap replicates
+    "aLRT": "-alrt",  # SH-aLRT replicates
 }
+
 
 def get_support_flags(config):
     """Return the concatenated IQ-TREE support-value flags,

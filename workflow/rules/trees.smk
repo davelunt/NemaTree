@@ -1,11 +1,10 @@
 # Phylogenetic analysis
 # =====================
 
+
 # IQtree, build ML tree
 # ----------------------
 rule iqtree:
-    message:
-        "Building ML tree with IQtree for sample {wildcards.sample}.fas"
     input:
         "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
     output:
@@ -14,16 +13,18 @@ rule iqtree:
         model=SUBST_MODEL,
         prefix="results/iqtree/{sample}_mafft_cialign_cleaned_iqtree",
         support=SUPPORT_FLAG_STRING,
+    message:
+        "Building ML tree with IQtree for sample {wildcards.sample}.fas"
     shell:
         """
         iqtree -s {input} \
-               -pre {params.prefix} \
-               -m {params.model} \
-               --seqtype DNA \
-               {params.support} \
-               -redo \
-               --quiet \
-               -T AUTO
+            -pre {params.prefix} \
+            -m {params.model} \
+            --seqtype DNA \
+            {params.support} \
+            -redo \
+            --quiet \
+            -T AUTO
         """
 
 

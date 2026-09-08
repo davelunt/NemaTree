@@ -3,7 +3,7 @@
 # remove -.? from sequences. Report to log file
 rule clean_supplied_fasta:
     input:
-        raw = get_raw_input,
+        raw=get_raw_input,
     output:
         seqs="results/samples/{sample}_validated.fas",
         newnames="results/reporting/validated/{sample}_clean_fasta_newnames.txt",
@@ -24,6 +24,6 @@ rule minlength:
     output:
         "results/samples/{sample}_valid_minlen.fas",
     params:
-        minlength = config["min_seq_length"],
+        minlength=config["min_seq_length"],
     shell:
         "seqkit seq -m {params.minlength} -g {input} > {output}"

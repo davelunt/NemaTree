@@ -3,28 +3,27 @@
 # functions get_added_seqs and get_cialignment etc
 # are defined in rules/common.smk
 
+
 # add sample seqs to reference alignment
 rule mafft_add_seqs:
     input:
-        newseqs = get_added_seqs,
-        ref = REF_ALIGNMENT,
-        # ref = REFERENCE,
+        newseqs=get_added_seqs,
+        ref=REF_ALIGNMENT,
     output:
-        newalignment = "results/mafft/{sample}_mafft.fas"
+        newalignment="results/mafft/{sample}_mafft.fas",
     shell:
         "mafft --add {input.newseqs} --reorder {input.ref} > {output.newalignment}"
 
- 
+
 # check that sequences were added to the reference alignment and exit if not
 rule check_seqs_added:
     input:
         seqs_to_add=get_added_seqs,
         combined_alignment="results/mafft/{sample}_mafft.fas",
-    params:
-        # reflibrary = REFERENCE,
-        reflibrary = REF_ALIGNMENT,
     output:
         log="results/reporting/mafft/{sample}_checkaddseqs_log.txt",
+    params:
+        reflibrary=REF_ALIGNMENT,
     script:
         "../scripts/check_added.py"
 
@@ -44,13 +43,13 @@ rule remove_duplicate_names:
 # seqs to retain no matter the length can be set in config.yaml
 rule CIAlign_remove_short_seqs:
     input:
-        fasta="results/mafft/{sample}_mafft_nodups.fas"
+        fasta="results/mafft/{sample}_mafft_nodups.fas",
     output:
-        "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta"
+        "results/cialign/{sample}_mafft_cialign_shortremoved_cleaned.fasta",
     params:
         minlen=config.get("cialign_minlen", 300),
         stem=lambda wc: f"results/cialign/{wc.sample}_mafft_cialign_shortremoved",
-        retain=cialign_short_retain_arg()
+        retain=cialign_short_retain_arg(),
     shell:
         """
         CIAlign \
@@ -64,16 +63,14 @@ rule CIAlign_remove_short_seqs:
 
 rule CIAlign_remove_divergent_trim:
     input:
-        alignment = get_cialignment, # either shortseqs removed or not depending on config
+        alignment=get_cialignment,  # either shortseqs removed or not depending on config
     output:
-        cleaned = "results/cialign/{sample}_mafft_cialign_cleaned.fasta",
-        log     = "results/cialign/{sample}_mafft_cialign_log.txt",
-        removed = "results/cialign/{sample}_mafft_cialign_removed.txt",
+        cleaned="results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+        log="results/cialign/{sample}_mafft_cialign_log.txt",
+        removed="results/cialign/{sample}_mafft_cialign_removed.txt",
     params:
-        stub = lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
+        stub=lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
     shell:
         """
         CIAlign --infile {input.alignment} --outfile_stem {params.stub} --remove_divergent --crop_ends
         """
-
-
