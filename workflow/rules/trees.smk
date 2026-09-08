@@ -24,6 +24,7 @@ rule iqtree:
             {params.support} \
             -redo \
             --quiet \
+            -t PARS \
             -T AUTO
         """
 

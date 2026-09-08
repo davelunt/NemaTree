@@ -17,3 +17,5 @@ config_*
 misc/**
 static/**
 .streamlit/**
+*report.html
+report.zip

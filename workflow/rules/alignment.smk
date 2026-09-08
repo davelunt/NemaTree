@@ -61,16 +61,31 @@ rule CIAlign_remove_short_seqs:
         """
 
 
+# rule CIAlign_remove_divergent_trim:
+#     input:
+#         alignment=get_cialignment,  # either shortseqs removed or not depending on config
+#     output:
+#         cleaned="results/cialign/{sample}_mafft_cialign_cleaned.fasta",
+#         log="results/cialign/{sample}_mafft_cialign_log.txt",
+#         removed="results/cialign/{sample}_mafft_cialign_removed.txt",
+#     params:
+#         stub=lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
+#     shell:
+#         """
+#         CIAlign --infile {input.alignment} --outfile_stem {params.stub} --remove_divergent --crop_ends
+#         """
+
 rule CIAlign_remove_divergent_trim:
     input:
-        alignment=get_cialignment,  # either shortseqs removed or not depending on config
+        alignment=get_cialignment,
     output:
         cleaned="results/cialign/{sample}_mafft_cialign_cleaned.fasta",
         log="results/cialign/{sample}_mafft_cialign_log.txt",
         removed="results/cialign/{sample}_mafft_cialign_removed.txt",
     params:
-        stub=lambda wildcards, output: output.cleaned.replace("_cleaned.fasta", ""),
+        stub="results/cialign/{sample}_mafft_cialign",
     shell:
         """
-        CIAlign --infile {input.alignment} --outfile_stem {params.stub} --remove_divergent --crop_ends
+        CIAlign --infile {input.alignment} --outfile_stem {params.stub} \
+                --remove_divergent --crop_ends
         """

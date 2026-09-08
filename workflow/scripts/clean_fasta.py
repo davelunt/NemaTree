@@ -102,11 +102,6 @@ def sanitize_fasta_headers_and_sequences(
             altered_handle.write("Original_Header\tAltered_Header\n")
             altered_handle.write("\n".join(altered_rows) + "\n")
 
-    # Write the alteration TSV only if any headers were actually changed
-    # if altered_rows:
-    #     with open(newnames_file, "w") as altered_handle:
-    #         altered_handle.write("Original_Header\tAltered_Header\n")
-    #         altered_handle.write("\n".join(altered_rows) + "\n")
 
     print(f"FASTA file cleaning and validation of {input_file}")
     print("--------------------------------------------------------")
@@ -115,7 +110,7 @@ def sanitize_fasta_headers_and_sequences(
     if altered_rows:
         print(f"Altered record headers written to TSV: {newnames_file}")
     else:
-        print("No altered headers; alteration TSV not written")
+        print("No altered headers; alteration TSV left empty")
     print(f"All sequence names written to: {original_names_file}")
     print(f"All validated FASTA records written to: {output_file}")
 
