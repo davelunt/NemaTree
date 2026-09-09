@@ -115,6 +115,7 @@ You should within a couple of minutes have an annotated phylogenetic tree that y
     - failure to activate the environment
         - try `conda activate nematree`
     - snakemake times out waiting for IQ-tree after 30s. Use `--latency-wait 300`
+    - confusion with rooting. Make sure taxa listed as outgroup are present in tree
     - losing the final tree
         - try `results/reporting/toytree/myseqsname_mafft_cialign_cleaned_iqtree.html`
 

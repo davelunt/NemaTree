@@ -161,3 +161,15 @@ def get_support_flags(config):
         flags.append(f"{SUPPORT_FLAGS[key]} {replicates}")
 
     return " ".join(flags)
+
+
+# output formats for the tree
+VALID_TOYTREE_FORMATS = {"html", "png", "svg", "pdf"}
+
+def get_toytree_formats(config):
+    formats = config.get("toytree_formats", ["html"])
+    unknown = set(formats) - VALID_TOYTREE_FORMATS
+    if unknown:
+        raise ValueError(f"Unknown toytree format(s): {sorted(unknown)}. "
+                        f"Valid: {sorted(VALID_TOYTREE_FORMATS)}")
+    return formats

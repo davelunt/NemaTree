@@ -25,8 +25,13 @@ SUPPORT_FLAG_STRING = get_support_flags(config)
 config["rooting"] = get_rooting(config)
 
 # output formats for trees, default is html (also png, pdf, svg)
-TREEFORMATS = config.get("tree_formats", ["html"])
-
+TOYTREE_FORMATS = config.get("tree_formats", ["html"])
+# define the name of all final trees, because it is now used in several places
+TOYTREE_PLOTS = expand(
+    "results/reporting/toytree/{sample}_mafft_cialign_cleaned_iqtree.{ext}",
+    sample=SAMPLES,
+    ext=TOYTREE_FORMATS,
+)
 
 #  ------------
 # TARGET RULE
@@ -60,11 +65,15 @@ rule all:
             "results/iqtree/{sample}_mafft_cialign_cleaned_iqtree.treefile",
             sample=SAMPLES,
         ),
-        expand(
-            "results/reporting/toytree/{sample}_mafft_cialign_cleaned_iqtree.{ext}",
-            sample=SAMPLES,
-            ext=TREEFORMATS,
-        ),
+        TOYTREE_PLOTS,
+        "results/reporting/jobs_detail.csv",
+        "results/reporting/summary_by_rule.csv",
+
+        # expand(
+        #     "results/reporting/toytree/{sample}_mafft_cialign_cleaned_iqtree.{ext}",
+        #     sample=SAMPLES,
+        #     ext=TOYTREE_FORMATS,
+        # ),
 
 
 # --------------------
@@ -74,3 +83,4 @@ include: "rules/qc.smk"
 include: "rules/alignment.smk"
 include: "rules/trees.smk"
 include: "rules/reports.smk"
+include: "rules/quarto.smk"
